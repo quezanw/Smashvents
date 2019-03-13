@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
+import express from 'express'
 const bodyParser = require('body-parser')
-const express = require('express')
+// const express = require('express')
 const session = require('express-session')
 // const passport = require('./config/passport')
 const cors = require('cors')
