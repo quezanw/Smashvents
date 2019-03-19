@@ -33,10 +33,10 @@ function validateForm (req, res, next) {
 }
 
 module.exports = function (app) {
-  // app.get('/auth/users', UserController.index)
-  // app.post('/auth/create', validateForm, UserController.createUser)
-  // app.post('/auth/login',
-  //   passport.authenticate('local'),
-  //   (req, res) => res.json(req.user))
+  app.get('/auth/users', UserController.index)
+  app.post('/auth/register', validateForm, UserController.createUser)
+  app.post('/auth/login',
+    passport.authenticate('local'),
+    (req, res) => res.json(req.user))
   // create update user info route
 }
