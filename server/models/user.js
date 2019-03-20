@@ -6,7 +6,7 @@ let UserSchema = new mongoose.Schema({
   lastname: { type: String, required: [true, 'Last name required'] },
   gamertag: { type: String, required: [true, 'Last name required'] },
   email: { type: String, required: [true, 'Email requied'] },
-  password: { type: String, required: [true, 'Email requied'], minlength: 8 }
+  password: { type: String, required: [true, 'Password requied'], minlength: 8 }
 })
 
 UserSchema.methods.generateHash = (password) => {

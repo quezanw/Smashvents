@@ -14,6 +14,7 @@ module.exports = {
     const {
       firstname,
       lastname,
+      gamertag,
       email,
       password
     } = body
@@ -38,11 +39,37 @@ module.exports = {
 
       newUser.firstname = firstname
       newUser.lastname = lastname
+      newUser.gamertag = gamertag
       newUser.email = email
       newUser.password = newUser.generateHash(password)
       newUser.save()
         .then(user => res.json(user))
         .catch(err => res.json(err))
     })
+  },
+  updateUser: function (req, res) {
+    let userId = req.body.id
+
+    let conditions = {
+      _id: userId
+    }
+
+    let information = {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      gamertag: req.body.gamertag
+    }
+
+    let update = {
+      $set: information
+    }
+    User.findOneAndUpdate(conditions, update, { runValidators: true })
+      .then(user => res.json(user))
+      .catch(error => res.json(error))
+  },
+  deleteUser: function (req, res) {
+    User.remove({ _id: req.body.id })
+      .then(user => res.json(user))
+      .catch(error => res.json(error))
   }
 }

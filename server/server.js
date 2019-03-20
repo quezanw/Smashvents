@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import cors from 'cors'
 import expressValidator from 'express-validator'
+import passport from './config/passport'
 
 const app = express()
 app.use(bodyParser.json())
@@ -15,10 +16,10 @@ app.use(session({
 }))
 app.use(expressValidator())
 app.use(cors())
-// app.use(passport.initialize())
-// app.use(passport.session())
+app.use(passport.initialize())
+app.use(passport.session())
 
 require('./config/mongoose')
-// require('./config/routes')(app)
+require('./config/routes')(app)
 
-app.listen(8000, err => err ? console.log(err) : console.log('listening on port 8000'))
+app.listen(3000, err => err ? console.log(err) : console.log('listening on port 3000'))

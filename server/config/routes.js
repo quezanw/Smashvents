@@ -9,6 +9,8 @@ function validateForm (req, res, next) {
   req.checkBody('lastname')
     .notEmpty().withMessage('Last Name cannot be blank')
     .isAlpha().withMessage('Name must be only alphabetical characters')
+  req.checkBody('gamertag')
+    .notEmpty().withMessage('Gamertag cannot be blank')
   req.checkBody('email', 'Invalid Email')
     .notEmpty().withMessage('Email cannot be blank')
     .isEmail().withMessage('Invalid Email')
@@ -38,5 +40,6 @@ module.exports = function (app) {
   app.post('/auth/login',
     passport.authenticate('local'),
     (req, res) => res.json(req.user))
+  app.put('/auth/update')
   // create update user info route
 }
