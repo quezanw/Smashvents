@@ -9,20 +9,20 @@ let UserSchema = new mongoose.Schema({
   password: { type: String, required: [true, 'Password requied'], minlength: 8 }
 })
 
-UserSchema.methods.generateHash = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
-}
-
-UserSchema.methods.validatePassword = (password) => {
-  return bcrypt.compareSync(password, this.password)
-}
-
-// UserSchema.methods.generateHash = function (password) {
+// UserSchema.methods.generateHash = (password) => {
 //   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
 // }
 
-// UserSchema.methods.validatePassword = function (password) {
+// UserSchema.methods.validatePassword = (password) => {
 //   return bcrypt.compareSync(password, this.password)
 // }
+
+UserSchema.methods.generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
+}
+
+UserSchema.methods.validatePassword = function (password) {
+  return bcrypt.compareSync(password, this.password)
+}
 
 module.exports = mongoose.model('User', UserSchema)
