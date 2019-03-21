@@ -48,7 +48,7 @@ module.exports = {
     })
   },
   updateUser: function (req, res) {
-    let userId = req.body.id
+    let userId = req.body._id
 
     let conditions = {
       _id: userId
@@ -63,7 +63,7 @@ module.exports = {
     let update = {
       $set: information
     }
-    User.findOneAndUpdate(conditions, update, { runValidators: true })
+    User.updateOne(conditions, update, { runValidators: true })
       .then(user => res.json(user))
       .catch(error => res.json(error))
   },

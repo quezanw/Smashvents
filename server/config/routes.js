@@ -40,6 +40,6 @@ module.exports = function (app) {
   app.post('/auth/login',
     passport.authenticate('local'),
     (req, res) => res.json(req.user))
-  app.put('/auth/update')
+  app.put('/auth/update', UserController.updateUser)
   // create update user info route
 }
