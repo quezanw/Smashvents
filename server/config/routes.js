@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import passport from './passport'
 import UserController from '../controller/users'
+import EventController from '../controller/events'
 
 function validateForm (req, res, next) {
   req.checkBody('firstname')
@@ -42,4 +43,6 @@ module.exports = function (app) {
     (req, res) => res.json(req.user))
   app.put('/auth/update', UserController.updateUser)
   // create update user info route
+  app.get('/events/all', EventController.index)
+  app.post('/events/new', EventController.createEvent)
 }

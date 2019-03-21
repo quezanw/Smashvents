@@ -3,7 +3,7 @@ import Event from '../models/event'
 
 module.exports = {
   index: function (req, res) {
-    console.log('index auth')
+    console.log('get all events')
     Event.find({})
       .then(events => res.json(events))
       .catch(err => res.json(err))
@@ -22,21 +22,21 @@ module.exports = {
       hostID
     } = body
 
-      let newEvent = new Event()
+    let newEvent = new Event()
 
-      newEvent.title = title
-      newEvent.description = description
-      newEvent.location = location
-      newEvent.startDate = startDate
-      newEvent.endDate = endDate
-      newEvent.startTime = startTime
-      newEvent.endTime = endTime
-      newEvent.hostID = hostID
-      newEvent.save()
-        .then(event => res.json(event))
-        .catch(err => res.json(err))
-    }
-  },
+    newEvent.title = title
+    newEvent.description = description
+    newEvent.location = location
+    newEvent.startDate = startDate
+    newEvent.endDate = endDate
+    newEvent.startTime = startTime
+    newEvent.endTime = endTime
+    newEvent.hostID = hostID
+    newEvent.save()
+      .then(event => res.json(event))
+      .catch(err => res.json(err))
+  }
+}
   // updateUser: function (req, res) {
   //   let userId = req.body._id
 
@@ -62,4 +62,3 @@ module.exports = {
   //     .then(user => res.json(user))
   //     .catch(error => res.json(error))
   // }
-}
