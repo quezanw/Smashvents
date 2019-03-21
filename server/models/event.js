@@ -8,8 +8,8 @@ let EventSchema = new mongoose.Schema({
   endDate: { type: Date, required: [true, 'End Date requied'] },
   startTime: { type: Date, required: [true, 'Start Time requied'] },
   endTime: { type: Date, required: [true, 'End Time requied'] },
-  hostID: { type: String },
+  hostID: { type: String, required: true },
   attendees: { type: Array }
 }, { timestamps: true })
 
-export default EventSchema
+export default mongoose.model('Event', EventSchema)
