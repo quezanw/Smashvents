@@ -42,7 +42,10 @@ module.exports = function (app) {
     passport.authenticate('local'),
     (req, res) => res.json(req.user))
   app.put('/auth/update', UserController.updateUser)
+  app.delete('/auth/remove', UserController.deleteUser)
   // create update user info route
   app.get('/events/all', EventController.index)
   app.post('/events/new', EventController.createEvent)
+  app.put('/events/update', EventController.updateEvent)
+  app.delete('/events/remove', EventController.deleteEvent)
 }

@@ -35,30 +35,35 @@ module.exports = {
     newEvent.save()
       .then(event => res.json(event))
       .catch(err => res.json(err))
+  },
+  updateEvent: function (req, res) {
+    let eventID = req.body._id
+
+    let conditions = {
+      _id: eventID
+    }
+
+    let information = {
+      title: req.body.title,
+      description: req.body.description,
+      location: req.body.location,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
+      startTime: req.body.startTime,
+      endTime: req.body.endTime,
+      hostID: req.body.hostID
+    }
+
+    let update = {
+      $set: information
+    }
+    Event.updateOne(conditions, update, { runValidators: true })
+      .then(user => res.json(user))
+      .catch(error => res.json(error))
+  },
+  deleteEvent: function (req, res) {
+    Event.remove({ _id: req.body._id })
+      .then(user => res.json(user))
+      .catch(error => res.json(error))
   }
 }
-  // updateUser: function (req, res) {
-  //   let userId = req.body._id
-
-  //   let conditions = {
-  //     _id: userId
-  //   }
-
-  //   let information = {
-  //     firstname: req.body.firstname,
-  //     lastname: req.body.lastname,
-  //     gamertag: req.body.gamertag
-  //   }
-
-  //   let update = {
-  //     $set: information
-  //   }
-  //   User.updateOne(conditions, update, { runValidators: true })
-  //     .then(user => res.json(user))
-  //     .catch(error => res.json(error))
-  // },
-  // deleteUser: function (req, res) {
-  //   User.remove({ _id: req.body.id })
-  //     .then(user => res.json(user))
-  //     .catch(error => res.json(error))
-  // }
