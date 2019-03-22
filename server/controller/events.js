@@ -1,6 +1,5 @@
 import Event from '../models/event'
 import User from '../models/user'
-import { runInNewContext } from 'vm';
 
 module.exports = {
   index: function (req, res) {
