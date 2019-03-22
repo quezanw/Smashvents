@@ -1,12 +1,18 @@
 import Event from '../models/event'
-// const User = require('../models/user')
+import User from '../models/user'
+import { runInNewContext } from 'vm';
 
 module.exports = {
   index: function (req, res) {
     console.log('get all events')
     Event.find({})
       .then(events => res.json(events))
-      .catch(err => res.json(err))
+      .catch(error => res.json(error))
+  },
+  findEvent: function (req, res) {
+    Event.findOne({ _id: req.body._id })
+      .then(event => res.json(event))
+      .catch(error => res.json(error))
   },
   createEvent: function (req, res) {
     console.log('Create event attempt ping')
@@ -34,7 +40,7 @@ module.exports = {
     newEvent.hostID = hostID
     newEvent.save()
       .then(event => res.json(event))
-      .catch(err => res.json(err))
+      .catch(error => res.json(error))
   },
   updateEvent: function (req, res) {
     let eventID = req.body._id
@@ -58,12 +64,33 @@ module.exports = {
       $set: information
     }
     Event.updateOne(conditions, update, { runValidators: true })
-      .then(user => res.json(user))
+      .then(event => res.json(event))
       .catch(error => res.json(error))
   },
   deleteEvent: function (req, res) {
     Event.remove({ _id: req.body._id })
-      .then(user => res.json(user))
+      .then(event => res.json(event))
+      .catch(error => res.json(error))
+  },
+  // function should add a user id to attendees array
+  // should also add the event id to the users attending array
+  addUser: function (req, res) {
+    console.log('add user function')
+    let eventID = req.body.eventID
+    let userID = req.body.userID
+    console.log(req.body.eventID)
+    let updateEvent = { $push: { attendees: userID } }
+    let updateUser = { $push: { attending: eventID } }
+
+    Event.updateOne({ _id: eventID }, updateEvent)
+      .then(event => {
+        if (!event) {
+          return res.json({ success: false, message: 'could not match event' })
+        }
+        return User.updateOne({ _id: userID }, updateUser)
+          .then(event => res.json(event))
+          .catch(error => res.json(error))
+      })
       .catch(error => res.json(error))
   }
 }

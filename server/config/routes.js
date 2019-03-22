@@ -36,6 +36,7 @@ function validateForm (req, res, next) {
 }
 
 module.exports = function (app) {
+  app.get('/auth/user', UserController.findUser)
   app.get('/auth/users', UserController.index)
   app.post('/auth/register', validateForm, UserController.createUser)
   app.post('/auth/login',
@@ -44,8 +45,10 @@ module.exports = function (app) {
   app.put('/auth/update', UserController.updateUser)
   app.delete('/auth/remove', UserController.deleteUser)
   // create update user info route
+  app.get('/events/event', EventController.findEvent)
   app.get('/events/all', EventController.index)
   app.post('/events/new', EventController.createEvent)
   app.put('/events/update', EventController.updateEvent)
+  app.put('/events/update/add', EventController.addUser)
   app.delete('/events/remove', EventController.deleteEvent)
 }

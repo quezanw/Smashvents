@@ -8,6 +8,11 @@ module.exports = {
       .then(users => res.json(users))
       .catch(err => res.json(err))
   },
+  findUser: function (req, res) {
+    User.findOne({ _id: req.body._id })
+      .then(user => res.json(user))
+      .catch(error => res.json(error))
+  },
   createUser: function (req, res) {
     console.log('Create user attempt ping')
     const { body } = req
@@ -68,7 +73,7 @@ module.exports = {
       .catch(error => res.json(error))
   },
   deleteUser: function (req, res) {
-    User.remove({ _id: req.body.id })
+    User.remove({ _id: req.body._id })
       .then(user => res.json(user))
       .catch(error => res.json(error))
   }
