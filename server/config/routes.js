@@ -50,5 +50,6 @@ module.exports = function (app) {
   app.post('/events/new', EventController.createEvent)
   app.put('/events/update', EventController.updateEvent)
   app.put('/events/update/add', EventController.addUser)
+  app.put('/events/update/remove', EventController.removeUser)
   app.delete('/events/remove', EventController.deleteEvent)
 }

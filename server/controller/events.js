@@ -77,7 +77,6 @@ module.exports = {
     console.log('add user function')
     let eventID = req.body.eventID
     let userID = req.body.userID
-    console.log(req.body.eventID)
     let updateEvent = { $push: { attendees: userID } }
     let updateUser = { $push: { attending: eventID } }
 
@@ -87,6 +86,23 @@ module.exports = {
           return res.json({ success: false, message: 'could not match event' })
         }
         return User.updateOne({ _id: userID }, updateUser)
+          .then(event => res.json(event))
+          .catch(error => res.json(error))
+      })
+      .catch(error => res.json(error))
+  },
+  removeUser: function (req, res) {
+    let eventID = req.body.eventID
+    let userID = req.body.userID
+    let removeEvent = { $pull: { attendees: userID } }
+    let removeUser = { $pull: { attending: eventID } }
+
+    Event.updateOne({ _id: eventID }, removeEvent)
+      .then(event => {
+        if (!event) {
+          return res.json({ success: false, message: 'could not match event' })
+        }
+        return User.updateOne({ _id: userID }, removeUser)
           .then(event => res.json(event))
           .catch(error => res.json(error))
       })
