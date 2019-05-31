@@ -2,8 +2,8 @@ import React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import UserForm from './UserForm'
 import { connect } from "react-redux";
-import { loginUser} from "../actions";
-import history from '../history'
+import { loginUser} from "../../actions";
+import history from '../../history'
 
 
 class LoginModal extends React.Component {

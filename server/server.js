@@ -22,4 +22,4 @@ app.use(passport.session())
 require('./config/mongoose')
 require('./config/routes')(app)
 
-app.listen(3000, err => err ? console.log(err) : console.log('listening on port 3000'))
+app.listen(1929, err => err ? console.log(err) : console.log('listening on port 1929'))

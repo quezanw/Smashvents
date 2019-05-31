@@ -1,0 +1,11 @@
+body {
+  padding: 1rem;
+}
+
+.app-container {
+  border: 1px solid black;
+}
+
+.sub-container {
+  border: 3px solid green;
+}

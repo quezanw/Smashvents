@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt-nodejs'
 let UserSchema = new mongoose.Schema({
   firstname: { type: String, required: [true, 'First name required'] },
   lastname: { type: String, required: [true, 'Last name required'] },
-  gamertag: { type: String, required: [true, 'Last name required'] },
+  gamertag: { type: String, required: [true, 'Gamertag required'] },
   email: { type: String, required: [true, 'Email requied'] },
   password: { type: String, required: [true, 'Password required'], minlength: 8 },
   hosting: { type: Array },

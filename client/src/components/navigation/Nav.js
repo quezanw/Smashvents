@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import '../styles/components/Nav.css'
-import { logout } from '../actions'
+import '../../styles/components/Nav.css'
+import { logout } from '../../actions'
 import { connect } from 'react-redux';
 import React from 'react'
 import { Link } from 'react-router-dom';
@@ -22,7 +22,7 @@ class Nav extends React.Component {
   render() {
     return(
       <nav className="container d-flex flex-row navbar navbar-light bg-light navbar-expand-lg">
-        <a className="navbar-brand mr-auto" href="#">Brand Logo</a>
+        <a className="navbar-brand mr-auto" href="#">Smashvents</a>
         <a className="nav-item nav-link active" href="#">
           Home <span className="sr-only">(current)</span>
         </a>

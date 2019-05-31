@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
-import "../styles/components/UserForm.css";
+import "../../styles/components/UserForm.css";
 
 // import auth from '../apis/auth';
 

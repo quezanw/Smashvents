@@ -14,7 +14,6 @@ module.exports = {
       .catch(error => res.json(error))
   },
   createEvent: function (req, res) {
-    console.log('Create event attempt ping')
     const { body } = req
     const {
       title,

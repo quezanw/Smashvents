@@ -1,10 +1,10 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { connect } from "react-redux";
-import { createUser } from "../actions";
+import { createUser } from "../../actions";
 import UserForm from './UserForm'
 
-import history from '../history'
+import history from '../../history'
 
 
 class SignupModal extends React.Component {
@@ -37,6 +37,10 @@ class SignupModal extends React.Component {
       {
         name: 'lastname',
         label: 'Last Name'
+      },
+      {
+        name: 'gamertag',
+        label: 'Gamertag'
       },
       {
         name: 'email',
