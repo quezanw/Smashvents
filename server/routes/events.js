@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var config = require('../../config');
+const express = require('express');
+const router = express.Router();
+const config = require('../../config');
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -38,11 +38,41 @@ router.get('/all', function(req, res, next) {
 
 // Create new event
 router.post('/new', (req, res, next) => {
-  let {title, description, ruleset, venue, online, offline, start_date} = req.body;
-  let createQuery = `INSERT INTO events 
-    (title, description, ruleset, venue, online, offline, start_date)
+  let {title, description, ruleset, venue, 
+       online, offline, start_date} = req.body;
+  let createQuery = `INSERT INTO events (title, 
+                                        description, 
+                                        ruleset, 
+                                        venue, 
+                                        online, 
+                                        offline, 
+                                        start_date)
     VALUES ('${title}', '${description}', '${ruleset}', '${venue}', ${online}, ${offline}, '${start_date}')`;
   pool.query(createQuery, (error, results) => {
+    if(error) {
+      throw error;
+    }
+    res.status(200).json(results.rows);
+  })
+});
+
+// edit event
+router.put('/edit', (req, res, next) => {
+  let {event_id, title, description, ruleset, venue, 
+    online, offline, start_date} = req.body;
+  let updateQuery = `
+    UPDATE events 
+    SET
+      title='${title}',
+      description='${description}',
+      ruleset='${ruleset}',
+      venue='${venue}',
+      online = ${online},
+      offline = ${offline},
+      start_date='${start_date}'
+    WHERE event_id = ${event_id}
+  `;
+  pool.query(updateQuery, (error, results) => {
     if(error) {
       throw error;
     }
@@ -50,14 +80,16 @@ router.post('/new', (req, res, next) => {
   })
 });
 
-// edit event
-router.put('/edit', (req, res, next) => {
-  
-});
-
 // Delete event
 router.delete('/delete', (req, res, next) => {
-  
+  let {event_id} = req.body;
+  let deleteQuery = `DELETE FROM events WHERE event_id=${event_id}`;;
+  pool.query(deleteQuery, (error, results) => {
+    if(error) {
+      throw error;
+    }
+    res.status(200).json(results.rows);
+  })
 });
 
 module.exports = router;

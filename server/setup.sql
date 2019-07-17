@@ -44,3 +44,13 @@ VALUES (
   FALSE,
   '2019-11-23 18:00:00'
 );
+
+INSERT INTO users
+(username, first_name, last_name, email, password) 
+VALUES (
+  'quezanw',
+  'quezan',
+  'wong',
+  'buff@puff.com',
+  'abcd1234'
+);
