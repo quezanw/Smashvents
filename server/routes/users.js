@@ -21,9 +21,9 @@ const pool = new Pool({
 let checkIfExists = async (columnName, query) => {
   let response = await pool.query(query)
   if(response.rowCount !== 0) {
-    return {error: true, message: `Invalid: ${columnName} exists`};
+    return {exist: true, message: `${columnName} exists`, row: response.rows[0]};
   } else {
-    return {success: true, message: `${columnName} available`}
+    return {exist: false, message: `${columnName} available`}
   }
 }
 router.post('/signup', async (req, res, next) => {
@@ -36,7 +36,7 @@ router.post('/signup', async (req, res, next) => {
   let usernameQuery = `SELECT * FROM users WHERE username='${username}' LIMIT 1`;
   let emailResponse = await checkIfExists('email', emailQuery)
   let usernameResponse = await checkIfExists('username', usernameQuery)
-  if(emailResponse.success && usernameResponse.success) {
+  if(!emailResponse.exist && !usernameResponse.exist) {
     bcrypt.hash(password, saltRounds, (err, hash) => {
       if(err) {
         throw err
@@ -70,8 +70,20 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-router.get('/login', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/login', async (req, res, next) => {
+  let {email, password} = req.body;
+  let emailQuery = `SELECT password FROM users WHERE email='${email}' LIMIT 1`;
+  let emailResponse = await checkIfExists('email', emailQuery);
+  if(emailResponse.exist) {
+    bcrypt.compare(password, emailResponse.row.password, (err,result) => {
+      if(err) {
+        throw err
+      }
+      res.status(200).json(result)
+    })
+  } else {
+    res.json({error: 'Invalid Email'});
+  }
 });
 
 router.get('/edit', function(req, res, next) {

@@ -4,6 +4,7 @@ CREATE DATABASE smashvents;
 
 CREATE TABLE events (
   event_id     SERIAL,
+  user_id      INTEGER      NOT NULL,
   title        VARCHAR(254) NOT NULL,
   description  VARCHAR(254),
   ruleset      VARCHAR(8000),
@@ -32,10 +33,20 @@ CREATE TABLE attendees (
   event_id    INTEGER NOT NULL
 );
 
+INSERT INTO users
+(username, first_name, last_name, email, password)
+VALUES (
+  'testaccount',
+  'test',
+  'account',
+  'test@account.com',
+  'password123'
+);
 
 INSERT INTO events 
-(title, description, ruleset, venue, online, offline, start_date)
+(user_id, title, description, ruleset, venue, online, offline, start_date)
 VALUES (
+  1,
   'Low Tier city',
   'come and join the first smash event of the year and play against top ranked players!',
   'no rules',
@@ -43,14 +54,4 @@ VALUES (
   TRUE,
   FALSE,
   '2019-11-23 18:00:00'
-);
-
-INSERT INTO users
-(username, first_name, last_name, email, password) 
-VALUES (
-  'quezanw',
-  'quezan',
-  'wong',
-  'buff@puff.com',
-  'abcd1234'
 );

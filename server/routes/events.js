@@ -38,21 +38,22 @@ router.get('/all', function(req, res, next) {
 
 // Create new event
 router.post('/new', (req, res, next) => {
-  let {title, description, ruleset, venue, 
+  let {user_id,title, description, ruleset, venue, 
        online, offline, start_date} = req.body;
-  let createQuery = `INSERT INTO events (title, 
+  let createQuery = `INSERT INTO events (user_id
+                                        title, 
                                         description, 
                                         ruleset, 
                                         venue, 
                                         online, 
                                         offline, 
                                         start_date)
-    VALUES ('${title}', '${description}', '${ruleset}', '${venue}', ${online}, ${offline}, '${start_date}')`;
+    VALUES ('${user_id}', ${title}', '${description}', '${ruleset}', '${venue}', ${online}, ${offline}, '${start_date}')`;
   pool.query(createQuery, (error, results) => {
     if(error) {
       throw error;
     }
-    res.status(200).json(results.rows);
+    res.status(200).json(results);
   })
 });
 

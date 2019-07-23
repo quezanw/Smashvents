@@ -6,9 +6,10 @@ var logger = require('morgan');
 var cors = require('cors');
 var session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var eventsRouter = require('./routes/events');
-var usersRouter = require('./routes/users');
+let indexRouter = require('./routes/index');
+let eventsRouter = require('./routes/events');
+let usersRouter = require('./routes/users');
+let attendeesRouter = require('./routes/attendees');
 
 var app = express();
 
@@ -51,6 +52,7 @@ app.use(session({
 
 app.use('/events', eventsRouter);
 app.use('/auth', usersRouter);
+app.use('/attendees', attendeesRouter);
 // app.use(indexRouter);
 
 // catch 404 and forward to error handler
