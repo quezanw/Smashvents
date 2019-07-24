@@ -22,4 +22,18 @@ router.get('/all', (req, res, next) => {
   })
 });
 
+router.get('/join', (req,res,next)=> {
+  let {user_id, event_id} = req.body;
+  let joinQuery = `INSERT INTO attendees 
+                   (user_id, event_id) 
+                   VALUES (${user_id}, ${event_id})`;
+  pool.query(joinQuery, (error, results) => {
+    if(error) {
+      throw error
+    }
+    res.status(200).json(results);
+  })
+});
+
+
 module.exports = router;
