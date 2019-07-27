@@ -2,6 +2,7 @@
 
 .env
 .env.production
+todo.txt
 
 # dependencies
 /node_modules
