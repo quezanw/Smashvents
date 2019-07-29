@@ -3,14 +3,18 @@
 }
 
 .header {
-  height: 30%;
+  height: 35%;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
   background-color: navy;
-  border: 1px solid black;
   color: white;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+  }
 }
 
 .section {

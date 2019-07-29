@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './EventCarousel.module.scss';
-import { getAllEvents } from '../../actions/index';
+import EventItem from '../EventItem/EventItem';
 
 
 
 class EventCarousel extends React.Component {
-  
-  componentDidMount() {
-    this.props.getAllEvents();
+  constructor(props) {
+    super();
   }
 
   nextSibling(el) {
@@ -32,7 +31,7 @@ class EventCarousel extends React.Component {
     let carouselList = document.getElementById('carousel-list')
     carouselList.removeAttribute('style');
     return setTimeout(function() {
-      return carouselList.setAttribute('style', 'transform: none; transition: transform 0.1s linear;')
+      return carouselList.setAttribute('style', 'transform: none; transition: transform 0.25s linear;')
     }, 1);
   
   }
@@ -44,35 +43,31 @@ class EventCarousel extends React.Component {
     list.style.left = position + 325 + 'px';
   }
 
-  renderEvents(items) {
-    let result = "";
-    for(let i = 0; i < items.length; i++) {
-      result += `<li key=${items[i]} className={${styles.item}}>${items[i]}</li>`;
-    }
-    return result;
-  }
-  
-
 
   render() {
-    
     let items = [1,2,3,4,5,6,7,8,9,10];
     const renderEvents = items.map(item => {
       if(item === 10) {
-        return <li key={item} style={{order: 1}} className={`${styles.item} item is-ref`}>{item}</li>
+        return ( 
+          <li key={item} style={{order: 1}} className={`${styles.item} item is-ref`}>
+            <EventItem item={item}/>
+          </li>
+        );
       }
       return (
-        <li key={item} style={{order: 2}} className={`${styles.item} item`}>{item}</li>
+        <li key={item} style={{order: 2}} className={`${styles.item} item`}>
+          <EventItem item={item}/>
+        </li>
       );
     })
     let setStyle = {  
       transform: 'none',
-      transition: 'transform .1s linear',
+      transition: 'transform .25s linear',
     }
     return (
       <div className={styles.carouselContainer}>       
         <div className={styles.carouselHeader}>
-         <h2>Coursel Name</h2>
+         <h2>{this.props.title}</h2>
          <div className={styles.carouselBtns}>
            <button onClick={(event) => this.slideLeft(event)}>left</button>
            <button onClick={(event) => this.slideRight(event)}>right</button>
@@ -91,7 +86,7 @@ class EventCarousel extends React.Component {
 
 
 const mapStateToProps = state => {
-  return { events: state.events }
+  return {}
 }
 
-export default connect(mapStateToProps, {getAllEvents})(EventCarousel);
+export default connect(mapStateToProps)(EventCarousel);
