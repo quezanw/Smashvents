@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(rgb(57, 57, 57), .8);
+    z-index: 2;
+}
+
+.modal {
+    height: 200px;
+    width: 400px;
+    background-color: whitesmoke;
+    border-radius: .25rem;
+}
+
+.btn_container {
+    margin: 5rem 0 1rem 0;
+    width: 400px;
+    color: white;
+    p:hover {
+        cursor: pointer;
+        display: inline-block;
+    }
+}

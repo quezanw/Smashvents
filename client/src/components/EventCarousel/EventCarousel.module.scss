@@ -1,10 +1,7 @@
-
-
 .carouselContainer {
   margin: 2rem;
-  height: 250px;
-  width: 850px;
-  border: 1px solid black;
+  width: 62.5%;
+  // border: 1px solid black;
 }
 
 .carouselHeader {
@@ -19,32 +16,8 @@
 
 .carouselBtns {
   margin-left: auto;
+  button {
+    margin-right: 2rem;
+  }
 }
-
-.carousel {
-  width: 100%;
-  overflow: hidden;
-}
-
-.list {
-  display: flex;
-  position: relative;
-  left: -25%;
-  list-style: none;
-  transform: translateX(25%);
-  // width: auto;
-}
-
-/* .carousel.is-set {
-  transform: none;
-  transition: transform 0.5s ease-in-out;
-} */
-
-.item {
-  flex: 0 0 200px;
-  height: 200px;
-  margin: 0 .5rem;
-  outline: 1px solid black;
-}
-
 

@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
       throw error
     }
     console.log(req.body);
-    res.status(200).json(results.rows);
+    res.status(200).json({rows: results.rows});
   })
 });
 
@@ -32,7 +32,8 @@ router.get('/all', function(req, res, next) {
     if (error) {
       throw error
     }
-    res.status(200).json(results.rows);
+    console.log(results.rows);
+    res.status(200).json({rows: results.rows});
   })
 });
 

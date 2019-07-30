@@ -3,12 +3,15 @@ import { Route, Router, Switch } from 'react-router-dom';
 import history from '../../history';
 import HomePage from '../HomePage/HomePage';
 import Sidebar from '../Sidebar/Sidebar';
+import Modal from '../Modal/Modal';
 import styles from './App.module.scss';
+
 
 class App extends React.Component {
   render () {
     return (
       <div className={styles.container}>
+        <Modal/>
         <Sidebar/>
         <Router history={history}>
            <Switch>
