@@ -5,4 +5,14 @@
   position: fixed;
   overflow:hidden;
   z-index: 1;
+  display: flex;
+  flex-flow: column;
+}
+
+.home {
+
+}
+
+.login {
+  margin-top: auto;
 }

@@ -2,13 +2,34 @@ import auth from '../apis/auth';
 import events from '../apis/events';
 import history from '../history';
 
-
 export const logout = () => {
   return {
     type: 'LOGOUT',
     payload: false
   }
 }
+
+export const openModal = config => {
+  return {
+    type: 'OPEN_MODAL',
+    payload: config
+  }
+}
+
+export const closeModal = () => {
+  return {
+    type: 'CLOSE_MODAL',
+    payload: null
+  }
+}
+
+export const selectEvent = event => {
+  return {
+    type: 'VIEW_EVENT',
+    payload: event
+  }
+}
+
 
 export const createUser = formValues => async (dispatch, getState) => {
   // const { userId } = getState().auth;
