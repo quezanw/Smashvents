@@ -23,11 +23,7 @@ class Sidebar extends React.Component {
         <button className={styles.login} onClick={(e) => this.openModal(e, loginModalConfig)}>L/R</button>
       </div>
     );
-
-
   }
 }
-
-
 
 export default connect(null, { openModal })(Sidebar);

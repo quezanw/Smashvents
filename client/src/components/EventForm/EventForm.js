@@ -1,7 +1,5 @@
 import React from 'react';
-
 import styles from './EventForm.module.scss';
-
 
 class EventForm extends React.Component {
   render() {
@@ -14,7 +12,6 @@ class EventForm extends React.Component {
       </div>
     );
   }
-
 }
 
 export default EventForm;

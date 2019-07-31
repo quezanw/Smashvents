@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { getAllEvents } from '../../actions/index';
 import EventCarousel from '../EventCarousel/EventCarousel';
 
-
 class HomePage extends React.Component {
-
   componentDidMount() {
     this.props.getAllEvents();
   }
@@ -25,9 +23,7 @@ class HomePage extends React.Component {
       </div>
     );
   }
-
 }
-
 
 const mapStateToProps = state => {
   return {

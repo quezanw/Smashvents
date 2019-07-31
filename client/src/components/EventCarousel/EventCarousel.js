@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './EventCarousel.scss';
-import styles from './EventCarousel.module.scss';
 import EventItem from '../EventItem/EventItem';
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
-
-
+import './EventCarousel.scss';
+import styles from './EventCarousel.module.scss';
 
 class EventCarousel extends React.Component {
   constructor(props) {
@@ -38,7 +36,6 @@ class EventCarousel extends React.Component {
       </div>
     );
   }
-
 }
 
 

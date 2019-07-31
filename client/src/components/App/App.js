@@ -9,8 +9,6 @@ import Modal from '../Modal/Modal';
 import EventPage from '../EventPage/EventPage';
 import styles from './App.module.scss';
 
-
-
 class App extends React.Component {
 
   renderModals() {
@@ -18,7 +16,6 @@ class App extends React.Component {
       return <Modal content={this.props.modal.content}/>
     }
   }
-
 
   render () {
     return (
