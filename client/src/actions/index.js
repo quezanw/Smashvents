@@ -9,6 +9,7 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   VIEW_EVENT,
+  CREATE_EVENT,
   FETCH_ALL_EVENTS
 }
 from './types';
@@ -52,6 +53,11 @@ export const loginUser = formValues => async (dispatch, getState) => {
   const response = await auth.post('/login', formValues);
   dispatch({ type: LOGIN, payload: response.data });
   history.push('/');
+}
+
+export const createEvent = formValues => async (dispatch, getState) => {
+  const response = await events.post('/new', {...formValues, user_id: 1});
+  dispatch({ type: CREATE_EVENT, payload: response.data });
 }
 
 export const getAllEvents = () => async (dispatch, getState) => {

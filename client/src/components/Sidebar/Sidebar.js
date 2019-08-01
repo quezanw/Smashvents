@@ -4,7 +4,7 @@ import { openModal } from '../../actions/index';
 import styles from './Sidebar.module.scss';
 import history from '../../history';
 
-import EventForm from '../EventForm/EventForm';
+import EventForm from '../Events/EventForm/EventForm';
 
 class Sidebar extends React.Component {
   
@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
 
   render() {
     let loginModalConfig = {
-      content: <EventForm/>
+      content: <div></div>
     }
     return (
       <div className={styles.sidebar}>

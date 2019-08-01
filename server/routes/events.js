@@ -39,17 +39,17 @@ router.get('/all', function(req, res, next) {
 
 // Create new event
 router.post('/new', (req, res, next) => {
-  let {user_id,title, description, ruleset, venue, 
-       online, offline, start_date} = req.body;
-  let createQuery = `INSERT INTO events (user_id
+  console.log(req.body);
+  let {user_id, title, description, ruleset, venue, 
+       online, start_date} = req.body;
+  let createQuery = `INSERT INTO events (user_id,
                                         title, 
                                         description, 
                                         ruleset, 
                                         venue, 
                                         online, 
-                                        offline, 
                                         start_date)
-    VALUES ('${user_id}', ${title}', '${description}', '${ruleset}', '${venue}', ${online}, ${offline}, '${start_date}')`;
+    VALUES (${user_id}, '${title}', '${description}', '${ruleset}', '${venue}', ${online}, '${start_date}')`;
   pool.query(createQuery, (error, results) => {
     if(error) {
       throw error;
@@ -61,7 +61,7 @@ router.post('/new', (req, res, next) => {
 // edit event
 router.put('/edit', (req, res, next) => {
   let {event_id, title, description, ruleset, venue, 
-    online, offline, start_date} = req.body;
+    online, start_date} = req.body;
   let updateQuery = `
     UPDATE events 
     SET
@@ -70,7 +70,6 @@ router.put('/edit', (req, res, next) => {
       ruleset='${ruleset}',
       venue='${venue}',
       online = ${online},
-      offline = ${offline},
       start_date='${start_date}'
     WHERE event_id = ${event_id}
   `;

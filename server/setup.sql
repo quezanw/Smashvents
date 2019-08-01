@@ -10,7 +10,6 @@ CREATE TABLE events (
   ruleset      VARCHAR(8000),
   venue        VARCHAR(254),
   online       BOOLEAN,
-  offline      BOOLEAN,
   start_date   TIMESTAMP    NOT NULL,
   created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
   updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()
@@ -44,7 +43,7 @@ VALUES (
 );
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, offline, start_date)
+(user_id, title, description, ruleset, venue, online, start_date)
 VALUES (
   1,
   'Smash n splash',
@@ -52,13 +51,12 @@ VALUES (
   'no rules',
   '1530 SMash ville street',
   TRUE,
-  FALSE,
   '2020-09-20 18:00:00'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, offline, start_date)
+(user_id, title, description, ruleset, venue, online, start_date)
 VALUES (
   1,
   'Orbitar',
@@ -66,13 +64,12 @@ VALUES (
   'no rules',
   '1530 SMash ville street',
   TRUE,
-  FALSE,
   '2019-10-23 18:00:00'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, offline, start_date)
+(user_id, title, description, ruleset, venue, online, start_date)
 VALUES (
   1,
   'Defend The North',
@@ -80,13 +77,12 @@ VALUES (
   'no rules',
   '1530 SMash ville street',
   FALSE,
-  TRUE,
   '2019-12-01 18:00:00'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, offline, start_date)
+(user_id, title, description, ruleset, venue, online, start_date)
 VALUES (
   1,
   'UW Smash Tournament',
@@ -94,13 +90,12 @@ VALUES (
   'no rules',
   '1530 SMash ville street',
   TRUE,
-  FALSE,
   '2019-11-05 18:00:00'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, offline, start_date)
+(user_id, title, description, ruleset, venue, online, start_date)
 VALUES (
   1,
   'Low Tier city',
@@ -108,13 +103,12 @@ VALUES (
   'no rules',
   '1530 SMash ville street',
   FALSE,
-  TRUE,
   '2020-04-20 18:00:00'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, offline, start_date)
+(user_id, title, description, ruleset, venue, online, start_date)
 VALUES (
   1,
   'ONLINE SMASH TOURNAMENT',
@@ -122,20 +116,18 @@ VALUES (
   'no rules',
   '1530 SMash ville street',
   TRUE,
-  FALSE,
   '2020-02-21 18:00:00'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, offline, start_date)
-VALUES (
+(user_id, title, description, ruleset, venue, online, start_date)
+VALUES ( 
   1,
   'Frostbite 2020',
   'come and join the first smash event of the year and play against top ranked players!',
   'no rules',
   '1530 SMash ville street',
   TRUE,
-  FALSE,
   '2020-05-12 18:00:00'
 );

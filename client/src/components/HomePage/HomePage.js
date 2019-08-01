@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './HomePage.module.scss';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getAllEvents } from '../../actions/index';
 import EventCarousel from '../EventCarousel/EventCarousel';
 
@@ -14,7 +15,7 @@ class HomePage extends React.Component {
       <div className={styles.container}>
         <div className={styles.header}>
           <h1>SMASHVENTS</h1>
-          <button>organize an event</button>
+          <Link to="/event/create" >organize an event</Link>
         </div>
         <section className={styles.section}>
           <EventCarousel events={this.props.events} title='Upcoming Tournaments' carouselID='carousel-list1'/>

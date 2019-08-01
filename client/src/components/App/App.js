@@ -7,7 +7,10 @@ import HomePage from '../HomePage/HomePage';
 import Sidebar from '../Sidebar/Sidebar';
 import Modal from '../Modal/Modal';
 import EventPage from '../EventPage/EventPage';
+import EventForm from '../Events/EventForm/EventForm';
+import EventCreate from '../Events/EventCreate';
 import styles from './App.module.scss';
+import '../../styles/reset.css';
 
 class App extends React.Component {
 
@@ -26,6 +29,7 @@ class App extends React.Component {
            <Switch>
              <Route path="/" exact component={HomePage}/>
              <Route path="/event/:title/details" exact component={EventPage}/>
+             <Route path="/event/create" exact component={EventCreate}/>
            </Switch>
         </Router>
       </div>
