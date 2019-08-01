@@ -8,8 +8,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   REGISTRATION_PENDING,
-  REGISTERATION_SUCCESS,
-  REGISTERATION_ERROR,
+  REGISTRATION_SUCCESS,
+  REGISTRATION_ERROR,
   OPEN_MODAL,
   CLOSE_MODAL,
   VIEW_EVENT,
@@ -50,14 +50,25 @@ export const register = formValues => async (dispatch, getState) => {
   // const { userId } = getState().auth;
   dispatch({type: REGISTRATION_PENDING});
   const response = await auth.post('/register', formValues);
-  dispatch({ type: CREATE_USER, payload: response.data });
-  history.push('/');
+  console.log(response);
+  // if(!response.data.error) {
+  //   dispatch({ type: REGISTRATION_SUCCESS})
+  //   history.push('/');
+  // } else {
+  //   dispatch({type: REGISTRATION_ERROR, payload: response.data.error})
+  // }
 }
 
 export const login = formValues => async (dispatch, getState) => {
+  dispatch({ type: LOGIN_PENDING});
   const response = await auth.post('/login', formValues);
-  dispatch({ type: LOGIN, payload: response.data });
-  history.push('/');
+  console.log(response);
+  // if(!response.data.error) {
+  //   dispatch({ type: REGISTRATION_SUCCESS})
+  //   history.push('/');
+  // } else {
+  //   dispatch({type: REGISTRATION_ERROR, payload: response.data.error})
+  // }
 }
 
 export const createEvent = formValues => async (dispatch, getState) => {
