@@ -26,16 +26,24 @@ let checkIfExists = async (columnName, query) => {
     return {exist: false, message: `${columnName} available`}
   }
 }
-router.post('/signup', async (req, res, next) => {
+router.post('/register', async (req, res, next) => {
   let {username, first_name, last_name, email, password} = req.body;
   let EMAIL_REGEX = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-  if(!EMAIL_REGEX.test(email.trim())) {
-    res.json({error: 'Invalid email'})
+  if(username.length < 0) {
+    res.json({error: 'USERNAME CANNOT BE BLANK'});
+  } else if(first_name.length < 0) {
+    res.json({error: 'FIRST NAME CANNOT BE BLANK'});
+  } else if(last_name.length < 0) {
+    res.json({error: 'LAST NAME CANNOT BE BLANK'});
+  } else if(!EMAIL_REGEX.test(email.trim())) {
+    res.json({error: 'INVALID EMAIL'});
+  } else if(password.length < 8) {
+    res.json({error: 'PASSWORD MUST BE 8 CHARACTERS OR GREATER'});
   }
   let emailQuery = `SELECT * FROM users WHERE email='${email}' LIMIT 1`;
   let usernameQuery = `SELECT * FROM users WHERE username='${username}' LIMIT 1`;
-  let emailResponse = await checkIfExists('email', emailQuery)
-  let usernameResponse = await checkIfExists('username', usernameQuery)
+  let emailResponse = await checkIfExists('email', emailQuery);
+  let usernameResponse = await checkIfExists('username', usernameQuery);
   if(!emailResponse.exist && !usernameResponse.exist) {
     bcrypt.hash(password, saltRounds, (err, hash) => {
       if(err) {
