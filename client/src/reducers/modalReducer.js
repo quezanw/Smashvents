@@ -6,7 +6,7 @@ export default (state = {}, action) => {
         case OPEN_MODAL:
             return {...state, content: action.payload.content}
         case CLOSE_MODAL:
-            return {...state, content: null}
+            return {...state, content: action.payload}
         default:
             return state;
     }

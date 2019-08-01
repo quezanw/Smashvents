@@ -26,6 +26,7 @@ export const openModal = config => {
 }
 
 export const closeModal = () => {
+  history.push('/')
   return {
     type: CLOSE_MODAL,
     payload: null

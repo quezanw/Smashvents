@@ -8,16 +8,13 @@ class Modal extends React.Component {
     super();
   }
   
-  closeModal(e) {
-    e.preventDefault();
-    this.props.closeModal();
-  } 
+  closeModal = () => this.props.closeModal();
 
   render() {
     return (
-      <div onClick={(e) => this.closeModal(e)} id="modal-wrapper" className={styles.wrapper}>
+      <div onClick={this.closeModal} id="modal-wrapper" className={styles.wrapper}>
         <div className={styles.btn_container}>
-            <p onClick={(e) => this.closeModal(e)}href="#">X Close</p>
+            <p onClick={this.closeModal}>close</p>
         </div>
         <div onClick={(e) => e.stopPropagation()}className={styles.modal}>
             {this.props.content}

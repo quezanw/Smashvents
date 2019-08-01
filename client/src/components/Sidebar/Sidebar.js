@@ -3,24 +3,23 @@ import { connect } from 'react-redux';
 import { openModal } from '../../actions/index';
 import styles from './Sidebar.module.scss';
 import history from '../../history';
-
-import EventForm from '../Events/EventForm/EventForm';
+import Auth from '../Auth/Auth';
 
 class Sidebar extends React.Component {
   
-  openModal(e, config) {
+  openModal = e =>{
     e.preventDefault();
-    this.props.openModal(config)
+    let modalConfig = {
+      content: <Auth/>
+    }
+    this.props.openModal(modalConfig)
   }
 
   render() {
-    let loginModalConfig = {
-      content: <div></div>
-    }
     return (
       <div className={styles.sidebar}>
         <button onClick={(e) => history.push('/')}className={styles.home}>HOME</button>
-        <button className={styles.login} onClick={(e) => this.openModal(e, loginModalConfig)}>L/R</button>
+        <button className={styles.login} onClick={e => this.openModal(e)}>L/R</button>
       </div>
     );
   }

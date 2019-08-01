@@ -1,0 +1,18 @@
+// .wrapper {
+//     height: 100%;
+// }
+
+.tabPanel {
+    height: 100px;
+    width: 100%;
+    background-color: rgb(222, 84, 84);
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .25rem .25rem 0 0;
+
+    li:nth-child(2) {
+        margin-left: 1rem;
+    }
+}

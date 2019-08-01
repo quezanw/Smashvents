@@ -6,7 +6,7 @@ import {
 	REGISTRATION_PENDING,
 	REGISTRATION_SUCCESS,
 	REGISTRATION_ERROR
-} from '../actions/index';
+} from '../actions/types';
 
 const INITIAL_STATE = {
 	user_id: null,
