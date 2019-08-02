@@ -33,6 +33,7 @@ class Auth extends React.Component {
 
 
   render() {
+    console.log(this.props.auth)
     return (
       <div className={styles.wrapper}>
         <ul className={styles.tabPanel}>
@@ -46,4 +47,10 @@ class Auth extends React.Component {
 
 }
 
-export default connect(null, { login, register })(Auth);
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps, { login, register })(Auth);

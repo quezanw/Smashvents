@@ -62,14 +62,13 @@ export const register = formValues => async (dispatch, getState) => {
 
 export const login = formValues => async (dispatch, getState) => {
   dispatch({ type: LOGIN_PENDING});
-  const response = await auth.post('/login', formValues);
-  console.log(response);
-  // if(!response.data.error) {
-  //   dispatch({ type: REGISTRATION_SUCCESS})
-  //   history.push('/');
-  // } else {
-  //   dispatch({type: REGISTRATION_ERROR, payload: response.data.error})
-  // }
+  const response = await auth.post('/login', {...formValues});
+  if(!response.data.error) {
+    dispatch({ type: LOGIN_SUCCESS, payload: response.data.user_id});
+    history.push('/');
+  } else {
+    dispatch({type: LOGIN_ERROR, payload: response.data.error});
+  }
 }
 
 export const createEvent = formValues => async (dispatch, getState) => {

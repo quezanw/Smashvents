@@ -41,7 +41,7 @@ export default (state = INITIAL_STATE, action) => {
 		case LOGIN_SUCCESS:
 			return {
 				...state, 
-				user_id: action.payload.user_id,
+				user_id: action.payload,
 				isSigninPending: false,
 				isSignedIn: true, 
 				isSignedOut: false, 
@@ -54,7 +54,7 @@ export default (state = INITIAL_STATE, action) => {
 				isSigninPending: false,
 				isSignedIn: false, 
 				isSignedOut: true, 
-				loginError: action.payload.error
+				loginError: action.payload
 			}
 		case REGISTRATION_PENDING:
 			return {
@@ -75,7 +75,7 @@ export default (state = INITIAL_STATE, action) => {
 					...state,
 					registrationPending: false,
 					registerationSuccess: false,
-					registerationError: action.payload.error
+					registerationError: action.payload
 				}
 		default:
 			return state;

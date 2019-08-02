@@ -24,27 +24,27 @@ let checkIfExists = async (columnName, query) => {
 }
 router.post('/register', async (req, res, next) => {
   let { username, first_name, last_name, email, password } = req.body;
-  if(!username || !first_name || !last_name || !email || !password) {
-    res.json({error: 'ONE OR MORE FIELDS UNDEFINED'});
-  } else if(username.length < 0) {
-    res.json({error: 'USERNAME CANNOT BE BLANK'});
-  } else if(first_name.length < 0) {
-    res.json({error: 'FIRST NAME CANNOT BE BLANK'});
-  } else if(last_name.length < 0) {
-    res.json({error: 'LAST NAME CANNOT BE BLANK'});
+  if(username === undefined) {
+    return res.json({error: 'USERNAME CANNOT BE BLANK'});
+  } else if(first_name === undefined) {
+    return res.json({error: 'FIRST NAME CANNOT BE BLANK'});
+  } else if(last_name === undefined) {
+    return res.json({error: 'LAST NAME CANNOT BE BLANK'});
+   }else if(email === undefined) {
+    return res.json({error: 'EMAIL CANNOT BE BLANK'});
   } else if(!EMAIL_REGEX.test(email.trim())) {
-    res.json({error: 'INVALID EMAIL'});
+    return res.json({error: 'INVALID EMAIL'});
   } else if(password.length < 8) {
-    res.json({error: 'PASSWORD MUST BE 8 CHARACTERS OR GREATER'});
+    return res.json({error: 'PASSWORD MUST BE 8 CHARACTERS OR GREATER'});
   }
   let emailQuery = `SELECT email FROM users WHERE email='${email}' LIMIT 1`;
   let usernameQuery = `SELECT username FROM users WHERE username='${username}' LIMIT 1`;
   let emailResponse = await checkIfExists('email', emailQuery);
   let usernameResponse = await checkIfExists('username', usernameQuery);
   if(emailResponse.exist) {
-    res.json({error: emailResponse.message});
+    return res.json({error: emailResponse.message});
   } else if (usernameResponse.exist) {
-    res.json({error: usernameResponse.message});
+    return res.json({error: usernameResponse.message});
   } else {
     bcrypt.hash(password, saltRounds, (err, hash) => {
       if(err) {
@@ -71,24 +71,22 @@ router.post('/register', async (req, res, next) => {
         if(err) {
           throw err;
         }
-        res.status(200).json({...result, message: 'Registration Successful'});
+        return res.status(200).json({...result, message: 'Registration Successful'});
       })
     });
   }
 });
 
-router.get('/login', async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   let {email, password} = req.body;
-  if(!email || !password) {
-    res.status(401).json({error: 'ONE OR MORE FIELDS UNDEFINED'});
-  } else if(email.length < 1) {
-    res.status(401).json({error: 'EMAIL CANNOT BE BLANK'});
-  } else if(password.length < 1) {
-    res.status(401).json({error: 'PASSWORD CANNOT BE BLANK'});
+  if(email === undefined) {
+    return res.json({error: 'EMAIL CANNOT BE BLANK'});
   } else if (!EMAIL_REGEX.test(email.trim())) {
-    res.status(401).json({error: 'INVALID EMAIL'});
+    return res.json({error: 'INVALID EMAIL'});
+  } else if(password === undefined) {
+    return res.json({error: 'PASSWORD CANNOT BE BLANK'});
   } else if(password.length < 8) {
-    res.status(401).json({error: 'PASSWORD MUST BE 8 CHARACTERS OR GREATER'}); 
+    return res.json({error: 'PASSWORD MUST BE 8 CHARACTERS OR GREATER'}); 
   }
   let emailQuery = `SELECT password, user_id FROM users WHERE email='${email}' LIMIT 1`;
   let emailResponse = await checkIfExists('email', emailQuery);
@@ -96,14 +94,15 @@ router.get('/login', async (req, res, next) => {
     bcrypt.compare(password, emailResponse.row.password, (err,result) => {
       if(err) {
         throw err
-      } else if(!result) {
-        res.status(401).json({error: 'INCORRECT PASSWORD'});
+      }
+      if(!result) {
+        return res.json({error: 'INCORRECT PASSWORD'});
       } else {
-        res.status(200).json({user_id: emailResponse.row.user_id})
+        return res.json({user_id: emailResponse.row.user_id})
       }
     })
   } else {
-    res.status(401).json({error: 'INVALID EMAIL'});
+    return res.json({error: 'INVALID EMAIL'});
   }
 });
 
