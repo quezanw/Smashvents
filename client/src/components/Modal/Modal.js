@@ -1,14 +1,17 @@
 import React from 'react';
 import styles from './Modal.module.scss';
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/index';
+import { closeModal, clearLoginReg } from '../../actions/index';
 
 class Modal extends React.Component {
   constructor(props) {
     super();
   }
   
-  closeModal = () => this.props.closeModal();
+  closeModal = () => {
+    // this.props.clearLoginReg();
+    this.props.closeModal();
+  }
 
   render() {
     return (
@@ -24,4 +27,4 @@ class Modal extends React.Component {
   }
 }
 
-export default connect(null, { closeModal })(Modal);
+export default connect(null, { closeModal, clearLoginReg })(Modal);

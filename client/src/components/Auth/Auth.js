@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login, register } from '../../actions/index';
+import { login, register, clearLoginReg } from '../../actions/index';
 import LoginForm from './Login/LoginForm';
 import RegisterForm from './Register/RegisterForm';
 import styles from './Auth.module.scss';
@@ -24,10 +24,12 @@ class Auth extends React.Component {
   }
 
   viewLoginForm = () => {
+    this.props.clearLoginReg();
     this.setState({ selectedTab: 'login' })
   }
 
   viewRegisterForm = () => {
+    this.props.clearLoginReg();
     this.setState({ selectedTab: 'register' })
   }
 
@@ -53,4 +55,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { login, register })(Auth);
+export default connect(mapStateToProps, { login, register, clearLoginReg })(Auth);

@@ -5,7 +5,8 @@ import {
 	LOGIN_ERROR,
 	REGISTRATION_PENDING,
 	REGISTRATION_SUCCESS,
-	REGISTRATION_ERROR
+	REGISTRATION_ERROR,
+	CLEAR_LOGIN_REG
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -71,12 +72,17 @@ export default (state = INITIAL_STATE, action) => {
 				registerationError: null
 			}
 		case REGISTRATION_ERROR:
-				return {
-					...state,
-					registrationPending: false,
-					registerationSuccess: false,
-					registerationError: action.payload
-				}
+      return {
+        ...state,
+        registrationPending: false,
+        registerationSuccess: false,
+        registerationError: action.payload
+      }
+		case CLEAR_LOGIN_REG:
+			return {
+				...state,
+				...INITIAL_STATE
+			}
 		default:
 			return state;
 	}

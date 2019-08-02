@@ -10,6 +10,7 @@ import {
   REGISTRATION_PENDING,
   REGISTRATION_SUCCESS,
   REGISTRATION_ERROR,
+  CLEAR_LOGIN_REG,
   OPEN_MODAL,
   CLOSE_MODAL,
   VIEW_EVENT,
@@ -45,6 +46,10 @@ export const logout = () => {
     type: LOGOUT,
     payload: false
   }
+}
+
+export const clearLoginReg = () => (dispatch) => {
+  dispatch({ type: CLEAR_LOGIN_REG });
 }
 
 export const register = formValues => async (dispatch, getState) => {

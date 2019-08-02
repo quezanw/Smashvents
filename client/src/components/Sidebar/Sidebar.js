@@ -7,7 +7,8 @@ import Auth from '../Auth/Auth';
 
 class Sidebar extends React.Component {
   
-  openModal = e =>{
+  openModal = e => {
+    console.log('ping sidebar')
     e.preventDefault();
     let modalConfig = {
       content: <Auth/>
