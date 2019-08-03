@@ -30,6 +30,16 @@
     color:rgb(218, 0, 0);
 }
 
+.success {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 90%;
+    border-radius: .25rem;
+    text-align: center;
+    background-color: rgb(25, 250, 108);
+    color:rgb(58, 171, 26);
+}
+
 .form {
     display: flex;
     flex-flow: column;

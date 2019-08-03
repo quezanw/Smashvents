@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { openModal } from '../../actions/index';
+import { openModal, logout } from '../../actions/index';
 import styles from './Sidebar.module.scss';
 import history from '../../history';
 import Auth from '../Auth/Auth';
@@ -8,7 +8,6 @@ import Auth from '../Auth/Auth';
 class Sidebar extends React.Component {
   
   openModal = e => {
-    console.log('ping sidebar')
     e.preventDefault();
     let modalConfig = {
       content: <Auth/>
@@ -16,14 +15,31 @@ class Sidebar extends React.Component {
     this.props.openModal(modalConfig)
   }
 
+  logout = () => {
+    this.props.logout();
+  }
+
+  renderLogin = () => {
+    if(this.props.auth.isSignedIn) {
+      return <button className={styles.login} onClick={this.logout}>Logout</button>
+    }
+    return <button className={styles.login} onClick={e => this.openModal(e)}>Login</button>;
+  }
+
   render() {
     return (
       <div className={styles.sidebar}>
         <button onClick={(e) => history.push('/')}className={styles.home}>HOME</button>
-        <button className={styles.login} onClick={e => this.openModal(e)}>L/R</button>
+        {this.renderLogin()}
       </div>
     );
   }
 }
 
-export default connect(null, { openModal })(Sidebar);
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps, { openModal, logout })(Sidebar);

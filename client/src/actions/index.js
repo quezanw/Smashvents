@@ -1,6 +1,7 @@
 import auth from '../apis/auth';
 import events from '../apis/events';
 import history from '../history';
+import { reset } from 'redux-form';
 
 import { 
   LOGOUT,
@@ -41,11 +42,8 @@ export const selectEvent = event => {
   }
 }
 
-export const logout = () => {
-  return {
-    type: LOGOUT,
-    payload: false
-  }
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT });
 }
 
 export const clearLoginReg = () => (dispatch) => {
@@ -55,10 +53,9 @@ export const clearLoginReg = () => (dispatch) => {
 export const register = formValues => async (dispatch, getState) => {
   dispatch({type: REGISTRATION_PENDING});
   const response = await auth.post('/register', formValues);
-  console.log(response);
   if(!response.data.error) {
-    dispatch({ type: REGISTRATION_SUCCESS})
-    history.push('/');
+    dispatch({ type: REGISTRATION_SUCCESS});
+    dispatch(reset('registerForm'));
   } else {
     dispatch({type: REGISTRATION_ERROR, payload: response.data.error})
   }
@@ -69,7 +66,7 @@ export const login = formValues => async (dispatch, getState) => {
   const response = await auth.post('/login', {...formValues});
   if(!response.data.error) {
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.user_id});
-    history.push('/');
+    dispatch({ type: CLOSE_MODAL });
   } else {
     dispatch({type: LOGIN_ERROR, payload: response.data.error});
   }

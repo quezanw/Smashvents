@@ -9,6 +9,7 @@ import {
 	CLEAR_LOGIN_REG
 } from '../actions/types';
 
+
 const INITIAL_STATE = {
 	user_id: null,
 	isSigninPending: false,
@@ -25,11 +26,7 @@ export default (state = INITIAL_STATE, action) => {
 		case LOGOUT:
 			return {
 				...state,
-				user_id: null,
-				isSigninPending: false,
-				isSignedIn: false,
-				isSignedOut: true,
-				loginError: null,
+				...INITIAL_STATE
 			}
 		case LOGIN_PENDING:
 			return {
@@ -81,8 +78,9 @@ export default (state = INITIAL_STATE, action) => {
 		case CLEAR_LOGIN_REG:
 			return {
 				...state,
-        loginError: null,
-        registrationError: null
+				loginError: null,
+				registrationError: null,
+				registrationSuccess: false
 			}
 		default:
 			return state;

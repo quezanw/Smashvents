@@ -44,6 +44,12 @@ class Auth extends React.Component {
     }
   }
 
+  renderRegisterSuccess() {
+    if(this.props.auth.registrationSuccess) {
+      return <p className={styles.success}>Successfully Registered!</p>
+    }
+  }
+
   render() {
     // console.log(this.props.auth)
     return (
@@ -54,6 +60,7 @@ class Auth extends React.Component {
         </ul>
         <div className={styles.form}>
           {this.renderError()}
+          {this.renderRegisterSuccess()}
           {this.renderForm()}
         </div>
       </div>
