@@ -53,16 +53,15 @@ export const clearLoginReg = () => (dispatch) => {
 }
 
 export const register = formValues => async (dispatch, getState) => {
-  // const { userId } = getState().auth;
   dispatch({type: REGISTRATION_PENDING});
   const response = await auth.post('/register', formValues);
   console.log(response);
-  // if(!response.data.error) {
-  //   dispatch({ type: REGISTRATION_SUCCESS})
-  //   history.push('/');
-  // } else {
-  //   dispatch({type: REGISTRATION_ERROR, payload: response.data.error})
-  // }
+  if(!response.data.error) {
+    dispatch({ type: REGISTRATION_SUCCESS})
+    history.push('/');
+  } else {
+    dispatch({type: REGISTRATION_ERROR, payload: response.data.error})
+  }
 }
 
 export const login = formValues => async (dispatch, getState) => {

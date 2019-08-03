@@ -18,7 +18,7 @@ class Auth extends React.Component {
 
   renderForm = () => {
     if(this.state.selectedTab === 'login') {
-      return <LoginForm onSubmit={this.onLogin}/>
+      return <LoginForm onSubmit={this.onLogin}/>;
     }
     return <RegisterForm onSubmit={this.onRegister}/>
   }
@@ -33,20 +33,32 @@ class Auth extends React.Component {
     this.setState({ selectedTab: 'register' })
   }
 
+  renderError() {
+    // console.log(this.props.auth, 'render error');
+    let auth = this.props.auth;
+    if(auth.loginError) {
+      return <div className={styles.error}>{auth.loginError}</div>
+    }
+    if(auth.registrationError) {
+      return <div className={styles.error}>{auth.registrationError}</div>
+    }
+  }
 
   render() {
-    console.log(this.props.auth)
+    // console.log(this.props.auth)
     return (
       <div className={styles.wrapper}>
         <ul className={styles.tabPanel}>
           <li><button onClick={this.viewLoginForm}>Login</button></li>
           <li><button onClick={this.viewRegisterForm}>Register</button></li>
         </ul>
-        {this.renderForm()}
+        <div className={styles.form}>
+          {this.renderError()}
+          {this.renderForm()}
+        </div>
       </div>
     );
   }
-
 }
 
 const mapStateToProps = state => {

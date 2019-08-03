@@ -1,6 +1,9 @@
-// .wrapper {
-//     height: 100%;
-// }
+.wrapper {
+    // display: flex;
+    // flex-flow: column;
+    // align-items: center;
+    // width: 100%;
+}
 
 .tabPanel {
     height: 100px;
@@ -15,4 +18,21 @@
     li:nth-child(2) {
         margin-left: 1rem;
     }
+}
+
+.error {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 90%;
+    border-radius: .25rem;
+    text-align: center;
+    background-color: rgb(255, 151, 151);
+    color:rgb(218, 0, 0);
+}
+
+.form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 1rem;
 }

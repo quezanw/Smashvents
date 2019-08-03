@@ -9,7 +9,7 @@ class Modal extends React.Component {
   }
   
   closeModal = () => {
-    // this.props.clearLoginReg();
+    this.props.clearLoginReg();
     this.props.closeModal();
   }
 
@@ -19,7 +19,7 @@ class Modal extends React.Component {
         <div className={styles.btn_container}>
             <p onClick={this.closeModal}>close</p>
         </div>
-        <div onClick={(e) => e.stopPropagation()}className={styles.modal}>
+        <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
             {this.props.content}
         </div>
       </div>

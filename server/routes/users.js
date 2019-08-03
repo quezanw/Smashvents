@@ -41,10 +41,10 @@ router.post('/register', async (req, res, next) => {
   let usernameQuery = `SELECT username FROM users WHERE username='${username}' LIMIT 1`;
   let emailResponse = await checkIfExists('email', emailQuery);
   let usernameResponse = await checkIfExists('username', usernameQuery);
-  if(emailResponse.exist) {
-    return res.json({error: emailResponse.message});
-  } else if (usernameResponse.exist) {
+  if (usernameResponse.exist) {
     return res.json({error: usernameResponse.message});
+  } else if(emailResponse.exist) {
+    return res.json({error: emailResponse.message});
   } else {
     bcrypt.hash(password, saltRounds, (err, hash) => {
       if(err) {

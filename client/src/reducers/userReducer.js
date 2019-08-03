@@ -16,8 +16,8 @@ const INITIAL_STATE = {
 	isSignedOut: true,
 	loginError: null,
 	registrationPending: false,
-	registerationSuccess: false,
-	registerationError: null
+	registrationSuccess: false,
+	registrationError: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -61,27 +61,28 @@ export default (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				registrationPending: true,
-				registerationSuccess: false,
-				registerationError: null
+				registrationSuccess: false,
+				registrationError: null
 			}
 		case REGISTRATION_SUCCESS:
 			return {
 				...state,
 				registrationPending: false,
-				registerationSuccess: true,
-				registerationError: null
+				registrationSuccess: true,
+				registrationError: null
 			}
 		case REGISTRATION_ERROR:
       return {
         ...state,
         registrationPending: false,
-        registerationSuccess: false,
-        registerationError: action.payload
+        registrationSuccess: false,
+        registrationError: action.payload
       }
 		case CLEAR_LOGIN_REG:
 			return {
 				...state,
-				...INITIAL_STATE
+        loginError: null,
+        registrationError: null
 			}
 		default:
 			return state;
