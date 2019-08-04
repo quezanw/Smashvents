@@ -17,5 +17,6 @@ export const VIEW_EVENT = 'VIEW_EVENT';
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
 export const EDIT_EVENT = 'EDIT_EVENT';
+export const EVENT_ERROR = 'EVENT_ERROR';
 
 export const FETCH_ALL_EVENTS = 'FETCH_ALL_EVENTS';

@@ -2,14 +2,10 @@ import React from 'react';
 // import { connect } from 'react-redux'; 
 import { reduxForm, Field } from 'redux-form';
 import styles from './EventForm.module.scss';
-// const { DOM: { input, select, textarea } } = React;
 
 
 class EventForm extends React.Component {
-  constructor(props) {
-    super();
-    // console.log(this.props.onSubmit)
-  }
+
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
   }
@@ -26,8 +22,7 @@ class EventForm extends React.Component {
     );
   };
 
-  renderRadioInput = ({ input, label, meta }) => {
-    // console.log(input)
+  renderRadioInput = ({ input, label, meta, checked}) => {
     // const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       <div >

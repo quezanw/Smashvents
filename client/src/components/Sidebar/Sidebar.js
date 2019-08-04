@@ -9,15 +9,10 @@ class Sidebar extends React.Component {
   
   openModal = e => {
     e.preventDefault();
-    let modalConfig = {
-      content: <Auth/>
-    }
-    this.props.openModal(modalConfig)
+    this.props.openModal({ content: <Auth/> })
   }
 
-  logout = () => {
-    this.props.logout();
-  }
+  logout = () => this.props.logout();
 
   renderLogin = () => {
     if(this.props.auth.isSignedIn) {
@@ -29,7 +24,7 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div className={styles.sidebar}>
-        <button onClick={(e) => history.push('/')}className={styles.home}>HOME</button>
+        <button onClick={() => history.push('/')}className={styles.home}>HOME</button>
         {this.renderLogin()}
       </div>
     );

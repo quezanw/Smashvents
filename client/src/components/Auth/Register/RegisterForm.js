@@ -17,7 +17,6 @@ class RegisterForm extends React.Component {
     );
   }
 
-
   render() {
     return (
       <form className={styles.registerForm} onSubmit={this.props.handleSubmit(this.onSubmit)}>

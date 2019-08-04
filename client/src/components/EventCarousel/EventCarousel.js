@@ -7,13 +7,6 @@ import './EventCarousel.scss';
 import styles from './EventCarousel.module.scss';
 
 class EventCarousel extends React.Component {
-  constructor(props) {
-    super();
-  }
-
-  // componentDidMount() {
-  //   console.log(this.props.events)
-  // }
 
   render() {
     let state = { galleryItems: this.props.events.map(event => <EventItem event={event}/>)}
@@ -37,7 +30,6 @@ class EventCarousel extends React.Component {
     );
   }
 }
-
 
 // const mapStateToProps = state => {
 //   return {}

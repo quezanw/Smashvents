@@ -8,13 +8,13 @@ import Sidebar from '../Sidebar/Sidebar';
 import Modal from '../Modal/Modal';
 import EventPage from '../EventPage/EventPage';
 import EventForm from '../Events/EventForm/EventForm';
-import EventCreate from '../Events/EventCreate';
+import EventCreate from '../Events/EventCreate/EventCreate';
 import styles from './App.module.scss';
 import '../../styles/reset.css';
 
 class App extends React.Component {
 
-  renderModals() {
+  renderModals = () => {
     if(this.props.modal.content) {
       return <Modal content={this.props.modal.content}/>
     }

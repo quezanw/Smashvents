@@ -34,7 +34,6 @@ class Auth extends React.Component {
   }
 
   renderError() {
-    // console.log(this.props.auth, 'render error');
     let auth = this.props.auth;
     if(auth.loginError) {
       return <div className={styles.error}>{auth.loginError}</div>
@@ -51,7 +50,6 @@ class Auth extends React.Component {
   }
 
   render() {
-    // console.log(this.props.auth)
     return (
       <div className={styles.wrapper}>
         <ul className={styles.tabPanel}>

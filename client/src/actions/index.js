@@ -16,7 +16,8 @@ import {
   CLOSE_MODAL,
   VIEW_EVENT,
   CREATE_EVENT,
-  FETCH_ALL_EVENTS
+  FETCH_ALL_EVENTS,
+  EVENT_ERROR
 }
 from './types';
 
@@ -28,7 +29,6 @@ export const openModal = config => {
 }
 
 export const closeModal = () => {
-  history.push('/')
   return {
     type: CLOSE_MODAL,
     payload: null
@@ -73,13 +73,21 @@ export const login = formValues => async (dispatch, getState) => {
 }
 
 export const createEvent = formValues => async (dispatch, getState) => {
-  const response = await events.post('/new', {...formValues, user_id: 1});
-  dispatch({ type: CREATE_EVENT, payload: response.data });
+  const { user_id } = getState().auth;
+  const response = await events.post('/new', {...formValues, user_id});
+  if(!response.data.error) {
+    console.log(response.data)
+    dispatch({ type: CREATE_EVENT, payload: response.data });
+    dispatch(reset('eventForm'));
+    dispatch({ type: VIEW_EVENT, payload: response.data.event })
+    history.push(`/event/${response.data.event.title}/details`);
+  } else {
+    dispatch({ type: EVENT_ERROR, payload: response.data.error});
+  }
 }
 
 export const getAllEvents = () => async (dispatch, getState) => {
   const response = await events.get('/all');
-  // console.log(response.data.rows)
   dispatch({type: FETCH_ALL_EVENTS, payload: response.data.rows});
   history.push('/');
 }

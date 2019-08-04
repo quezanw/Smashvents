@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import styles from './EventPage.module.scss';
 
 class EventPage extends React.Component {
+  
   render() {
     return (
-      <div>
-          this is the event view page
+      <div className={styles.wrapper}>
+          {this.props.event.title}
+          {this.props.event.start_date}
       </div>
     );
   }
@@ -15,7 +17,7 @@ class EventPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    event: state.event
+    event: state.selectedEvent
   }
 }
 

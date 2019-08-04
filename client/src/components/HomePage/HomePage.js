@@ -15,7 +15,7 @@ class HomePage extends React.Component {
       <div className={styles.container}>
         <div className={styles.header}>
           <h1>SMASHVENTS</h1>
-          <Link to="/event/create" >organize an event</Link>
+          <Link to="/event/create">organize an event</Link>
         </div>
         <section className={styles.section}>
           <EventCarousel events={this.props.events} title='Upcoming Tournaments' carouselID='carousel-list1'/>
@@ -28,7 +28,7 @@ class HomePage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    events: state.events
+    events: state.events.events,
   }
 }
 

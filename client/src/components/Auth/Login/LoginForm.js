@@ -4,9 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import styles from './LoginForm.module.scss';
 
 class LoginForm extends React.Component {
-  constructor(props) {
-    super();
-  }
+
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
   }

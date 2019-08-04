@@ -5,11 +5,8 @@ import styles from './EventItem.module.scss';
 import history from '../../history';
 
 class EventItem extends React.Component {
-  constructor(props) {
-    super();
-  }
 
-  selectEvent(event) {
+  selectEvent = event => {
     this.props.selectEvent(event);
     history.push(`/event/${event.title}/details`);
   }

@@ -10,5 +10,5 @@ export default combineReducers({
   form: formReducer,
   events: eventsReducer,
   modal: modalReducer,
-  event: selectEventReducer
+  selectedEvent: selectEventReducer
 });

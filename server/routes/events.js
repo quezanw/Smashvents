@@ -21,7 +21,6 @@ router.get('/', (req, res, next) => {
     if(error) {
       throw error
     }
-    console.log(req.body);
     res.status(200).json({rows: results.rows});
   })
 });
@@ -42,19 +41,26 @@ router.post('/new', (req, res, next) => {
   console.log(req.body);
   let {user_id, title, description, ruleset, venue, 
        online, start_date} = req.body;
-  let createQuery = `INSERT INTO events (user_id,
-                                        title, 
-                                        description, 
-                                        ruleset, 
-                                        venue, 
-                                        online, 
-                                        start_date)
-    VALUES (${user_id}, '${title}', '${description}', '${ruleset}', '${venue}', ${online}, '${start_date}')`;
+  if(title === undefined) {
+    return res.json({error: 'TITLE CANNOT BE BLANK'});
+  } else if(venue === undefined && !online) {
+    return res.json({error: 'VENUE REQUIRED FOR OFFLINE EVENTS'});
+  } else if(start_date === undefined) {
+   return res.json({error: 'START DATE REQUIRED'}) 
+  }
+  let createQuery = `INSERT INTO events 
+                    (user_id, title, description, 
+                    ruleset, venue, online, start_date)
+                    VALUES 
+                    (${user_id}, '${title}', '${description}', 
+                    '${ruleset}', '${venue}', ${online}, '${start_date}')
+                    RETURNING *
+                    `;
   pool.query(createQuery, (error, results) => {
     if(error) {
       throw error;
     }
-    res.status(200).json(results);
+    return res.json({message: 'Event successfully created', event: results.rows[0]});
   })
 });
 
@@ -62,6 +68,13 @@ router.post('/new', (req, res, next) => {
 router.put('/edit', (req, res, next) => {
   let {event_id, title, description, ruleset, venue, 
     online, start_date} = req.body;
+  if(title === undefined) {
+    return res.json({error: 'TITLE CANNOT BE BLANK'});
+  } else if(venue === undefined && !online) {
+    return res.json({error: 'VENUE REQUIRED FOR OFFLINE EVENTS'});
+  } else if(start_date === undefined) {
+    return res.json({error: 'START DATE REQUIRED'}) 
+  }
   let updateQuery = `
     UPDATE events 
     SET

@@ -6,7 +6,7 @@ CREATE TABLE events (
   event_id     SERIAL,
   user_id      INTEGER      NOT NULL,
   title        VARCHAR(254) NOT NULL,
-  description  VARCHAR(254),
+  description  VARCHAR(8000),
   ruleset      VARCHAR(8000),
   venue        VARCHAR(254),
   online       BOOLEAN,
