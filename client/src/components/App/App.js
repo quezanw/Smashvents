@@ -10,7 +10,8 @@ import EventPage from '../EventPage/EventPage';
 import EventForm from '../Events/EventForm/EventForm';
 import EventCreate from '../Events/EventCreate/EventCreate';
 import styles from './App.module.scss';
-import '../../styles/reset.css';
+import '../../styles/main.scss';
+
 
 class App extends React.Component {
 
@@ -25,13 +26,15 @@ class App extends React.Component {
       <div className={styles.container}>
         {this.renderModals()}
         <Sidebar/>
-        <Router history={history}>
-           <Switch>
-             <Route path="/" exact component={HomePage}/>
-             <Route path="/event/:title/details" exact component={EventPage}/>
-             <Route path="/event/create" exact component={EventCreate}/>
-           </Switch>
-        </Router>
+        <div className={styles.main}>
+          <Router history={history}>
+            <Switch>
+              <Route path="/" exact component={HomePage}/>
+              <Route path="/event/:title/details" exact component={EventPage}/>
+              <Route path="/event/create" exact component={EventCreate}/>
+            </Switch>
+          </Router>
+        </div>
       </div>
     )
   }

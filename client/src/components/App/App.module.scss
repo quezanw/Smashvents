@@ -1,7 +1,11 @@
+@import '../../styles/variables.scss';
+
 .container {
   height: 100%;
-  // display: grid;
-  // grid-template-columns: 100px auto;
-  border: 1px solid pink;
+  width: 100%;
   overflow-x: hidden;
+}
+
+.main {
+  margin-left: $sidebar-width;
 }

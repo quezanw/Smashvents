@@ -16,15 +16,25 @@ class Sidebar extends React.Component {
 
   renderLogin = () => {
     if(this.props.auth.isSignedIn) {
-      return <button className={styles.login} onClick={this.logout}>Logout</button>
+      return (
+        <div className={styles.login_wrapper}>
+        <i onClick={this.logout} className={`${styles.logout} fas fa-sign-out-alt`}></i>
+        <p>Logout</p>
+      </div>
+      );
     }
-    return <button className={styles.login} onClick={e => this.openModal(e)}>Login</button>;
+    return (
+      <div className={styles.login_wrapper}>
+        <i onClick={e => this.openModal(e)} className={`${styles.login} fas fa-sign-in-alt`}></i>
+        <p>Login</p>
+      </div>
+    ) 
   }
 
   render() {
     return (
       <div className={styles.sidebar}>
-        <button onClick={() => history.push('/')}className={styles.home}>HOME</button>
+        <i className={`${styles.home} fas fa-home`} onClick={() => history.push('/')}></i>
         {this.renderLogin()}
       </div>
     );
