@@ -10,13 +10,13 @@ class EventForm extends React.Component {
     this.props.onSubmit(formValues);
   }
 
-  renderInput = ({ input, label, meta }) => {
+  renderInput = ({ input, label, meta, type }) => {
     // console.log(input)
     // const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       <div >
         <label>{label}</label>
-        <input {...input} autoComplete="off" />
+        <input {...input} type={type} autoComplete="off" />
         {/* {this.renderError(meta)} */}
       </div>
     );
@@ -63,6 +63,12 @@ class EventForm extends React.Component {
           </div>
           <div>
             <Field name="start_date" type="date" label="Start Date" component={this.renderDatePicker}/>
+          </div>
+          <div>
+            <Field name="start_time" type="time" label="Start Time" component={this.renderInput}/>
+          </div>
+          <div>
+            <Field name="end_time" type="time" label="End Time" component={this.renderInput}/>
           </div>
           <button type="submit">Submit</button>
         </form>

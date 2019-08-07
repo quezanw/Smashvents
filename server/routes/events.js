@@ -40,20 +40,26 @@ router.get('/all', function(req, res, next) {
 router.post('/new', (req, res, next) => {
   console.log(req.body);
   let {user_id, title, description, ruleset, venue, 
-       online, start_date} = req.body;
+       online, start_date, start_time, end_time} = req.body;
   if(title === undefined) {
     return res.json({error: 'TITLE CANNOT BE BLANK'});
   } else if(venue === undefined && !online) {
     return res.json({error: 'VENUE REQUIRED FOR OFFLINE EVENTS'});
   } else if(start_date === undefined) {
-   return res.json({error: 'START DATE REQUIRED'}) 
+    return res.json({error: 'START DATE REQUIRED'}) 
+  } else if(start_time === undefined) {
+    return res.json({error: 'START TIME REQUIRED'}) 
+  } else if(end_time === undefined) {
+    return res.json({error: 'END TIME REQUIRED'}) 
   }
   let createQuery = `INSERT INTO events 
                     (user_id, title, description, 
-                    ruleset, venue, online, start_date)
+                    ruleset, venue, online, start_date,
+                    start_time, end_time)
                     VALUES 
                     (${user_id}, '${title}', '${description}', 
-                    '${ruleset}', '${venue}', ${online}, '${start_date}')
+                    '${ruleset}', '${venue}', ${online}, '${start_date}',
+                    '${start_time}', '${end_time}')
                     RETURNING *
                     `;
   pool.query(createQuery, (error, results) => {
@@ -67,13 +73,17 @@ router.post('/new', (req, res, next) => {
 // edit event
 router.put('/edit', (req, res, next) => {
   let {event_id, title, description, ruleset, venue, 
-    online, start_date} = req.body;
+    online, start_date, start_time, end_time} = req.body;
   if(title === undefined) {
     return res.json({error: 'TITLE CANNOT BE BLANK'});
   } else if(venue === undefined && !online) {
     return res.json({error: 'VENUE REQUIRED FOR OFFLINE EVENTS'});
   } else if(start_date === undefined) {
     return res.json({error: 'START DATE REQUIRED'}) 
+  } else if(start_time === undefined) {
+    return res.json({error: 'START TIME REQUIRED'}) 
+  } else if(end_time === undefined) {
+    return res.json({error: 'END TIME REQUIRED'}) 
   }
   let updateQuery = `
     UPDATE events 
@@ -83,7 +93,9 @@ router.put('/edit', (req, res, next) => {
       ruleset='${ruleset}',
       venue='${venue}',
       online = ${online},
-      start_date='${start_date}'
+      start_date='${start_date}',
+      start_time='${start_time}',
+      end_time='${end_time}'
     WHERE event_id = ${event_id}
   `;
   pool.query(updateQuery, (error, results) => {

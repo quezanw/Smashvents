@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { selectEvent } from '../../actions/index';
 import styles from './EventItem.module.scss';
 import history from '../../history';
+import moment from 'moment';
 
 class EventItem extends React.Component {
 
@@ -25,6 +26,7 @@ class EventItem extends React.Component {
         <div className={styles.details}>
           <p className={styles.title}>{event.title}</p>
           <p>{this.convertDate(event.start_date)}</p>
+          {/* <p>{m.format(event.start_time,'hh:mm a')}</p> */}
           <p>{event.online ? 'Online' : 'Offline'}</p>
         </div>
       </div>

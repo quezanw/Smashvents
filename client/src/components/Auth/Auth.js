@@ -60,6 +60,7 @@ class Auth extends React.Component {
         <div className={styles.form}>
           {this.renderError()}
           {this.renderRegisterSuccess()}
+          <p>{this.props.auth.isSignedinPending ? 'Please wait...' : ''}</p>
           {this.renderForm()}
         </div>
       </div>
