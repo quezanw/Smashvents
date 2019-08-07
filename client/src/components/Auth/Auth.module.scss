@@ -1,4 +1,6 @@
 @import '../../styles/variables.scss';
+@import '../../styles/layout.scss';
+@import '../../styles/components.scss';
 
 .wrapper {
   width: 100%;
@@ -12,17 +14,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: .25rem .25rem 0 0;
+  border-radius: $primary-border-radius $primary-border-radius 0 0;
   color: rgba(213, 212, 212, 0.817);
 
   li {
     font-size: 1rem;
     font-family: $primary-font;
-
     &:hover {
       cursor: pointer;
     }
-
   }
 
   li:nth-child(2) {
@@ -31,34 +31,24 @@
 }
 
 .error {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  width: 90%;
-  border-radius: .25rem;
-  text-align: center;
+  @extend %message;
   background-color: rgb(255, 151, 151);
   color: rgb(218, 0, 0);
 }
 
 .success {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  width: 90%;
-  border-radius: .25rem;
-  text-align: center;
+  @extend %message;
   background-color: rgb(25, 250, 108);
   color: rgb(58, 171, 26);
 }
 
 .form {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
+  @extend %flex-column-center;
   padding: 1rem;
 }
 
 .tab {
   padding-bottom: .25rem;
-  border-bottom: 2px solid white;
-  color: white;
+  border-bottom: 2px solid $primary-white;
+  color: $primary-white;
 }

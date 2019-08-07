@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/layout.scss';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 .container {
@@ -10,15 +11,13 @@
 }
 
 .header {
-  grid-row: 1;
-  display: flex;
-  flex-flow: column;
+  @extend %flex-column-center;
   justify-content: center;
-  align-items: center;
+  grid-row: 1;
   background: #41295a;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: white;
+  color: $primary-white;
 
   h1 {
     font-family: 'Open Sans', sans-serif;
@@ -30,19 +29,17 @@
 }
 
 .events_section {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
+  @extend %flex-column-center;
 }
 
 
 .btn {
   font-size: $btn-font;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: $primary-font;
   padding: .5rem 1rem;
   background: linear-gradient(180deg, #26aafc, #2196db);
   border-radius: 3px;
-  color:white;
+  color: $primary-white;
   text-decoration: none;
 
   &:hover {

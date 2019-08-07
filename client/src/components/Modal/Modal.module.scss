@@ -1,29 +1,66 @@
+@import '../../styles/variables.scss';
+@import '../../styles/layout.scss';
+
 .wrapper {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(rgb(57, 57, 57), .8);
-    z-index: 2;
+  @extend %flex-column-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(rgb(57, 57, 57), .8);
+  z-index: 2;
+  transform: none;
 }
 
 .modal {
-    height: auto;
-    width: 400px;
-    background-color: whitesmoke;
-    border-radius: .25rem;
+  height: auto;
+  width: 400px;
+  background-color: $primary-white;
+  border-radius: $primary-border-radius;
+}
+
+.fadeIn {
+  animation-name: modalFadeIn;
+  animation-duration: .3s;
+}
+
+@keyframes modalFadeIn {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fadeOut {
+  animation-name: modalFadeOut;
+  animation-duration: .3s;
+}
+
+@keyframes modalFadeOut {
+  from {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
 }
 
 .btn_container {
-    margin: 5rem 0 1rem 0;
-    width: 400px;
-    color: white;
-    p:hover {
-        cursor: pointer;
-        display: inline-block;
-    }
+  margin: 5rem 0 1rem 0;
+  width: 400px;
+  color: $primary-white;
+
+  p:hover {
+    cursor: pointer;
+    display: inline-block;
+  }
 }

@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './Modal.module.scss';
 import { connect } from 'react-redux';
 import { closeModal, clearLoginReg } from '../../actions/index';
+// import ReactDOM from 'react-dom';
 
 class Modal extends React.Component {
-  
+
   closeModal = () => {
     this.props.clearLoginReg();
     this.props.closeModal();
@@ -16,7 +17,7 @@ class Modal extends React.Component {
         <div className={styles.btn_container}>
           <p onClick={this.closeModal}>close</p>
         </div>
-        <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
+        <div onClick={(e) => e.stopPropagation()} className={`${styles.modal} ${styles.fadeIn}`}>
           {this.props.content}
         </div>
       </div>

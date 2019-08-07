@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/layout.scss';
 
 .sidebar {
   height: 100%;
@@ -27,18 +28,16 @@
 }
 
 .login_wrapper {
+  @extend %flex-column-center;
   width: 100%;
   margin-top: auto;
   padding: 1rem 0;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  border-top: 1px solid white;
+  border-top: 1.5px solid $primary-white;
   color:rgb(199, 198, 198);
 
   &:hover {
     cursor: pointer;
-    color: white;
+    color: $primary-white;
   }
 
   i {
@@ -51,10 +50,10 @@
 
 .user {
   padding: 1rem;
-  border: 2px solid white;
+  border: 2px solid $primary-white;
   border-radius: 100%;
   margin-top: 1rem;
-  color: white;
+  color: $primary-white;
   background-color: gray;
 }
 
