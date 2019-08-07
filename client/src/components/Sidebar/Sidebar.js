@@ -31,10 +31,21 @@ class Sidebar extends React.Component {
     ) 
   }
 
+  renderIcon = () => {
+    let auth = this.props.auth;
+    if(auth.isSignedIn) {
+      return (
+        <i className={`${styles.user} far fa-user`}></i>
+        // <p>{auth.first_name.charAt(0).toUpperCase}</p>
+      )
+    }
+  }
+
   render() {
     return (
       <div className={styles.sidebar}>
         <i className={`${styles.home} fas fa-home`} onClick={() => history.push('/')}></i>
+        {this.renderIcon()}
         {this.renderLogin()}
       </div>
     );
