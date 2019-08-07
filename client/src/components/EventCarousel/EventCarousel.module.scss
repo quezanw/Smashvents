@@ -1,6 +1,8 @@
+@import '../../styles/variables.scss';
+
 .carouselContainer {
   margin: 2rem;
-  width: 62.5%;
+  width: 70%;
   // border: 1px solid black;
 }
 
@@ -10,14 +12,27 @@
   flex-flow: row nowrap;
   margin-bottom: .25rem;
   h2 {
-    font-size: 1.25rem;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
   }
 }
 
 .carouselBtns {
   margin-left: auto;
-  button {
-    margin-right: 2rem;
+  margin-right: 3rem;
+}
+
+.sliderBtn {
+  font-size: 1.5rem;
+  color: lightblue;
+
+  &:nth-child(1) {
+    margin-right: 1rem;
   }
+  &:hover {
+    cursor: pointer;
+    color: lighten(lightblue, 10%);
+  }
+
 }
 

@@ -10,9 +10,9 @@ class RegisterForm extends React.Component {
 
   renderInput = ({input, label, meta, type}) => {
     return (
-      <div>
+      <div className={styles.row}>
         <label>{label}</label>
-        <input {...input} type={type}/>
+        <input className={styles.input} {...input} type={type}/>
       </div>
     );
   }
@@ -25,7 +25,7 @@ class RegisterForm extends React.Component {
         <Field component={this.renderInput} type="text" label="Last Name" name="last_name"/>
         <Field component={this.renderInput} type="text" label="Email" name="email"/>
         <Field component={this.renderInput} type="password" label="Password" name="password"/>
-        <button type="submit">submit</button>
+        <button className={styles.submit} type="submit">Register</button>
       </form>
     )
   }

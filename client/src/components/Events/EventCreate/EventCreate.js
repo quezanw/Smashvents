@@ -31,11 +31,11 @@ class EventCreate extends React.Component {
     }
     return (
       <div className={styles.wrapper}>
-        <div>
-          <h1>Login Required.</h1>
-          <p>You must be logged in to view this page.</p>
+        <h1>Login Required.</h1>
+        <p>You must be logged in to view this page.</p>
+        <div className={styles.auth}>
+          <Auth />
         </div>
-        <Auth/>
       </div>
     );
   }

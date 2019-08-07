@@ -11,13 +11,22 @@ class EventItem extends React.Component {
     history.push(`/event/${event.title}/details`);
   }
 
+  convertDate = date => {
+    let ts = new Date();
+    // ${ts.toLocaleTimeString(date)} insert for time start input field
+    return `${ts.toDateString(date)}`
+  }
+
   render() {
     let event = this.props.event;
     return (
       <div onClick={() => this.selectEvent(event)} className={styles.item}>
-          <p>{event.title}</p>
-          <p>{event.start_date}</p>
+        <div className={styles.img_container}></div>
+        <div className={styles.details}>
+          <p className={styles.title}>{event.title}</p>
+          <p>{this.convertDate(event.start_date)}</p>
           <p>{event.online ? 'Online' : 'Offline'}</p>
+        </div>
       </div>
     );
   }

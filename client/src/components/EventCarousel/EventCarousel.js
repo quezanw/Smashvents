@@ -15,15 +15,15 @@ class EventCarousel extends React.Component {
         <div className={styles.carouselHeader}>
           <h2>{this.props.title}</h2>
           <div className={styles.carouselBtns}>
-           <button onClick={() => this.Carousel.slidePrev()}>Prev</button>
-           <button onClick={() => this.Carousel.slideNext()}>Next</button>
+            <i onClick={() => this.Carousel.slidePrev()} className={`${styles.sliderBtn} fas fa-caret-left`}></i>
+            <i onClick={() => this.Carousel.slideNext()} className={`${styles.sliderBtn} fas fa-caret-right`}></i>
           </div>
         </div>
         <AliceCarousel
           buttonsDisabled={true}
           dotsDisabled={true}
           items={state.galleryItems}
-          responsive={ { 500: { items: 3 } }}
+          responsive={ { 500: { items: 4 } }}
           ref={(el) => (this.Carousel = el)}
         />
       </div>

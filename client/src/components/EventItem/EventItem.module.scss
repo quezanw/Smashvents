@@ -1,8 +1,31 @@
+@import '../../styles/variables.scss';
+
 .item {
-    height: 200px;
-    width: 225px;
-    // margin-right: 1rem;
-    border: 1px solid black;
-    background-color: bisque;
-    // margin-right: 2rem;
+  height: 200px;
+  width: 200px;
+  margin-right: 1rem;
+  border: 1px solid black;
+  border-radius: $primary-border-radius;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  p {
+    font-size: $primary-font-size;
+    font-family: $primary-font;
+  }
+}
+
+.img_container {
+  height:55%;
+  background-color: cadetblue;
+}
+
+.details {
+  padding: .5rem;
+}
+
+.title {
+  font-weight: bold;
 }

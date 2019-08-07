@@ -50,11 +50,12 @@ class Auth extends React.Component {
   }
 
   render() {
+    let tab = this.state.selectedTab;
     return (
       <div className={styles.wrapper}>
         <ul className={styles.tabPanel}>
-          <li><button onClick={this.viewLoginForm}>Login</button></li>
-          <li><button onClick={this.viewRegisterForm}>Register</button></li>
+          <li className={`${tab === 'login' ? styles.tab : ''}`} onClick={this.viewLoginForm}>Login</li>
+          <li className={`${tab === 'register' ? styles.tab : ''}`}  onClick={this.viewRegisterForm}>Register</li>
         </ul>
         <div className={styles.form}>
           {this.renderError()}

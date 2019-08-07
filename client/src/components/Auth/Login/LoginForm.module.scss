@@ -1,6 +1,19 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/components.scss';
+
 .loginForm {
-    height: 300px;
-    width: 100%;
-    // margin: 1rem;
-    outline: 1px solid pink;
+  height: 175px;
+  @extend %form-flex;
+}
+
+.row {
+  @extend %input-row;
+}
+
+.input {  
+  @extend %input-field;
+}
+
+.submit {
+  @extend %submit-btn;
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { reduxForm, Field } from 'redux-form';
-
 import styles from './LoginForm.module.scss';
 
 class LoginForm extends React.Component {
@@ -11,9 +10,9 @@ class LoginForm extends React.Component {
 
   renderInput = ({input, label, meta, type}) => {
     return (
-      <div>
+      <div className={styles.row}>
         <label>{label}</label>
-        <input {...input} type={type}/>
+        <input className={styles.input} {...input} type={type}/>
       </div>
     );
   }
@@ -23,7 +22,7 @@ class LoginForm extends React.Component {
       <form onSubmit={this.props.handleSubmit(this.onSubmit)} className={styles.loginForm}>
         <Field component={this.renderInput} type="text" label="Email" name="email"/>
         <Field component={this.renderInput} type="password" label="Password" name="password"/>
-        <button type="submit">submit</button>
+        <button className={styles.submit} type="submit">Login</button>
       </form>
     )
   }

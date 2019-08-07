@@ -17,15 +17,15 @@ class Sidebar extends React.Component {
   renderLogin = () => {
     if(this.props.auth.isSignedIn) {
       return (
-        <div className={styles.login_wrapper}>
-        <i onClick={this.logout} className={`${styles.logout} fas fa-sign-out-alt`}></i>
-        <p>Logout</p>
-      </div>
+        <div onClick={this.logout} className={styles.login_wrapper}>
+          <i className={`${styles.logout} fas fa-sign-out-alt`}></i>
+          <p>Logout</p>
+       </div>
       );
     }
     return (
-      <div className={styles.login_wrapper}>
-        <i onClick={e => this.openModal(e)} className={`${styles.login} fas fa-sign-in-alt`}></i>
+      <div onClick={e => this.openModal(e)} className={styles.login_wrapper}>
+        <i className={`${styles.login} fas fa-sign-in-alt`}></i>
         <p>Login</p>
       </div>
     ) 
