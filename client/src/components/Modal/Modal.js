@@ -15,7 +15,10 @@ class Modal extends React.Component {
     return (
       <div onClick={this.closeModal} id="modal-wrapper" className={styles.wrapper}>
         <div className={styles.btn_container}>
-          <p onClick={this.closeModal}>close</p>
+          <p onClick={this.closeModal}>
+            <span>x </span>
+            close
+          </p>
         </div>
         <div onClick={(e) => e.stopPropagation()} className={`${styles.modal} ${styles.fadeIn}`}>
           {this.props.content}

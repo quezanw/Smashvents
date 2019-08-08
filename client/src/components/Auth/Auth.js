@@ -18,9 +18,9 @@ class Auth extends React.Component {
 
   renderForm = () => {
     if(this.state.selectedTab === 'login') {
-      return <LoginForm onSubmit={this.onLogin}/>;
+      return <LoginForm submitStatus={this.props.auth.isSigninPending} onSubmit={this.onLogin}/>;
     }
-    return <RegisterForm onSubmit={this.onRegister}/>
+    return <RegisterForm submitStatus={this.props.auth.registrationPending} onSubmit={this.onRegister}/>
   }
 
   viewLoginForm = () => {

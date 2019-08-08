@@ -1,7 +1,6 @@
 @import '../../../styles/components.scss';
 
 .registerForm {
-  height: 300px;
   @extend %form-flex;
 }
 

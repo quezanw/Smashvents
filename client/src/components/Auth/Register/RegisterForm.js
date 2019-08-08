@@ -24,6 +24,7 @@ class RegisterForm extends React.Component {
   }
 
   render() {
+    console.log(this.props.submitStatus)
     return (
       <form className={styles.registerForm} onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field 
@@ -61,7 +62,9 @@ class RegisterForm extends React.Component {
           name="password"
           validate={[required]}
         />
-        <button className={styles.submit} type="submit">Register</button>
+        <button disabled={this.props.submitStatus} className={styles.submit} type="submit">
+          Register
+        </button>
       </form>
     )
   }

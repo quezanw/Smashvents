@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
           label="Password" 
           name="password"
         />
-        <button className={styles.submit} type="submit">Login</button>
+        <button disabled={this.props.submitStatus} className={styles.submit} type="submit">Login</button>
       </form>
     )
   }
