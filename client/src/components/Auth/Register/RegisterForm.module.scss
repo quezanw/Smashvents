@@ -16,3 +16,17 @@
 .submit {
   @extend %submit-btn;
 }
+
+.active {
+  border: 2px solid rgb(109, 205, 237);
+}
+
+.inactive {
+  border: 1px solid rgb(208, 208, 208);
+}
+
+.error {
+  font-family: $primary-font;
+  color: $primary-red;
+  font-size: 10pt;
+}
