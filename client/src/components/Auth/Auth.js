@@ -17,35 +17,36 @@ class Auth extends React.Component {
   }
 
   renderForm = () => {
+    let auth = this.props.auth;
     if(this.state.selectedTab === 'login') {
-      return <LoginForm submitStatus={this.props.auth.isSigninPending} onSubmit={this.onLogin}/>;
+      return <LoginForm submitStatus={auth.isSigninPending} onSubmit={this.onLogin}/>;
     }
-    return <RegisterForm submitStatus={this.props.auth.registrationPending} onSubmit={this.onRegister}/>
+    return <RegisterForm submitStatus={auth.registrationPending} onSubmit={this.onRegister}/>;
   }
 
   viewLoginForm = () => {
     this.props.clearLoginReg();
-    this.setState({ selectedTab: 'login' })
+    this.setState({ selectedTab: 'login' });
   }
 
   viewRegisterForm = () => {
     this.props.clearLoginReg();
-    this.setState({ selectedTab: 'register' })
+    this.setState({ selectedTab: 'register' });
   }
 
   renderError() {
     let auth = this.props.auth;
     if(auth.loginError) {
-      return <div className={styles.error}>{auth.loginError}</div>
+      return <div className={styles.error}>{auth.loginError}</div>;
     }
     if(auth.registrationError) {
-      return <div className={styles.error}>{auth.registrationError}</div>
+      return <div className={styles.error}>{auth.registrationError}</div>;
     }
   }
 
   renderRegisterSuccess() {
     if(this.props.auth.registrationSuccess) {
-      return <p className={styles.success}>Successfully Registered!</p>
+      return <p className={styles.success}>Successfully Registered!</p>;
     }
   }
 
