@@ -21,16 +21,20 @@ class EventCreate extends React.Component {
   }
 
   renderCreateEvent = () => {
-    if(this.props.isSignedIn) {
+    if(true) {
+    // if(this.props.isSignedIn) {
       return (
         <div className={styles.event_wrapper}>
-          {this.renderError()}
-          <EventForm onSubmit={this.onSubmit}/>
+          <div className={styles.header}>
+            Create A  New Event
+          </div>
+          {/* {this.renderError()} */}
+          <EventForm error={this.props.error} onSubmit={this.onSubmit}/>
         </div>
       );
     }
     return (
-      <div className={styles.wrapper}>
+      <div className={styles.auth_wrapper}>
         <h1>Login Required.</h1>
         <p>You must be logged in to view this page.</p>
         <div className={styles.auth}>
