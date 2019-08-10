@@ -22,6 +22,8 @@ class EventForm extends React.Component {
   handleChange = date => this.setState({ startDate: date });
 
   renderError = () => this.props.error ? <p>{this.props.error}</p> : '';
+  
+  required = value => value ? undefined : 'Required';
 
   renderInput = ({ input, label, type, meta: {active, touched, error, warning} }) => {
     return (
@@ -37,7 +39,6 @@ class EventForm extends React.Component {
   };
 
   renderRadioInput = ({ input, label, meta, type}) => {
-    // const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       <div className={styles.radio}>
         <input 
@@ -45,7 +46,6 @@ class EventForm extends React.Component {
           type="radio" 
           value={input.value}
           checked={this.state.online === input.value ? true : false}
-          // defaultChecked={this.state.online === input.value ? true : false}
         />
         <label>{label}</label>
       </div>
@@ -110,8 +110,6 @@ class EventForm extends React.Component {
     }
   }
 
-  required = value => value ? undefined : 'Required';
-
   render() {
     return (
       <div className={styles.formContainer}>
@@ -156,7 +154,7 @@ class EventForm extends React.Component {
             />
           </div>
           {this.renderVenue()}
-          <div className={styles.date_time}>
+          <div className={styles.dateTime}>
             <Field 
               name="start_date" 
               type="date" 

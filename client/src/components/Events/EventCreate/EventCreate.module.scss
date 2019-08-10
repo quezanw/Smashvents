@@ -3,7 +3,7 @@
 // @import '../../../styles/components.scss';
 
 
-.event_wrapper {
+.eventWrapper {
   @extend %flex-column-center;
   width: 100%;
   // outline: 1px solid black;
@@ -19,7 +19,7 @@
   box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.2);
 }
 
-.auth_wrapper {
+.authWrapper {
   @extend %flex-column-center;
   margin: auto;
   width: 30%;
