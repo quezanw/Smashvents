@@ -58,7 +58,7 @@ router.post('/new', (req, res, next) => {
                     start_time, end_time)
                     VALUES 
                     (${user_id}, '${title}', '${description}', 
-                    '${ruleset}', '${venue}', ${online}, '${start_date}',
+                    '${ruleset}', '${venue}', ${online === 'true'}, '${start_date}',
                     '${start_time}', '${end_time}')
                     RETURNING *
                     `;
@@ -92,7 +92,7 @@ router.put('/edit', (req, res, next) => {
       description='${description}',
       ruleset='${ruleset}',
       venue='${venue}',
-      online = ${online},
+      online = ${online === 'true'},
       start_date='${start_date}',
       start_time='${start_time}',
       end_time='${end_time}'

@@ -21,8 +21,8 @@ class EventCreate extends React.Component {
   }
 
   renderCreateEvent = () => {
-    if(true) {
-    // if(this.props.isSignedIn) {
+    // if(true) {
+    if(this.props.isSignedIn) {
       return (
         <div className={styles.event_wrapper}>
           <div className={styles.header}>

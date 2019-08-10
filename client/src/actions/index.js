@@ -74,6 +74,7 @@ export const login = formValues => async (dispatch, getState) => {
 
 export const createEvent = formValues => async (dispatch, getState) => {
   const { user_id } = getState().auth;
+  console.log(formValues)
   const response = await events.post('/new', {...formValues, user_id});
   if(!response.data.error) {
     console.log(response.data)

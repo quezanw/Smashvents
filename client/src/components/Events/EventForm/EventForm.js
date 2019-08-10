@@ -3,15 +3,13 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import styles from './EventForm.module.scss';
 import DatePicker from "react-datepicker";
+import moment from 'moment';
 
 import "react-datepicker/dist/react-datepicker.css";
 
 
 class EventForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { checked: 'online', startDate: new Date() }
-  }
+  state = { online: 'true', startDate: new Date() }
 
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
@@ -29,9 +27,9 @@ class EventForm extends React.Component {
     );
   };
 
-  onChange = e => {
+  onRadioChange = e => {
     if(e.currentTarget.checked) {
-      this.setState({ checked: e.currentTarget.value});
+      this.setState({ online: e.currentTarget.value});
     }
   }
 
@@ -47,11 +45,11 @@ class EventForm extends React.Component {
       <div className={styles.radio}>
         <input 
           {...input}
-          type={type} 
+          type="radio" 
           value={input.value}
-          // checked={this.state.checked === 'online'}
+          checked={this.state.online === input.value ? true : false}
         />
-      <label>{label}</label>
+        <label>{label}</label>
       </div>
     );
   };
@@ -75,15 +73,18 @@ class EventForm extends React.Component {
     );
   }
 
-  renderTime2 = ({input, label, meta, type}) => {
+  renderDatePicker = ({input, label, meta, type, value}) => {
     return (
       <div className={styles.col}>
         <label>{label}</label>
+        {/* <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} /> */}
         <DatePicker
+          {...input}
+          dateForm="MM/DD/YYYY"
           selected={this.state.startDate}
-          onChange={this.handleChange}
-          // excludeDates={[]}
+          onChange={input.onChange}
           minDate={new Date()}
+          type={type}
         />
         {/* {this.renderError(meta)} */}
       </div>
@@ -91,8 +92,8 @@ class EventForm extends React.Component {
   }
 
   renderVenue = () => {
-    let offline = this.state.checked === 'offline';
-    if(offline) {
+    let offline = this.state.online;
+    if(offline === 'false') {
       return (
         <Field 
           name="venue" 
@@ -107,10 +108,9 @@ class EventForm extends React.Component {
   renderError = () => this.props.error ? <p>{this.props.error}</p> : '';
 
   render() {
-    console.log(this.props)
     return (
       <div className={styles.formContainer}>
-        {this.renderError()}
+        {/* {this.renderError()} */}
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <Field name="title" type="text" label="Event Name" component={this.renderInput} />
           <Field name="description" type="text" label="Description" component={this.renderTextarea}/>
@@ -119,25 +119,30 @@ class EventForm extends React.Component {
             <p>Online / Offline</p>
             <Field 
               name="online" 
-              value="online" 
+              value={'true'}
               type="radio" 
               label="Online" 
               component={this.renderRadioInput}
-              onChange={this.onChange} 
+              onChange={this.onRadioChange}
             />
             <Field 
               name="online" 
-              value="offline" 
+              value={'false'} 
               type="radio" 
               label="Offline" 
               component={this.renderRadioInput}
-              onChange={this.onChange} 
+              onChange={this.onRadioChange} 
             />
           </div>
-
           {this.renderVenue()}
           <div className={styles.date_time}>
-            <Field name="start_date" type="date" label="Start Date" component={this.renderTime2}/>
+            <Field 
+              name="start_date" 
+              type="date" 
+              label="Start Date" 
+              component={this.renderDatePicker}
+              onChange={this.handleChange}
+              />
             <Field name="start_time" type="time" label="Start Time" component={this.renderTime}/>
             <Field name="end_time" type="time" label="End Time" component={this.renderTime}/> 
           </div>
