@@ -11,21 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 class EventForm extends React.Component {
   state = { online: 'true', startDate: new Date() }
 
-  onSubmit = formValues => {
-    this.props.onSubmit(formValues);
-  }
-
-  renderInput = ({ input, label, meta, type }) => {
-    // console.log(input)
-    // const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
-    return (
-      <div className={styles.row}>
-        <label>{label}</label>
-        <input {...input} type={type} autoComplete="off" />
-        {/* {this.renderError(meta)} */}
-      </div>
-    );
-  };
+  onSubmit = formValues => this.props.onSubmit(formValues);
 
   onRadioChange = e => {
     if(e.currentTarget.checked) {
@@ -33,11 +19,22 @@ class EventForm extends React.Component {
     }
   }
 
-  handleChange = date => {
-    this.setState({
-      startDate: date
-    });
-  }
+  handleChange = date => this.setState({ startDate: date });
+
+  renderError = () => this.props.error ? <p>{this.props.error}</p> : '';
+
+  renderInput = ({ input, label, type, meta: {active, touched, error, warning} }) => {
+    return (
+      <div className={styles.row}>
+        <label>{label}</label>
+        <input {...input} type={type} autoComplete="off" />
+        {touched && (
+          (error && <span className={styles.error}>{error}</span>) 
+          || (warning && <span>{warning}</span>)
+        )}
+      </div>
+    );
+  };
 
   renderRadioInput = ({ input, label, meta, type}) => {
     // const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
@@ -48,6 +45,7 @@ class EventForm extends React.Component {
           type="radio" 
           value={input.value}
           checked={this.state.online === input.value ? true : false}
+          // defaultChecked={this.state.online === input.value ? true : false}
         />
         <label>{label}</label>
       </div>
@@ -63,17 +61,20 @@ class EventForm extends React.Component {
     );
   }
 
-  renderTime = ({input, label, meta, type}) => {
+  renderTime = ({input, label, type, meta: {active, touched, error, warning }}) => {
     return (
       <div className={styles.col}>
         <label>{label}</label>
         <input {...input} type={type} autoComplete="off" />
-        {/* {this.renderError(meta)} */}
+        {touched && (
+          (error && <span className={styles.error}>{error}</span>) 
+          || (warning && <span>{warning}</span>)
+        )}
       </div>
     );
   }
 
-  renderDatePicker = ({input, label, meta, type, value}) => {
+  renderDatePicker = ({input, label, type, meta: {active, touched, error, warning } }) => {
     return (
       <div className={styles.col}>
         <label>{label}</label>
@@ -86,7 +87,10 @@ class EventForm extends React.Component {
           minDate={new Date()}
           type={type}
         />
-        {/* {this.renderError(meta)} */}
+          {touched && (
+          (error && <span className={styles.error}>{error}</span>) 
+          || (warning && <span>{warning}</span>)
+        )}
       </div>
     );
   }
@@ -100,21 +104,38 @@ class EventForm extends React.Component {
           type="text" 
           label="Venue" 
           component={this.renderInput}
+          validate={[this.required]}
         />
       )
     }
   }
 
-  renderError = () => this.props.error ? <p>{this.props.error}</p> : '';
+  required = value => value ? undefined : 'Required';
 
   render() {
     return (
       <div className={styles.formContainer}>
         {/* {this.renderError()} */}
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-          <Field name="title" type="text" label="Event Name" component={this.renderInput} />
-          <Field name="description" type="text" label="Description" component={this.renderTextarea}/>
-          <Field name="ruleset" type="text" label="Ruleset" component={this.renderInput}/>
+          <Field 
+            name="title" 
+            type="text" 
+            label="Event Name" 
+            component={this.renderInput}
+            validate={[this.required]}
+          />
+          <Field 
+            name="description" 
+            type="text" 
+            label="Description" 
+            component={this.renderTextarea}
+          />
+          <Field 
+            name="ruleset" 
+            type="text" 
+            label="Ruleset" 
+            component={this.renderInput}
+          />
           <div className={styles.radioWrapper}>
             <p>Online / Offline</p>
             <Field 
@@ -142,9 +163,21 @@ class EventForm extends React.Component {
               label="Start Date" 
               component={this.renderDatePicker}
               onChange={this.handleChange}
+              validate={[this.required]}
               />
-            <Field name="start_time" type="time" label="Start Time" component={this.renderTime}/>
-            <Field name="end_time" type="time" label="End Time" component={this.renderTime}/> 
+            <Field 
+              name="start_time" 
+              type="time" 
+              label="Start Time" 
+              component={this.renderTime}
+              validate={[this.required]}
+            />
+            <Field 
+              name="end_time" 
+              type="time" 
+              label="End Time" 
+              component={this.renderTime}
+            /> 
           </div>
           <button className={styles.submit} type="submit">Submit</button>
         </form>
@@ -153,5 +186,5 @@ class EventForm extends React.Component {
   }
 }
 
-export default reduxForm({ form: 'eventForm' })(EventForm);
+export default reduxForm({ form: 'eventForm'})(EventForm);
 

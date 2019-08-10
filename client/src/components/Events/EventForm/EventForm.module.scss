@@ -97,3 +97,10 @@
       background-color: darken(rgb(177, 177, 255), 5%);
     }
   }
+
+.error {
+    margin-top: .25rem;
+    font-family: $primary-font;
+    color: $primary-red;
+    font-size: 10pt;
+  }

@@ -11,10 +11,10 @@ CREATE TABLE events (
   description  VARCHAR(8000),
   ruleset      VARCHAR(8000),
   venue        VARCHAR(254),
-  online       BOOLEAN,
-  start_date   DATE    NOT NULL,
+  online       BOOLEAN      NOT NULL,
+  start_date   DATE         NOT NULL,
   start_time   TIME         NOT NULL,
-  end_time     TIME         NOT NULL,
+  end_time     TIME,
   created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
   updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()
 );
