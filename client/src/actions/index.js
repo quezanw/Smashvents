@@ -1,5 +1,6 @@
 import auth from '../apis/auth';
 import events from '../apis/events';
+import attendees from '../apis/attendees';
 import history from '../history';
 import { reset } from 'redux-form';
 
@@ -74,7 +75,6 @@ export const login = formValues => async (dispatch, getState) => {
 
 export const createEvent = formValues => async (dispatch, getState) => {
   const { user_id } = getState().auth;
-  console.log(formValues)
   const response = await events.post('/new', {...formValues, user_id});
   if(!response.data.error) {
     console.log(response.data)
@@ -92,3 +92,9 @@ export const getAllEvents = () => async (dispatch, getState) => {
   dispatch({type: FETCH_ALL_EVENTS, payload: response.data.rows});
   history.push('/');
 }
+
+// export const joinEvent = event_id => async (dispatch, getState) => {
+//   const { user_id } = getState().auth;
+//   const response = await attendees.post('/join', {event_id, user_id});
+
+// }
