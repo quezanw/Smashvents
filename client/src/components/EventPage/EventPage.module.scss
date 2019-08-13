@@ -12,7 +12,7 @@
     @extend %flex-column-center;
 }
 
-.description_container {
+.descriptionContainer {
     width: 70%;
     outline: 1px solid black;
     margin: 2rem 0;
@@ -51,10 +51,11 @@
     // background-position: center;
 }
 
-.header_wrapper {
-    outline: 1px solid black;
+.headerWrapper {
     padding: 2rem 4rem;
     display: flex;
+    background-color: $primary-white;
+    box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.2);
 }
 
 .header {
@@ -70,7 +71,7 @@
     }
 }
 
-.btn_container {
+.btnContainer {
     margin-left: auto;
     align-self: flex-end;
 }

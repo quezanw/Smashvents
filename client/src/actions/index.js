@@ -38,13 +38,6 @@ export const closeModal = () => {
   }
 }
 
-// export const selectEvent = event => {
-//   return {
-//     type: VIEW_EVENT,
-//     payload: event
-//   }
-// }
-
 export const selectEvent = event => async (dispatch, getState) => {
   dispatch({ type: VIEW_EVENT, payload: event });
   dispatch(getAttendees(event.event_id));

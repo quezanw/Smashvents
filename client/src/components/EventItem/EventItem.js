@@ -16,7 +16,7 @@ class EventItem extends React.Component {
     let event = this.props.event;
     return (
       <div onClick={() => this.selectEvent(event)} className={styles.item}>
-        <div className={styles.img_container}></div>
+        <div className={styles.imgContainer}></div>
         <div className={styles.details}>
           <p className={styles.title}>{event.title}</p>
           <p>{moment(event.start_date).format('MMM Do YYYY')}</p>

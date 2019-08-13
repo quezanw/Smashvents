@@ -14,13 +14,7 @@ import
 } 
 from '../../actions/index';
 
-
 class EventPage extends React.Component {
-
-  // componentDidMount() {
-  //   this.props.getAttendees(this.props.event.event_id);
-  //   this.props.fetchHost(this.props.event.user_id);
-  // }
 
   openModal = e => {
     e.preventDefault();
@@ -47,16 +41,22 @@ class EventPage extends React.Component {
     if(auth.isSignedIn) {
       if(this.isAttending(auth.user_id)) {
         return (
-          <button onClick={this.leaveEvent}>Leave Event</button>
-        )
+          <button onClick={this.leaveEvent}>
+            Leave Event
+          </button>
+        );
       }
       return (
-        <button onClick={this.joinEvent}>Join Event</button>
+        <button onClick={this.joinEvent}>
+          Join Event
+        </button>
       );
     }
     return (
       <div className={styles.login_btn}>
-        <button onClick={e => this.openModal(e)}>Login to join the event!</button>
+        <button onClick={e => this.openModal(e)}>
+          Login to join the event!
+        </button>
       </div>
     );
   }
@@ -90,14 +90,13 @@ class EventPage extends React.Component {
     }
   }
 
-  
   render() {
     let event = this.props.event
     const renderAttendees = event.attendees.map(user => <AttendeeCard key={user.username} user={user} />)
     return (
       <div className={styles.wrapper}>
         <div className={styles.banner}></div>
-        <div className={styles.header_wrapper}>
+        <div className={styles.headerWrapper}>
           <div className={styles.header}>
             <h1>{event.title}</h1>
             <div className={styles.details}>
@@ -106,12 +105,12 @@ class EventPage extends React.Component {
               <p>{event.host ? event.host.username : '...loading'}</p>
             </div>
           </div>
-          <div className={styles.btn_container}>
+          <div className={styles.btnContainer}>
             {this.renderJoinButton()}
           </div>
         </div>
         <div className={styles.body}>
-          <div className={styles.description_container}>
+          <div className={styles.descriptionContainer}>
             <p>
             {event.description}
             </p>

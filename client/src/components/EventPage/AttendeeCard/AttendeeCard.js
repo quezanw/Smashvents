@@ -8,8 +8,8 @@ class AttendeeCard extends React.Component {
     let user = this.props.user;
     return ( 
       <div className={styles.wrapper}>
-        <div className={styles.player_icon}></div>
-        <div className={styles.player_details}>
+        <div className={styles.playerIcon}></div>
+        <div className={styles.playerDetails}>
           <p className={styles.username}>
           {user.username}
           </p>
@@ -23,8 +23,8 @@ class AttendeeCard extends React.Component {
 
 }
 
-const mapStateToProps = state => {
+// const mapStateToProps = state => {
 
-}
+// }
 
 export default connect(null)(AttendeeCard)

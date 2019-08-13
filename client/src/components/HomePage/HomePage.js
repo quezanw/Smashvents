@@ -17,7 +17,7 @@ class HomePage extends React.Component {
           <h1>SMASHVENTS</h1>
           <Link className={styles.btn} to="/event/create">Organize an event</Link>
         </div>
-        <section className={styles.events_section}>
+        <section className={styles.eventsSection}>
           <EventCarousel events={this.props.events} title='Upcoming Tournaments' carouselID='carousel-list1'/>
           <EventCarousel events={this.props.events} title='Past Tournaments' carouselID='carousel-list2'/>
         </section>
