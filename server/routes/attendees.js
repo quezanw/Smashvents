@@ -23,9 +23,8 @@ router.get('/all', (req, res, next) => {
 
 router.get('/event/:id', (req, res, next) => {
   let event_id = req.params.id;
-  console.log(req.params);
-  console.log('cheese')
-  let query = `SELECT users.user_id, users.username 
+  console.log(event_id)
+  let query = `SELECT users.user_id, users.username, users.first_name, users.last_name 
                FROM attendees
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id
@@ -47,14 +46,14 @@ router.post('/join', (req,res,next)=> {
     if(error) {
       throw error
     }
-    res.status(200).json(results);
+    res.status(200).json({ success: true, ...results});
   })
 });
 
-router.post('/leave', (req,res,next)=> {
-  let {user_id, event_id} = req.body;
+router.delete('/leave/:user_id/:event_id', (req,res,next)=> {
+  let {user_id, event_id} = req.params;
   let leaveQuery = `DELETE FROM attendees 
-                   WHERE user_id = ${user_id} AND  event_id = ${event_id}`;
+                   WHERE user_id = ${user_id} AND event_id = ${event_id}`;
   pool.query(leaveQuery, (error, results) => {
     if(error) {
       throw error

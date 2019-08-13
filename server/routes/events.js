@@ -17,7 +17,20 @@ pool.on('connect', () => {
 
 // GET single event
 router.get('/', (req, res, next) => {
+  // let query = `SELECT * FROM events 
+  //              JOIN users ON users.user_id=events.user_id
+  //              WHERE events.event_id=${req.params.event_id} AND users.user_id=events.user_id`;
   pool.query(`SELECT * FROM events WHERE event_id=${req.body.event_id}`, (error, results) => {
+    if(error) {
+      throw error
+    }
+    res.status(200).json({rows: results.rows});
+  })
+});
+
+router.get('/host/:user_id', (req,res,next) => {
+  let query = `SELECT username FROM users WHERE user_id=${req.params.user_id}`;
+  pool.query(query, (error, results) => {
     if(error) {
       throw error
     }
@@ -31,7 +44,6 @@ router.get('/all', function(req, res, next) {
     if (error) {
       throw error
     }
-    console.log(results.rows);
     res.status(200).json({rows: results.rows});
   })
 });

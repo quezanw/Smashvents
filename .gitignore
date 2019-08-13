@@ -4,6 +4,8 @@
 .env.production
 todo.txt
 
+# ./client/.env
+
 # dependencies
 /node_modules
 /.pnp

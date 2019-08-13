@@ -45,3 +45,9 @@
   border-radius: .25rem;
   text-align: center;
 }
+
+%container-card {
+  background-color: $primary-white;
+  box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.2);
+  border-radius: $primary-border-radius;
+}

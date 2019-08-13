@@ -14,6 +14,8 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 // EVENTS
 export const VIEW_EVENT = 'VIEW_EVENT';
+export const VIEW_ATTENDEES = 'VIEW_ATTNDEES';
+export const FETCH_HOST = 'FETCH_HOST';
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
 export const EDIT_EVENT = 'EDIT_EVENT';

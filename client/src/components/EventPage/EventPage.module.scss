@@ -1,0 +1,84 @@
+@import '../../styles/variables.scss';
+@import '../../styles/components.scss';
+@import '../../styles/layout.scss';
+
+
+.wrapper {
+    padding-bottom: 2rem;
+}
+
+.body {
+    width: 100%;
+    @extend %flex-column-center;
+}
+
+.description_container {
+    width: 70%;
+    outline: 1px solid black;
+    margin: 2rem 0;
+}
+
+.outerContainer {
+    margin: 2rem 0;
+    width: 70%;
+    h1 {
+        font-family: $primary-font;
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+}
+
+.attendees {
+    @extend %container-card;
+    padding: 2rem;
+    height: auto;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.container {
+    @extend %container-card;
+    height: 500px;
+    width: 100%;
+}
+
+.banner {
+    height: 350px;
+    background: url('../../assets/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background-position: center;
+}
+
+.header_wrapper {
+    outline: 1px solid black;
+    padding: 2rem 4rem;
+    display: flex;
+}
+
+.header {
+    display: flex;
+    flex-flow: column;
+    h1, p {
+        font-family: $primary-font;
+    }
+    h1 {
+        font-weight: bold;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.btn_container {
+    margin-left: auto;
+    align-self: flex-end;
+}
+
+.details {
+    display: flex;
+    p {
+        margin-right: 1rem;
+        font-size: 1rem;
+    }
+}

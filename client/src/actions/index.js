@@ -16,6 +16,8 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   VIEW_EVENT,
+  VIEW_ATTENDEES,
+  FETCH_HOST,
   CREATE_EVENT,
   FETCH_ALL_EVENTS,
   EVENT_ERROR
@@ -41,6 +43,16 @@ export const selectEvent = event => {
     type: VIEW_EVENT,
     payload: event
   }
+}
+
+export const getAttendees = event_id => async (dispatch, getState) => {
+  let response = await attendees.get(`/event/${event_id}`);
+  dispatch({type: VIEW_ATTENDEES, payload: response.data});
+}
+
+export const fetchHost = user_id => async dispatch => {
+  let response = await events.get(`/host/${user_id}`);
+  dispatch({ type: FETCH_HOST, payload: response.data.rows[0] });
 }
 
 export const logout = () => dispatch => {
@@ -93,8 +105,16 @@ export const getAllEvents = () => async (dispatch, getState) => {
   history.push('/');
 }
 
-// export const joinEvent = event_id => async (dispatch, getState) => {
-//   const { user_id } = getState().auth;
-//   const response = await attendees.post('/join', {event_id, user_id});
+export const joinEvent = event_id => async (dispatch, getState) => {
+  const { user_id } = getState().auth;
+  const response = await attendees.post('/join', {event_id, user_id});
+  console.log(response)
+  dispatch(getAttendees(event_id));
+}
 
-// }
+export const leaveEvent = (event_id) => async (dispatch, getState) => {
+  const { user_id } = getState().auth;
+  const response = await attendees.delete(`/leave/${user_id}/${event_id}`); 
+  console.log(response)
+  dispatch(getAttendees(event_id));
+}
