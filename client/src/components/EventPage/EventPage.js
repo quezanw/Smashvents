@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AttendeeCard from './AttendeeCard/AttendeeCard';
 import Auth from '../Auth/Auth';
 import GoogleMapReact from 'google-map-react';
+import moment from 'moment';
 import styles from './EventPage.module.scss';
 import 
 { getAttendees, 
@@ -16,21 +17,14 @@ from '../../actions/index';
 
 class EventPage extends React.Component {
 
-  componentDidMount() {
-    // console.log(this.props.event)
-    this.props.getAttendees(this.props.event.event_id);
-    this.props.fetchHost(this.props.event.user_id);
-  }
+  // componentDidMount() {
+  //   this.props.getAttendees(this.props.event.event_id);
+  //   this.props.fetchHost(this.props.event.user_id);
+  // }
 
   openModal = e => {
     e.preventDefault();
     this.props.openModal({ content: <Auth/> })
-  }
-
-  convertDate = date => {
-    let ts = new Date();
-    // ${ts.toLocaleTimeString(date)} insert for time start input field
-    return `${ts.toDateString(date)}`
   }
 
   isAttending = (user_id) => {
@@ -107,7 +101,7 @@ class EventPage extends React.Component {
           <div className={styles.header}>
             <h1>{event.title}</h1>
             <div className={styles.details}>
-              <p>{this.convertDate(event.start_date)}</p>
+              <p>{moment(event.start_date).format('MMM Do YYYY')}</p>
               <p>{event.online ? 'Online' : event.venue}</p>
               <p>{event.host ? event.host.username : '...loading'}</p>
             </div>

@@ -29,7 +29,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/host/:user_id', (req,res,next) => {
-  let query = `SELECT username FROM users WHERE user_id=${req.params.user_id}`;
+  let { user_id } = req.params;
+  let query = `SELECT username FROM users WHERE user_id=${user_id}`;
   pool.query(query, (error, results) => {
     if(error) {
       throw error

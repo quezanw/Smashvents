@@ -12,12 +12,6 @@ class EventItem extends React.Component {
     history.push(`/event/${event.title}/details`);
   }
 
-  convertDate = date => {
-    let ts = new Date();
-    // ${ts.toLocaleTimeString(date)} insert for time start input field
-    return `${ts.toDateString(date)}`
-  }
-
   render() {
     let event = this.props.event;
     return (
@@ -25,7 +19,7 @@ class EventItem extends React.Component {
         <div className={styles.img_container}></div>
         <div className={styles.details}>
           <p className={styles.title}>{event.title}</p>
-          <p>{this.convertDate(event.start_date)}</p>
+          <p>{moment(event.start_date).format('MMM Do YYYY')}</p>
           {/* <p>{m.format(event.start_time,'hh:mm a')}</p> */}
           <p>{event.online ? 'Online' : 'Offline'}</p>
         </div>

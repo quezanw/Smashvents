@@ -38,11 +38,17 @@ export const closeModal = () => {
   }
 }
 
-export const selectEvent = event => {
-  return {
-    type: VIEW_EVENT,
-    payload: event
-  }
+// export const selectEvent = event => {
+//   return {
+//     type: VIEW_EVENT,
+//     payload: event
+//   }
+// }
+
+export const selectEvent = event => async (dispatch, getState) => {
+  dispatch({ type: VIEW_EVENT, payload: event });
+  dispatch(getAttendees(event.event_id));
+  dispatch(fetchHost(event.user_id))
 }
 
 export const getAttendees = event_id => async (dispatch, getState) => {
@@ -50,7 +56,7 @@ export const getAttendees = event_id => async (dispatch, getState) => {
   dispatch({type: VIEW_ATTENDEES, payload: response.data});
 }
 
-export const fetchHost = user_id => async dispatch => {
+export const fetchHost = (user_id, event_id)=> async dispatch => {
   let response = await events.get(`/host/${user_id}`);
   dispatch({ type: FETCH_HOST, payload: response.data.rows[0] });
 }
@@ -92,7 +98,7 @@ export const createEvent = formValues => async (dispatch, getState) => {
     console.log(response.data)
     dispatch({ type: CREATE_EVENT, payload: response.data });
     dispatch(reset('eventForm'));
-    dispatch({ type: VIEW_EVENT, payload: response.data.event })
+    dispatch(selectEvent(response.data.event));
     history.push(`/event/${response.data.event.title}/details`);
   } else {
     dispatch({ type: EVENT_ERROR, payload: response.data.error});

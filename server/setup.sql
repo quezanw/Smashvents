@@ -240,6 +240,21 @@ VALUES (
   '18:00:00'
 );
 
+
+INSERT INTO events 
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+VALUES ( 
+  4,
+  'Smash Con 2019',
+  'come and join the first smash event of the year and play against top ranked players!',
+  'no rules',
+  '1530 SMash ville street',
+  TRUE,
+  '2019-08-12',
+  '12:00:00',
+  '18:00:00'
+);
+
 INSERT INTO attendees (user_id, event_id) VALUES (1,1);
 INSERT INTO attendees (user_id, event_id) VALUES (2,1);
 INSERT INTO attendees (user_id, event_id) VALUES (3,1);
@@ -312,22 +327,5 @@ INSERT INTO attendees (user_id, event_id) VALUES (6,8);
 INSERT INTO attendees (user_id, event_id) VALUES (7,8);
 INSERT INTO attendees (user_id, event_id) VALUES (8,8);
 
-INSERT INTO attendees (user_id, event_id) VALUES (1,9);
-INSERT INTO attendees (user_id, event_id) VALUES (2,9);
-INSERT INTO attendees (user_id, event_id) VALUES (3,9);
-INSERT INTO attendees (user_id, event_id) VALUES (4,9);
-INSERT INTO attendees (user_id, event_id) VALUES (5,9);
-INSERT INTO attendees (user_id, event_id) VALUES (6,9);
-INSERT INTO attendees (user_id, event_id) VALUES (7,9);
-INSERT INTO attendees (user_id, event_id) VALUES (8,9);
-
-INSERT INTO attendees (user_id, event_id) VALUES (1,10);
-INSERT INTO attendees (user_id, event_id) VALUES (2,10);
-INSERT INTO attendees (user_id, event_id) VALUES (3,10);
-INSERT INTO attendees (user_id, event_id) VALUES (4,10);
-INSERT INTO attendees (user_id, event_id) VALUES (5,10);
-INSERT INTO attendees (user_id, event_id) VALUES (6,10);
-INSERT INTO attendees (user_id, event_id) VALUES (7,10);
-INSERT INTO attendees (user_id, event_id) VALUES (8,10);
 
 
