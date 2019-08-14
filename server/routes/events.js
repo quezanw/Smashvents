@@ -133,9 +133,9 @@ router.put('/edit', (req, res, next) => {
 });
 
 // Delete event
-router.delete('/delete', (req, res, next) => {
-  let {event_id} = req.body;
-  let deleteQuery = `DELETE FROM events WHERE event_id=${event_id}`;;
+router.delete('/delete/:event_id', (req, res, next) => {
+  let {event_id} = req.params;
+  let deleteQuery = `DELETE FROM events WHERE event_id=${event_id}`;
   pool.query(deleteQuery, (error, results) => {
     if(error) {
       throw error;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AttendeeCard from './AttendeeCard/AttendeeCard';
-import Auth from '../Auth/Auth';
+import CancelEvent from './CancelEvent/CancelEvent';
 import GoogleMapReact from 'google-map-react';
 import moment from 'moment';
 import history from '../../history';
@@ -11,7 +11,7 @@ import
   fetchHost, 
   openModal, 
   joinEvent, 
-  leaveEvent
+  leaveEvent,
 } 
 from '../../actions/index';
 
@@ -19,7 +19,7 @@ class EventPage extends React.Component {
 
   openModal = e => {
     e.preventDefault();
-    this.props.openModal({ content: <Auth/> })
+    this.props.openModal({ content: <CancelEvent event={this.props.event} /> })
   }
 
   isAttending = (user_id) => {
@@ -40,10 +40,6 @@ class EventPage extends React.Component {
   editEvent = () => {
     // this.props.selectEvent(this.props.event);
     history.push(`/event/${this.props.event.title}/edit`);
-  }
-
-  cancelEvent = () => {
-    
   }
 
   renderJoinButton = () => {
@@ -76,7 +72,7 @@ class EventPage extends React.Component {
       return (
         <div>
           <button onClick={this.editEvent}>Edit Event</button>
-          <button onClick={this.cancelEvent}>Cancel Event</button>
+          <button onClick={this.openModal}>Cancel Event</button>
         </div>
         
       )
@@ -163,5 +159,5 @@ export default connect(mapStateToProps,
     fetchHost, 
     openModal,
     joinEvent,
-    leaveEvent 
+    leaveEvent
   })(EventPage)

@@ -62,6 +62,17 @@ router.delete('/leave/:user_id/:event_id', (req,res,next)=> {
   })
 });
 
+router.delete('/event/delete/:event_id', (req, res, next) => {
+  let { event_id } = req.params;
+  let query = `DELETE FROM attendees WHERE event_id=${event_id}`;
+  pool.query(query, (error, results) => {
+    if(error) {
+      throw error
+    }
+    res.status(200).json(results);
+  })
+});
+
 
 
 

@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 class EventForm extends React.Component {
-  state = { online: this.props.initialValues.online === true ? 'true' : 'false', startDate: new Date() }
+  state = { online: this.props.initialValues.online == 'true' ? 'true' : 'false', startDate: new Date() }
 
   onSubmit = formValues => {
     let date = formValues.start_date;
