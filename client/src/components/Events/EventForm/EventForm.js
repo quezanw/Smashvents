@@ -9,9 +9,13 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 class EventForm extends React.Component {
-  state = { online: 'true', startDate: new Date() }
+  state = { online: this.props.initialValues.online === true ? 'true' : 'false', startDate: new Date() }
 
-  onSubmit = formValues => this.props.onSubmit(formValues);
+  onSubmit = formValues => {
+    let date = formValues.start_date;
+    formValues.start_date = new Date(date);
+    this.props.onSubmit(formValues);
+  }
 
   onRadioChange = e => {
     if(e.currentTarget.checked) {

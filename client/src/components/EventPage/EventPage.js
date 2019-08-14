@@ -4,13 +4,14 @@ import AttendeeCard from './AttendeeCard/AttendeeCard';
 import Auth from '../Auth/Auth';
 import GoogleMapReact from 'google-map-react';
 import moment from 'moment';
+import history from '../../history';
 import styles from './EventPage.module.scss';
 import 
 { getAttendees, 
   fetchHost, 
   openModal, 
   joinEvent, 
-  leaveEvent 
+  leaveEvent
 } 
 from '../../actions/index';
 
@@ -36,6 +37,15 @@ class EventPage extends React.Component {
     this.props.leaveEvent(this.props.event.event_id);
   }
 
+  editEvent = () => {
+    // this.props.selectEvent(this.props.event);
+    history.push(`/event/${this.props.event.title}/edit`);
+  }
+
+  cancelEvent = () => {
+    
+  }
+
   renderJoinButton = () => {
     let auth = this.props.auth;
     if(auth.isSignedIn) {
@@ -59,6 +69,18 @@ class EventPage extends React.Component {
         </button>
       </div>
     );
+  }
+
+  renderAdminButton = () => {
+    if(this.props.event.user_id === this.props.auth.user_id) {
+      return (
+        <div>
+          <button onClick={this.editEvent}>Edit Event</button>
+          <button onClick={this.cancelEvent}>Cancel Event</button>
+        </div>
+        
+      )
+    }
   }
 
   renderLocation = () => {
@@ -107,6 +129,7 @@ class EventPage extends React.Component {
           </div>
           <div className={styles.btnContainer}>
             {this.renderJoinButton()}
+            {this.renderAdminButton()}
           </div>
         </div>
         <div className={styles.body}>

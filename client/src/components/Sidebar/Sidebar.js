@@ -1,12 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { openModal, logout } from '../../actions/index';
+import { openModal, logout, fetchAttendingEvents, selectEvent } from '../../actions/index';
 import styles from './Sidebar.module.scss';
 import history from '../../history';
 import Auth from '../Auth/Auth';
 
 class Sidebar extends React.Component {
   
+  componentDidMount() {
+    if(this.props.auth.isSignedIn) {
+      this.props.fetchAttendingEvents(this.props.auth.user_id);
+    }
+  }
+
+  selectEvent = event => {
+    this.props.selectEvent(event);
+    history.push(`/event/${event.title}/details`);
+  }
+
   openModal = e => {
     e.preventDefault();
     this.props.openModal({ content: <Auth/> })
@@ -42,10 +53,20 @@ class Sidebar extends React.Component {
   }
 
   render() {
+    const eventsAttending = this.props.auth.attending.map(event => {
+      return (
+        <div key={event.event_id} onClick={() => this.selectEvent(event)} className={styles.block}>
+          <p>{event.title}</p>
+        </div>
+      )
+    })
     return (
       <div className={styles.sidebar}>
         <i className={`${styles.home} fas fa-home`} onClick={() => history.push('/')}></i>
         {this.renderIcon()}
+        <div className={styles.eventScroller}>
+          {eventsAttending}
+        </div>
         {this.renderLogin()}
       </div>
     );
@@ -58,4 +79,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { openModal, logout })(Sidebar);
+export default connect(mapStateToProps, { openModal, logout, fetchAttendingEvents, selectEvent })(Sidebar);

@@ -1,7 +1,8 @@
 import { 
   FETCH_ALL_EVENTS,
   EVENT_ERROR, 
-  CREATE_EVENT
+  CREATE_EVENT,
+  EDIT_EVENT
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -22,6 +23,11 @@ export default (state = INITIAL_STATE, action) => {
         eventError: action.payload
       }
     case CREATE_EVENT: 
+      return {
+        ...state,
+        eventError: null
+      }
+    case EDIT_EVENT: 
       return {
         ...state,
         eventError: null

@@ -1,0 +1,31 @@
+@import '../../../styles/layout.scss';
+@import '../../../styles/variables.scss';
+
+
+.wrapper {
+    @extend %flex-column-center;
+    width: 100%;
+    // outline: 1px solid black;
+    background-color: $secondary-white;
+  }
+  
+  .header {
+    width: 100%;
+    padding: 1rem 1rem 1rem 6rem;
+    font-size: 1.5rem;
+    font-family: $primary-font;
+    background-color: $primary-white;
+    box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.2);
+  }
+  
+  .error {
+    text-align: center;
+    // width: 100%;
+    color: $primary-red;
+    background-color: $primary-white;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: $primary-border-radius;
+    box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.2);
+  }
+  

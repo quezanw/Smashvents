@@ -6,7 +6,8 @@ import {
 	REGISTRATION_PENDING,
 	REGISTRATION_SUCCESS,
 	REGISTRATION_ERROR,
-	CLEAR_LOGIN_REG
+	CLEAR_LOGIN_REG,
+	FETCH_ATTENDING_EVENTS
 } from '../actions/types';
 
 
@@ -18,7 +19,8 @@ const INITIAL_STATE = {
 	loginError: null,
 	registrationPending: false,
 	registrationSuccess: false,
-	registrationError: null
+	registrationError: null,
+	attending: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -69,18 +71,24 @@ export default (state = INITIAL_STATE, action) => {
 				registrationError: null
 			}
 		case REGISTRATION_ERROR:
-      return {
-        ...state,
-        registrationPending: false,
-        registrationSuccess: false,
-        registrationError: action.payload
-      }
+			return {
+				...state,
+				registrationPending: false,
+				registrationSuccess: false,
+				registrationError: action.payload
+			}
 		case CLEAR_LOGIN_REG:
 			return {
 				...state,
+				isSigninPending: false,
 				loginError: null,
 				registrationError: null,
 				registrationSuccess: false
+			}
+		case FETCH_ATTENDING_EVENTS:
+			return {
+				...state,
+				attending: action.payload
 			}
 		default:
 			return state;

@@ -39,6 +39,19 @@ router.get('/host/:user_id', (req,res,next) => {
   })
 });
 
+router.get('/attending/:user_id', (req, res, next) => {
+  let { user_id } = req.params;
+  let query = `SELECT * FROM events
+               JOIN attendees ON events.event_id=attendees.event_id
+               WHERE attendees.user_id=${user_id}`;
+  pool.query(query, (error, results) => {
+    if(error) {
+      throw error
+    }
+    res.status(200).json({rows: results.rows});
+  })
+});
+
 /* GET all events */
 router.get('/all', function(req, res, next) {
   pool.query('SELECT * FROM events', (error, results) => {

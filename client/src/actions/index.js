@@ -17,8 +17,10 @@ import {
   CLOSE_MODAL,
   VIEW_EVENT,
   VIEW_ATTENDEES,
+  FETCH_ATTENDING_EVENTS,
   FETCH_HOST,
   CREATE_EVENT,
+  EDIT_EVENT,
   FETCH_ALL_EVENTS,
   EVENT_ERROR
 }
@@ -47,6 +49,11 @@ export const selectEvent = event => async (dispatch, getState) => {
 export const getAttendees = event_id => async (dispatch, getState) => {
   let response = await attendees.get(`/event/${event_id}`);
   dispatch({type: VIEW_ATTENDEES, payload: response.data});
+}
+
+export const fetchAttendingEvents = user_id => async (dispatch, getState) => {
+  let response = await events.get(`/attending/${user_id}`);
+  dispatch({ type: FETCH_ATTENDING_EVENTS, payload: response.data.rows })
 }
 
 export const fetchHost = (user_id, event_id)=> async dispatch => {
@@ -78,6 +85,7 @@ export const login = formValues => async (dispatch, getState) => {
   const response = await auth.post('/login', {...formValues});
   if(!response.data.error) {
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.user_id});
+    dispatch(reset('loginForm'));
     dispatch({ type: CLOSE_MODAL });
   } else {
     dispatch({type: LOGIN_ERROR, payload: response.data.error});
@@ -98,6 +106,19 @@ export const createEvent = formValues => async (dispatch, getState) => {
   }
 }
 
+export const editEvent = formValues => async (dispatch, getstate) => {
+  // const { user_id } = getState().auth;
+  const response = await events.put('/edit', {...formValues});
+  if(!response.data.error) {
+    dispatch({ type: EDIT_EVENT, payload: response.data });
+    dispatch(reset('eventForm'));
+    dispatch(selectEvent(formValues));
+    history.push(`/event/${formValues.title}/details`);
+  } else {
+    dispatch({ type: EVENT_ERROR, payload: response.data.error});
+  }
+}
+
 export const getAllEvents = () => async (dispatch, getState) => {
   const response = await events.get('/all');
   dispatch({type: FETCH_ALL_EVENTS, payload: response.data.rows});
@@ -109,6 +130,7 @@ export const joinEvent = event_id => async (dispatch, getState) => {
   const response = await attendees.post('/join', {event_id, user_id});
   console.log(response)
   dispatch(getAttendees(event_id));
+  dispatch(fetchAttendingEvents(user_id))
 }
 
 export const leaveEvent = (event_id) => async (dispatch, getState) => {
@@ -116,4 +138,5 @@ export const leaveEvent = (event_id) => async (dispatch, getState) => {
   const response = await attendees.delete(`/leave/${user_id}/${event_id}`); 
   console.log(response)
   dispatch(getAttendees(event_id));
+  dispatch(fetchAttendingEvents(user_id));
 }

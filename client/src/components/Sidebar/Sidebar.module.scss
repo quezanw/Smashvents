@@ -64,3 +64,43 @@
 .logout {
   // color: rgb(235, 103, 103);
 }
+
+.eventScroller {
+  margin-top: 5rem;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.block {
+  width: 50px;
+  border: 1px solid black;
+  border-radius: 3px;
+  height: 50px;
+  margin: .5rem auto;
+  background: url('../../assets/event_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  p {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity .25s ease-in;
+  }
+
+  &:hover {
+    cursor: pointer;
+    p {
+      visibility: visible;
+      opacity: 1;
+      z-index: 4;
+      position: fixed;
+      left: 60px;
+      display: block;
+      padding: .5rem;
+      background-color: black;
+      color:white;
+    }
+  }
+}
