@@ -3,6 +3,8 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import styles from './EventForm.module.scss';
 import DatePicker from "react-datepicker";
+import LocationSearch from '../Inputs/LocationSearch/LocationSearch';
+
 // import moment from 'moment';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,6 +12,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class EventForm extends React.Component {
   state = { online: this.props.initialValues.online == 'true' ? 'true' : 'false', startDate: new Date() }
+
+  // componentWillMount() {
+  //   let script = document.createElement('script');
+  //   script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
+  //   document.head.append(script);
+  // }
 
   onSubmit = formValues => {
     let date = formValues.start_date;
@@ -107,7 +115,7 @@ class EventForm extends React.Component {
           name="venue" 
           type="text" 
           label="Venue" 
-          component={this.renderInput}
+          component={LocationSearch}
           validate={[this.required]}
         />
       )

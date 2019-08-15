@@ -73,7 +73,4 @@ router.delete('/event/delete/:event_id', (req, res, next) => {
   })
 });
 
-
-
-
 module.exports = router;

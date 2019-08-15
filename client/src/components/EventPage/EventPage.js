@@ -14,6 +14,7 @@ import
   leaveEvent,
 } 
 from '../../actions/index';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 class EventPage extends React.Component {
 
@@ -79,13 +80,31 @@ class EventPage extends React.Component {
     }
   }
 
-  renderLocation = () => {
-    let center = {
-      lat: 47.60,
-      lng: -122.33
+  getCoords = () => async () => {
+    let geocode = await geocodeByAddress(this.props.event.venue)
+    let coords = await getLatLng(geocode[0]);
+    return coords
+  }
+
+  renderMarker = (event) => {
+    if(event.coords) {
+      let { lat, lng } = event.coords;
+      return (
+        <div
+          className={styles.marker}
+          lat={lat}
+          lng={lng}
+          text="My Marker"></div>
+      );
     }
-    let zoom = 11
-    if(!this.props.event.online) {
+  }
+
+  renderLocation = () => {
+    let event = this.props.event;
+    if(!event.online) {
+      let zoom = 11;
+
+      let center = { lat: 47.66, lng: -122.33 }
       return (
         <div className={styles.outerContainer}>
           <h1>Location</h1>
@@ -95,17 +114,17 @@ class EventPage extends React.Component {
               defaultCenter={center}
               defaultZoom={zoom}
             >
-              {/* <div
-              className={styles.marker}
-                lat={59.955413}
-                lng={30.337844}
-                text="My Marker"
-              ></div> */}
+              {this.renderMarker(event)}
             </GoogleMapReact>
           </div>
         </div>
       )
     }
+  }
+
+  renderDescription = desc => {
+    // console.log(desc, desc === 'undefined')
+    return desc === 'undefined' ? "description hasn't been added yet" : desc;
   }
 
   render() {
@@ -131,7 +150,7 @@ class EventPage extends React.Component {
         <div className={styles.body}>
           <div className={styles.descriptionContainer}>
             <p>
-            {event.description}
+              {this.renderDescription(event.description)}
             </p>
           </div>
           <div className={styles.outerContainer}>

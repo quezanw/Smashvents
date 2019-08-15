@@ -3,6 +3,10 @@ import events from '../apis/events';
 import attendees from '../apis/attendees';
 import history from '../history';
 import { reset } from 'redux-form';
+import {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 
 import { 
   LOGOUT,
@@ -16,6 +20,7 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   VIEW_EVENT,
+  CALC_EVENT_COORDINATES,
   VIEW_ATTENDEES,
   FETCH_ATTENDING_EVENTS,
   FETCH_HOST,
@@ -40,7 +45,18 @@ export const closeModal = () => {
   }
 }
 
+export const getCoordinates = address => async (dispatch, getState) => {
+  let geocode = await geocodeByAddress(address);
+  // console.log(geocode)
+  let coords = await getLatLng(geocode[0]);
+  dispatch({ type: CALC_EVENT_COORDINATES, payload: coords })
+}
+
 export const selectEvent = event => async (dispatch, getState) => {
+  // console.log(event.online)
+  // if(!event.online) {
+    dispatch(getCoordinates(event.venue));
+  // }
   dispatch({ type: VIEW_EVENT, payload: event });
   dispatch(getAttendees(event.event_id));
   dispatch(fetchHost(event.user_id))
