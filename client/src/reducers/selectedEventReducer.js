@@ -8,6 +8,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case VIEW_EVENT:
+            console.log(action.payload)
             return {...INITIAL_STATE, ...action.payload};
         case VIEW_ATTENDEES:
             return {...state, attendees: action.payload};

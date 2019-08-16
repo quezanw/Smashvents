@@ -52,7 +52,7 @@ export const getCoordinates = address => async (dispatch, getState) => {
 }
 
 export const selectEvent = event => async (dispatch, getState) => {
-  // console.log(event.online)
+  console.log(event);
   if(!event.online) {
     dispatch(getCoordinates(event.venue));
   }
@@ -126,14 +126,15 @@ export const clearVenue = () => async (dispatch) => {
   dispatch(change('eventForm', 'venue', undefined))
 }
 
-export const editEvent = formValues => async (dispatch, getstate) => {
-  // const { user_id } = getState().auth;
+export const editEvent = formValues => async (dispatch, getState) => {
+  const { user_id } = getState().auth;
   formValues.online = formValues.online === 'true';
   const response = await events.put('/edit', {...formValues});
   if(!response.data.error) {
     dispatch({ type: EDIT_EVENT, payload: response.data });
     dispatch(reset('eventForm'));
     dispatch(selectEvent(formValues));
+    dispatch(fetchAttendingEvents(user_id))
     history.push(`/event/${formValues.title}/details`);
   } else {
     dispatch({ type: EVENT_ERROR, payload: response.data.error});
