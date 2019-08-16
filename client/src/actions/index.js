@@ -52,13 +52,12 @@ export const getCoordinates = address => async (dispatch, getState) => {
 }
 
 export const selectEvent = event => async (dispatch, getState) => {
-  console.log(event);
+  dispatch({ type: VIEW_EVENT, payload: event });
+  dispatch(getAttendees(event.event_id));
+  dispatch(fetchHost(event.user_id));
   if(!event.online) {
     dispatch(getCoordinates(event.venue));
   }
-  dispatch({ type: VIEW_EVENT, payload: event });
-  dispatch(getAttendees(event.event_id));
-  dispatch(fetchHost(event.user_id))
 }
 
 export const getAttendees = event_id => async (dispatch, getState) => {

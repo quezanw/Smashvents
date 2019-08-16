@@ -190,7 +190,7 @@ class EventForm extends React.Component {
               type="time" 
               label="End Time" 
               component={this.renderTime}
-            /> 
+            />
           </div>
           <button className={styles.submit} type="submit">Submit</button>
         </form>

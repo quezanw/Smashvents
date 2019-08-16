@@ -20,9 +20,12 @@
 
 .imgContainer {
   height:55%;
-  background-image: url('../../assets/banner.jpg');
-  background-repeat: none;
-  background-size: contain;
+  img {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
   // border-radius: 3px 3px 0 0;
 }
 

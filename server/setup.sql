@@ -15,6 +15,8 @@ CREATE TABLE events (
   start_date   DATE         NOT NULL,
   start_time   TIME         NOT NULL,
   end_time     TIME,
+  banner_path  VARCHAR(254) NOT NULL,
+  icon_path    VARCHAR(254) NOT NULL,
   created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
   updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()
 );
@@ -40,8 +42,8 @@ INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
   'Salem',
-  'test',
-  'account',
+  'Akeil',
+  'Young',
   'test@account1.com',
   'password123'
 );
@@ -50,8 +52,8 @@ INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
   'Mkleo',
-  'test',
-  'account',
+  'Leonardo',
+  'Perez',
   'test@account2.com',
   'password123'
 );
@@ -70,8 +72,8 @@ INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
   'Bassmage',
-  'test',
-  'account',
+  'Troy',
+  'Waters',
   'test@account4.com',
   'password123'
 );
@@ -79,9 +81,9 @@ VALUES (
 INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
-  'Gin',
-  'test',
-  'account',
+  'ESAM',
+  'Eric',
+  'Lew',
   'test@account5.com',
   'password123'
 );
@@ -90,8 +92,8 @@ INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
   'Zero',
-  'test',
-  'account',
+  'Gonzalo',
+  'Barrios',
   'test@account6.com',
   'password123'
 );
@@ -100,8 +102,8 @@ INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
   'leffen',
-  'test',
-  'account',
+  'William',
+  'Hjelte',
   'test@account7.com',
   'password123'
 );
@@ -109,9 +111,9 @@ VALUES (
 INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
-  'Zackaray',
-  'test',
-  'account',
+  'Zackray',
+  'Sota',
+  'Okada',
   'test@account8.com',
   'password123'
 );
@@ -120,8 +122,8 @@ INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
   'CrossXG',
-  'test',
-  'account',
+  'Best',
+  'Puff',
   'test@account9.com',
   'password123'
 );
@@ -129,15 +131,15 @@ VALUES (
 INSERT INTO users
 (username, first_name, last_name, email, password)
 VALUES (
-  'MVD',
-  'test',
-  'account',
+  'Tweek',
+  'Gavin',
+  'Dempsey',
   'test@account10.com',
   'password123'
 );
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
 VALUES (
   3,
   'Smash n splash',
@@ -147,12 +149,14 @@ VALUES (
   TRUE,
   '2020-09-20',
   '12:00:00',
-  '24:00:00'
+  '24:00:00',
+  '/banner2.jpg',
+  '/event_icon1.png'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
 VALUES (
   5,
   'Orbitar',
@@ -162,12 +166,14 @@ VALUES (
   TRUE,
   '2019-10-23',
   '15:00:00',
-  '20:00:00'
+  '20:00:00',
+  '/banner2.jpg',
+  '/event_icon1.png'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
 VALUES (
   6,
   'Defend The North',
@@ -177,12 +183,14 @@ VALUES (
   FALSE,
   '2019-12-01',
   '14:00:00',
-  '16:00:00'
+  '16:00:00',
+  '/banner3.jpg',
+  '/event_icon1.png'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
 VALUES (
   7,
   'UW Smash Tournament',
@@ -192,12 +200,14 @@ VALUES (
   TRUE,
   '2019-11-05',
   '12:00:00',
-  '18:00:00'
+  '18:00:00',
+  '/banner1.jpg',
+  '/event_icon2.png'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
 VALUES (
   2,
   'Low Tier city',
@@ -207,12 +217,14 @@ VALUES (
   FALSE,
   '2020-04-20',
   '13:00:00',
-  '21:00:00'
+  '21:00:00',
+  '/banner1.jpg',
+  '/event_icon3.png'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
 VALUES (
   9,
   'ONLINE SMASH TOURNAMENT',
@@ -222,12 +234,14 @@ VALUES (
   TRUE,
   '2020-02-21',
   '12:00:00',
-  '18:00:00'
+  '18:00:00',
+  '/banner2.jpg',
+  '/event_icon2.png'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
 VALUES ( 
   10,
   'Frostbite 2020',
@@ -237,12 +251,14 @@ VALUES (
   TRUE,
   '2020-05-12',
   '12:00:00',
-  '18:00:00'
+  '18:00:00',
+  '/banner3.jpg',
+  '/event_icon2.png'
 );
 
 
 INSERT INTO events 
-(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time)
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
 VALUES ( 
   4,
   'Smash Con 2019',
@@ -252,7 +268,9 @@ VALUES (
   TRUE,
   '2019-08-12',
   '12:00:00',
-  '18:00:00'
+  '18:00:00',
+  '/banner3.jpg',
+  '/event_icon3.png'
 );
 
 INSERT INTO attendees (user_id, event_id) VALUES (1,1);

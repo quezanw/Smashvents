@@ -66,7 +66,9 @@ router.get('/all', function(req, res, next) {
 router.post('/new', (req, res, next) => {
   console.log(req.body);
   let {user_id, title, description, ruleset, venue, 
-       online, start_date, start_time, end_time} = req.body;
+       online, start_date, start_time, end_time,
+       banner_path, icon_path
+      } = req.body;
   if(title === undefined) {
     return res.json({error: 'TITLE CANNOT BE BLANK'});
   } else if(venue === undefined && !online) {
@@ -81,11 +83,11 @@ router.post('/new', (req, res, next) => {
   let createQuery = `INSERT INTO events 
                     (user_id, title, description, 
                     ruleset, venue, online, start_date,
-                    start_time, end_time)
+                    start_time, end_time, banner_path, icon_path)
                     VALUES 
                     (${user_id}, '${title}', '${description}', 
                     '${ruleset}', '${venue}', ${online === 'true'}, '${start_date}',
-                    '${start_time}', '${end_time}')
+                    '${start_time}', '${end_time}', '${banner_path}', '${icon_path}')
                     RETURNING *
                     `;
   pool.query(createQuery, (error, results) => {
@@ -99,7 +101,9 @@ router.post('/new', (req, res, next) => {
 // edit event
 router.put('/edit', (req, res, next) => {
   let {event_id, title, description, ruleset, venue, 
-    online, start_date, start_time, end_time} = req.body;
+       online, start_date, start_time, end_time,
+       banner_path, icon_path
+      } = req.body;
   if(title === undefined) {
     return res.json({error: 'TITLE CANNOT BE BLANK'});
   } else if(venue === undefined && !online) {
@@ -121,7 +125,9 @@ router.put('/edit', (req, res, next) => {
       online = ${online},
       start_date='${start_date}',
       start_time='${start_time}',
-      end_time='${end_time}'
+      end_time='${end_time}',
+      banner_path='${banner_path}',
+      icon_path='${icon_path}'
     WHERE event_id = ${event_id}
   `;
   pool.query(updateQuery, (error, results) => {

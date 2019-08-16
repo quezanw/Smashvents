@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AttendeeCard from './AttendeeCard/AttendeeCard';
 import CancelEvent from './CancelEvent/CancelEvent';
+import Auth from '../Auth/Auth';
 import GoogleMapReact from 'google-map-react';
 import moment from 'moment';
 import history from '../../history';
@@ -19,7 +20,12 @@ import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 class EventPage extends React.Component {
 
-  openModal = e => {
+  openAuth = e => {
+    e.preventDefault();
+    this.props.openModal({ content: <Auth/> })
+  }
+
+  openCancel = e => {
     e.preventDefault();
     this.props.openModal({ content: <CancelEvent event={this.props.event} /> })
   }
@@ -61,7 +67,7 @@ class EventPage extends React.Component {
     }
     return (
       <div className={styles.login_btn}>
-        <button onClick={e => this.openModal(e)}>
+        <button onClick={e => this.openAuth(e)}>
           Login to join the event!
         </button>
       </div>
@@ -73,7 +79,7 @@ class EventPage extends React.Component {
       return (
         <div>
           <button onClick={this.editEvent}>Edit Event</button>
-          <button onClick={this.openModal}>Cancel Event</button>
+          <button onClick={this.openCancel}>Cancel Event</button>
         </div>
         
       )
@@ -132,7 +138,9 @@ class EventPage extends React.Component {
     const renderAttendees = event.attendees.map(user => <AttendeeCard key={user.username} user={user} />)
     return (
       <div className={styles.wrapper}>
-        <div className={styles.banner}></div>
+        <div className={styles.banner}>
+          <img src={`/assets${event.banner_path}`} alt="banner"/>
+        </div>
         <div className={styles.headerWrapper}>
           <div className={styles.header}>
             <h1>{event.title}</h1>

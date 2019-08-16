@@ -14,9 +14,12 @@ class EventItem extends React.Component {
 
   render() {
     let event = this.props.event;
+    let src = `/assets${event.banner_path}`;
     return (
       <div onClick={() => this.selectEvent(event)} className={styles.item}>
-        <div className={styles.imgContainer}></div>
+        <div className={styles.imgContainer}>
+          <img src={src} alt="banner" />
+        </div>
         <div className={styles.details}>
           <p className={styles.title}>{event.title}</p>
           <p>{moment(event.start_date).format('MMM Do YYYY')}</p>
