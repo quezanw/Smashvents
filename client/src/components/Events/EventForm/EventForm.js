@@ -1,5 +1,4 @@
 import React from 'react';
-// import { connect } from 'react-redux'; 
 import { reduxForm, Field } from 'redux-form';
 import styles from './EventForm.module.scss';
 import DatePicker from "react-datepicker";
@@ -11,13 +10,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 class EventForm extends React.Component {
-  state = { online: this.props.initialValues.online == 'true' ? 'true' : 'false', startDate: new Date() }
-
-  // componentWillMount() {
-  //   let script = document.createElement('script');
-  //   script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
-  //   document.head.append(script);
-  // }
+  state = { online: this.props.initialValues.online ? 'true' : 'false', 
+            startDate: new Date() 
+          }
 
   onSubmit = formValues => {
     let date = formValues.start_date;
@@ -27,6 +22,9 @@ class EventForm extends React.Component {
 
   onRadioChange = e => {
     if(e.currentTarget.checked) {
+      // if(e.currentTarget.value === 'true') {
+      //   this.props.clearVenue();
+      // }
       this.setState({ online: e.currentTarget.value});
     }
   }
@@ -57,7 +55,7 @@ class EventForm extends React.Component {
           {...input}
           type="radio" 
           value={input.value}
-          checked={this.state.online === input.value ? true : false}
+          checked={this.state.online === input.value}
         />
         <label>{label}</label>
       </div>
@@ -109,12 +107,17 @@ class EventForm extends React.Component {
 
   renderVenue = () => {
     let offline = this.state.online;
+    let value = '';
+    if(this.props.initialValues.venue) {
+      value = this.props.initialValues.venue;
+    }
     if(offline === 'false') {
       return (
         <Field 
           name="venue" 
           type="text" 
           label="Venue" 
+          value={value}
           component={LocationSearch}
           validate={[this.required]}
         />

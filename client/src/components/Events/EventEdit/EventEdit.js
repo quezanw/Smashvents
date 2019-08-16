@@ -24,8 +24,8 @@ class EventEdit extends React.Component {
   formatFormValues = event => {
     let start_date = moment(event.start_date, "YYYY-MM-DD").format('MM/DD/YYYY');
     console.log(event.description, event.ruleset)
-    let description = event.description == undefined ? '' : event.description;
-    let ruleset = event.ruleset == undefined ? '' : event.ruleset;
+    let description = event.description === 'undefined' ? '' : event.description;
+    let ruleset = event.ruleset === 'undefined' ? '' : event.ruleset;
     // let start_time = moment(event.start_time, "hh:mm:ss").format('hh:mm a');
     return {...event, start_date, description, ruleset}
   }
@@ -38,7 +38,12 @@ class EventEdit extends React.Component {
             Edit Event
           </div>
           {this.renderError()}
-          <EventForm initialValues={this.formatFormValues(event)} error={this.props.error} onSubmit={this.onSubmit}/>
+          <EventForm 
+            clear={this.props.clearVenue} 
+            initialValues={this.formatFormValues(event)} 
+            error={this.props.error} 
+            onSubmit={this.onSubmit}
+          />
       </div>
     )
   }

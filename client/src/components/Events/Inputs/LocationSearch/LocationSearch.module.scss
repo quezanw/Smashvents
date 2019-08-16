@@ -14,3 +14,15 @@
     margin-top: .4rem;
     padding-left: .25rem;
 }
+
+.error {
+    font-family: $primary-font;
+    font-size: 10pt;
+    color: red;
+}
+
+.label {
+    font-family: $primary-font;
+    font-size: 10pt;
+    font-weight: bold;
+}

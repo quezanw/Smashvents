@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createEvent } from '../../../actions/index';
+import { createEvent, clearVenue } from '../../../actions/index';
 import EventForm from '../EventForm/EventForm';
 import Auth from '../../Auth/Auth';
 import styles from './EventCreate.module.scss';
@@ -29,7 +29,12 @@ class EventCreate extends React.Component {
             Create A New Event
           </div>
           {this.renderError()}
-          <EventForm initialValues={{online: 'true'}} error={this.props.error} onSubmit={this.onSubmit}/>
+          <EventForm 
+            // clearVenue={this.props.clearVenue} 
+            initialValues={{online: 'true'}} 
+            error={this.props.error} 
+            onSubmit={this.onSubmit}
+          />
         </div>
       );
     }
@@ -56,4 +61,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { createEvent })(EventCreate);
+export default connect(mapStateToProps, { createEvent, clearVenue })(EventCreate);

@@ -118,7 +118,7 @@ router.put('/edit', (req, res, next) => {
       description='${description}',
       ruleset='${ruleset}',
       venue='${venue}',
-      online = ${online === 'true'},
+      online = ${online},
       start_date='${start_date}',
       start_time='${start_time}',
       end_time='${end_time}'

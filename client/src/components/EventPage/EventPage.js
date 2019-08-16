@@ -7,7 +7,8 @@ import moment from 'moment';
 import history from '../../history';
 import styles from './EventPage.module.scss';
 import 
-{ getAttendees, 
+{ 
+  getAttendees, 
   fetchHost, 
   openModal, 
   joinEvent, 
@@ -39,7 +40,6 @@ class EventPage extends React.Component {
   }
 
   editEvent = () => {
-    // this.props.selectEvent(this.props.event);
     history.push(`/event/${this.props.event.title}/edit`);
   }
 
@@ -94,7 +94,8 @@ class EventPage extends React.Component {
           className={styles.marker}
           lat={lat}
           lng={lng}
-          text="My Marker"></div>
+          text="My Marker"
+        ></div>
       );
     }
   }
@@ -103,7 +104,6 @@ class EventPage extends React.Component {
     let event = this.props.event;
     if(!event.online) {
       let zoom = 11;
-
       let center = { lat: 47.66, lng: -122.33 }
       return (
         <div className={styles.outerContainer}>
@@ -179,4 +179,5 @@ export default connect(mapStateToProps,
     openModal,
     joinEvent,
     leaveEvent
-  })(EventPage)
+  }
+)(EventPage)

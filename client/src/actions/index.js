@@ -7,7 +7,7 @@ import {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-
+import { change } from 'redux-form';
 import { 
   LOGOUT,
   LOGIN_PENDING,
@@ -47,16 +47,15 @@ export const closeModal = () => {
 
 export const getCoordinates = address => async (dispatch, getState) => {
   let geocode = await geocodeByAddress(address);
-  // console.log(geocode)
   let coords = await getLatLng(geocode[0]);
   dispatch({ type: CALC_EVENT_COORDINATES, payload: coords })
 }
 
 export const selectEvent = event => async (dispatch, getState) => {
   // console.log(event.online)
-  // if(!event.online) {
+  if(!event.online) {
     dispatch(getCoordinates(event.venue));
-  // }
+  }
   dispatch({ type: VIEW_EVENT, payload: event });
   dispatch(getAttendees(event.event_id));
   dispatch(fetchHost(event.user_id))
@@ -123,8 +122,13 @@ export const createEvent = formValues => async (dispatch, getState) => {
   }
 }
 
+export const clearVenue = () => async (dispatch) => {
+  dispatch(change('eventForm', 'venue', undefined))
+}
+
 export const editEvent = formValues => async (dispatch, getstate) => {
   // const { user_id } = getState().auth;
+  formValues.online = formValues.online === 'true';
   const response = await events.put('/edit', {...formValues});
   if(!response.data.error) {
     dispatch({ type: EDIT_EVENT, payload: response.data });
