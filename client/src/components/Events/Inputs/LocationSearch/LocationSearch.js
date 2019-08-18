@@ -27,7 +27,6 @@ class LocationSearch extends React.Component {
 
   render() {
     let {input, meta} = this.props;
-    console.log(input)
     return (
       <PlacesAutocomplete
         value={this.state.address}

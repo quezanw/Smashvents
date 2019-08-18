@@ -21,7 +21,6 @@ class EventCreate extends React.Component {
   }
 
   renderCreateEvent = () => {
-    // if(true) {
     if(this.props.isSignedIn) {
       return (
         <div className={styles.eventWrapper}>
@@ -31,7 +30,7 @@ class EventCreate extends React.Component {
           {this.renderError()}
           <EventForm 
             // clearVenue={this.props.clearVenue} 
-            initialValues={{online: 'true'}} 
+            initialValues={{online: 'true', banner_path: '/banner1.jpg'}} 
             error={this.props.error} 
             onSubmit={this.onSubmit}
           />

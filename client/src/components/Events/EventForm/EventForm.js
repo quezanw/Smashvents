@@ -4,14 +4,13 @@ import styles from './EventForm.module.scss';
 import DatePicker from "react-datepicker";
 import LocationSearch from '../Inputs/LocationSearch/LocationSearch';
 
-// import moment from 'moment';
-
 import "react-datepicker/dist/react-datepicker.css";
 
 
 class EventForm extends React.Component {
   state = { online: this.props.initialValues.online ? 'true' : 'false', 
-            startDate: new Date() 
+            startDate: new Date(),
+            banner: this.props.initialValues.banner_path
           }
 
   onSubmit = formValues => {
@@ -26,6 +25,12 @@ class EventForm extends React.Component {
       //   this.props.clearVenue();
       // }
       this.setState({ online: e.currentTarget.value});
+    }
+  }
+
+  onBannerChange = e => {
+    if(e.currentTarget.checked) {
+      this.setState({ banner: e.currentTarget.value});
     }
   }
 
@@ -125,6 +130,22 @@ class EventForm extends React.Component {
     }
   }
 
+  renderBannerImage = ({ input, label, meta, type}) => {
+    return (
+      <div>
+        <label>
+          <input
+            {...input}
+            type="radio" 
+            value={input.value}
+            checked={this.state.banner === input.value}
+          />
+          <img className={styles.bannerImg} src={`/assets${input.value}`} alt="banner"/>
+        </label>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={styles.formContainer}>
@@ -150,7 +171,7 @@ class EventForm extends React.Component {
             component={this.renderInput}
           />
           <div className={styles.radioWrapper}>
-            <p>Online / Offline</p>
+            <p className={styles.label}>Online / Offline</p>
             <Field 
               name="online" 
               value={'true'}
@@ -191,6 +212,39 @@ class EventForm extends React.Component {
               label="End Time" 
               component={this.renderTime}
             />
+          </div>
+          <div className={styles.bannerImageWrapper}>
+            <p className={styles.label}>Event Banner</p>
+            <div className={styles.bannerImages}>
+              <Field
+                name="banner_path"
+                type="radio"
+                component={this.renderBannerImage}
+                value={'/banner1.jpg'} 
+                onChange={this.onBannerChange}
+              />
+              <Field
+                name="banner_path"
+                type="radio"
+                component={this.renderBannerImage}
+                value={'/banner2.jpg'} 
+                onChange={this.onBannerChange}
+              />
+              <Field
+                name="banner_path"
+                type="radio"
+                component={this.renderBannerImage}
+                value={'/banner3.jpg'} 
+                onChange={this.onBannerChange}
+              />
+              <Field
+                name="banner_path"
+                type="radio"
+                component={this.renderBannerImage}
+                value={'/banner4.jpg'}
+                onChange={this.onBannerChange}
+              />
+            </div>
           </div>
           <button className={styles.submit} type="submit">Submit</button>
         </form>
