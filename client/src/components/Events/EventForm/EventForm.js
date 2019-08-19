@@ -10,7 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 class EventForm extends React.Component {
   state = { online: this.props.initialValues.online ? 'true' : 'false', 
             startDate: new Date(),
-            banner: this.props.initialValues.banner_path
+            banner: this.props.initialValues.banner_path,
+            event_icon: this.props.initialValues.icon_path,
           }
 
   onSubmit = formValues => {
@@ -31,6 +32,12 @@ class EventForm extends React.Component {
   onBannerChange = e => {
     if(e.currentTarget.checked) {
       this.setState({ banner: e.currentTarget.value});
+    }
+  }
+
+  onIconChange = e => {
+    if(e.currentTarget.checked) {
+      this.setState({ event_icon: e.currentTarget.value});
     }
   }
 
@@ -146,6 +153,22 @@ class EventForm extends React.Component {
     );
   }
 
+  renderEventIcon = ({ input, label, meta, type}) => {
+    return (
+      <div>
+        <label>
+          <input
+            {...input}
+            type="radio" 
+            value={input.value}
+            checked={this.state.event_icon === input.value}
+          />
+          <img className={styles.event_icon} src={`/assets${input.value}`} alt="banner"/>
+        </label>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={styles.formContainer}>
@@ -213,9 +236,9 @@ class EventForm extends React.Component {
               component={this.renderTime}
             />
           </div>
-          <div className={styles.bannerImageWrapper}>
+          <div className={styles.imagesWrapper}>
             <p className={styles.label}>Event Banner</p>
-            <div className={styles.bannerImages}>
+            <div className={styles.images}>
               <Field
                 name="banner_path"
                 type="radio"
@@ -243,6 +266,46 @@ class EventForm extends React.Component {
                 component={this.renderBannerImage}
                 value={'/banner4.jpg'}
                 onChange={this.onBannerChange}
+              />
+            </div>
+          </div>
+          <div className={styles.imagesWrapper}>
+            <p className={styles.label}>Event Icon</p>
+            <div className={styles.images}>
+              <Field
+                name="icon_path"
+                type="radio"
+                component={this.renderEventIcon}
+                value={'/event_icon1.png'} 
+                onChange={this.onIconChange}
+              />
+              <Field
+                name="icon_path"
+                type="radio"
+                component={this.renderEventIcon}
+                value={'/event_icon2.png'} 
+                onChange={this.onIconChange}
+              />
+              <Field
+                name="icon_path"
+                type="radio"
+                component={this.renderEventIcon}
+                value={'/event_icon3.png'} 
+                onChange={this.onIconChange}
+              />
+              <Field
+                name="icon_path"
+                type="radio"
+                component={this.renderEventIcon}
+                value={'/event_icon4.png'}
+                onChange={this.onIconChange}
+              />
+              <Field
+                name="icon_path"
+                type="radio"
+                component={this.renderEventIcon}
+                value={'/event_icon5.png'}
+                onChange={this.onIconChange}
               />
             </div>
           </div>
