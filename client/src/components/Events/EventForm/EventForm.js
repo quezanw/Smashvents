@@ -137,7 +137,7 @@ class EventForm extends React.Component {
     }
   }
 
-  renderBannerImage = ({ input, label, meta, type}) => {
+  renderBannerImage = ({ input }) => {
     return (
       <div>
         <label>
@@ -153,7 +153,7 @@ class EventForm extends React.Component {
     );
   }
 
-  renderEventIcon = ({ input, label, meta, type}) => {
+  renderEventIcon = ({ input }) => {
     return (
       <div>
         <label>
@@ -169,7 +169,43 @@ class EventForm extends React.Component {
     );
   }
 
+  renderImagesContainer = (images) => {
+    return (
+      <div className={styles.imagesWrapper}>
+        <p className={styles.label}>Event Banner</p>
+        <div className={styles.images}>
+          {images}
+        </div>
+      </div>
+    );
+  }
+
   render() {
+    let banners = [1,2,3,4];
+    let icons = [1,2,3,4,5];
+    const bannerImages = banners.map(val => {
+      return (
+        <Field
+          key={val}
+          name="banner_path"
+          type="radio"
+          component={this.renderBannerImage}
+          value={`/banner${val}.jpg`} 
+          onChange={this.onBannerChange}
+        />
+      );
+    })
+    const eventIcons = icons.map(val => {
+      return (
+        <Field
+          name="icon_path"
+          type="radio"
+          component={this.renderEventIcon}
+          value={`/event_icon${val}.png`} 
+          onChange={this.onIconChange}
+        />
+      );
+    })
     return (
       <div className={styles.formContainer}>
         {/* {this.renderError()} */}
@@ -236,79 +272,8 @@ class EventForm extends React.Component {
               component={this.renderTime}
             />
           </div>
-          <div className={styles.imagesWrapper}>
-            <p className={styles.label}>Event Banner</p>
-            <div className={styles.images}>
-              <Field
-                name="banner_path"
-                type="radio"
-                component={this.renderBannerImage}
-                value={'/banner1.jpg'} 
-                onChange={this.onBannerChange}
-              />
-              <Field
-                name="banner_path"
-                type="radio"
-                component={this.renderBannerImage}
-                value={'/banner2.jpg'} 
-                onChange={this.onBannerChange}
-              />
-              <Field
-                name="banner_path"
-                type="radio"
-                component={this.renderBannerImage}
-                value={'/banner3.jpg'} 
-                onChange={this.onBannerChange}
-              />
-              <Field
-                name="banner_path"
-                type="radio"
-                component={this.renderBannerImage}
-                value={'/banner4.jpg'}
-                onChange={this.onBannerChange}
-              />
-            </div>
-          </div>
-          <div className={styles.imagesWrapper}>
-            <p className={styles.label}>Event Icon</p>
-            <div className={styles.images}>
-              <Field
-                name="icon_path"
-                type="radio"
-                component={this.renderEventIcon}
-                value={'/event_icon1.png'} 
-                onChange={this.onIconChange}
-              />
-              <Field
-                name="icon_path"
-                type="radio"
-                component={this.renderEventIcon}
-                value={'/event_icon2.png'} 
-                onChange={this.onIconChange}
-              />
-              <Field
-                name="icon_path"
-                type="radio"
-                component={this.renderEventIcon}
-                value={'/event_icon3.png'} 
-                onChange={this.onIconChange}
-              />
-              <Field
-                name="icon_path"
-                type="radio"
-                component={this.renderEventIcon}
-                value={'/event_icon4.png'}
-                onChange={this.onIconChange}
-              />
-              <Field
-                name="icon_path"
-                type="radio"
-                component={this.renderEventIcon}
-                value={'/event_icon5.png'}
-                onChange={this.onIconChange}
-              />
-            </div>
-          </div>
+          {this.renderImagesContainer(bannerImages)}
+          {this.renderImagesContainer(eventIcons)}
           <button className={styles.submit} type="submit">Submit</button>
         </form>
       </div>
@@ -317,4 +282,3 @@ class EventForm extends React.Component {
 }
 
 export default reduxForm({ form: 'eventForm'})(EventForm);
-
