@@ -109,8 +109,15 @@ class EventPage extends React.Component {
   renderLocation = () => {
     let event = this.props.event;
     if(!event.online) {
+      let center = {};
       let zoom = 11;
-      let center = { lat: 47.66, lng: -122.33 }
+      if(!event.coords) {
+        center = { lat: 47.66, lng: -122.33 }
+      } else {
+        center = { lat: event.coords.lat, lng: event.coords.lng }
+      }
+      // let center = { lat: 47.66, lng: -122.33 }
+      // let center = { lat: event.coords.lat, lng: event.coords.lng }
       return (
         <div className={styles.outerContainer}>
           <h1>Location</h1>

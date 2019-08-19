@@ -8,7 +8,9 @@ class AttendeeCard extends React.Component {
     let user = this.props.user;
     return ( 
       <div className={styles.wrapper}>
-        <div className={styles.playerIcon}></div>
+        <div className={styles.playerIcon}>
+          <i className={`${styles.user} far fa-user`}></i>
+        </div>
         <div className={styles.playerDetails}>
           <p className={styles.username}>
           {user.username}

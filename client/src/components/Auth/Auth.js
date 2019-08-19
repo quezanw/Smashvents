@@ -4,6 +4,7 @@ import { login, register, clearLoginReg } from '../../actions/index';
 import LoginForm from './Login/LoginForm';
 import RegisterForm from './Register/RegisterForm';
 import styles from './Auth.module.scss';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 class Auth extends React.Component {
   state = { selectedTab: 'login' };
@@ -51,6 +52,17 @@ class Auth extends React.Component {
   }
 
   render() {
+    if(this.props.auth.isSigninPending) {
+      return (
+        <div className={styles.loaderContainer}>
+          <ClipLoader 
+            className={styles.loader} 
+            sizeUnit={"px"}
+            size={150}
+            loading={true}/>
+        </div>
+      );
+    }
     let tab = this.state.selectedTab;
     return (
       <div className={styles.wrapper}>
@@ -61,7 +73,7 @@ class Auth extends React.Component {
         <div className={styles.form}>
           {this.renderError()}
           {this.renderRegisterSuccess()}
-          <p>{this.props.auth.isSignedinPending ? 'Please wait...' : ''}</p>
+          <p>{this.props.auth.isSigninPending ? 'Please wait...' : ''}</p>
           {this.renderForm()}
         </div>
       </div>

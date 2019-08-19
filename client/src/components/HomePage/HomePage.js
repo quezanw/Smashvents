@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllEvents } from '../../actions/index';
 import EventCarousel from '../EventCarousel/EventCarousel';
+// import ClipLoader from 'react-spinners/ClipLoader';
 
 class HomePage extends React.Component {
   componentDidMount() {

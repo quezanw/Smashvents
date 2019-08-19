@@ -52,3 +52,14 @@
   border-bottom: 2px solid $primary-white;
   color: $primary-white;
 }
+
+.loaderContainer {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  padding: 2rem;
+}
