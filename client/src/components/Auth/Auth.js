@@ -52,7 +52,7 @@ class Auth extends React.Component {
   }
 
   render() {
-    if(this.props.auth.isSigninPending) {
+    if(this.props.auth.isSigninPending || this.props.auth.registrationPending) {
       return (
         <div className={styles.loaderContainer}>
           <ClipLoader 
