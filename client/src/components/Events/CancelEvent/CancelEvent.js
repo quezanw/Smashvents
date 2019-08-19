@@ -13,9 +13,17 @@ class CancelEvent extends React.Component {
     let event = this.props.event;
     return (
         <div className={styles.wrapper}>
-          <h1>Are you sure you want to cancel this event?</h1>
-          <p>{event.title}</p>
-          <button onClick={this.cancelEvent}>Cancel Event</button>
+          <div className={styles.header}>Cancel Event</div>
+          <div className={styles.content}>
+            <h1 className={styles.message}>
+              Are you sure you want to cancel this event?
+            </h1>
+            {/* <p>{event.title}</p> */}
+            <div className={styles.btnContainer}>
+              <button onClick={this.cancelEvent}>Confirm</button>
+            </div>
+          </div>
+
         </div>
     );
   }

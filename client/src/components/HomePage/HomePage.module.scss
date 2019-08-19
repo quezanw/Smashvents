@@ -36,14 +36,5 @@
 
 
 .btn {
-  @extend %font-base;
-  padding: .5rem 1rem;
-  background: linear-gradient(180deg, #26aafc, #2196db);
-  border-radius: $primary-border-radius;
-  color: $primary-white;
-  text-decoration: none;
-
-  &:hover {
-    background: linear-gradient(180deg, lighten(#26aafc, 10%),lighten(#2196db, 10%));
-  }
+  @include btn-gradient(#26aafc, #2196db);
 }

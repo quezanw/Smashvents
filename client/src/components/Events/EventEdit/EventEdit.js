@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import EventForm from '../EventForm/EventForm';
-import { editEvent } from '../../../actions/index';
+import { editEvent, openModal } from '../../../actions/index';
+import CancelEvent from '../CancelEvent/CancelEvent';
 import moment from 'moment';
 
 import styles from './EventEdit.module.scss'
@@ -10,6 +11,11 @@ class EventEdit extends React.Component {
 
   onSubmit = formValues => {
     this.props.editEvent(formValues);
+  }
+
+  openCancel = e => {
+    e.preventDefault();
+    this.props.openModal({ content: <CancelEvent event={this.props.event} /> })
   }
 
   renderError = () => {
@@ -34,7 +40,8 @@ class EventEdit extends React.Component {
     return ( 
       <div className={styles.wrapper}>
           <div className={styles.header}>
-            Edit Event
+            <h1 className={styles.title}>Edit Event</h1>
+            <button className={styles.btnCancel} onClick={this.openCancel}>Cancel Event</button>
           </div>
           {this.renderError()}
           <EventForm 
@@ -56,4 +63,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { editEvent })(EventEdit)
+export default connect(mapStateToProps, { editEvent, openModal })(EventEdit)

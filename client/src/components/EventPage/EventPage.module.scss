@@ -14,8 +14,13 @@
 
 .descriptionContainer {
     width: 70%;
-    outline: 1px solid black;
     margin: 2rem 0;
+    p {
+        font-size: 12pt;
+        font-family: $primary-font;
+        line-height: 2rem;
+        text-align: left;
+    }
 }
 
 .outerContainer {
@@ -64,33 +69,66 @@
 .header {
     display: flex;
     flex-flow: column;
+    justify-content: flex-end;
     h1, p {
         font-family: $primary-font;
     }
     h1 {
         font-weight: bold;
         font-size: 2rem;
-        margin-bottom: 1rem;
+        margin-bottom: .5rem;
     }
 }
 
 .btnContainer {
     margin-left: auto;
     align-self: flex-end;
+    display: flex;
 }
 
 .details {
+
+}
+
+.row {
     display: flex;
+    margin-bottom: .5rem;
+}
+
+.col {
+    display: flex;
+    margin-right: 1rem;
     p {
-        margin-right: 1rem;
         font-size: 1rem;
     }
 }
 
+.detailIcon {
+    color: #9292fa;
+    margin-right: .25rem;
+
+}
+
 .marker {
-    height: 5px;
-    width: 5px;
-    background-color: yellow;
-    border-radius: 50%;
-    border: 1px solid black;
+    font-size: 2rem;
+    color: rgb(158, 158, 255);
+}
+
+.btn {
+    @include btn-gradient(#26aafc, #2196db);
+    border-radius: $primary-border-radius;
+    border: none;
+}
+
+.btnEdit {
+    @include btn-gradient(#e4ba31, #e3a215);
+    border-radius: $primary-border-radius;
+    border: none;
+    margin-left: 1rem;
+}
+
+.btnLeave {
+    @include btn-gradient(#e4315b, #d30f3d);
+    border-radius: $primary-border-radius;
+    border: none;
 }
