@@ -1,5 +1,6 @@
 @import '../../styles/variables.scss';
 @import '../../styles/layout.scss';
+@import '../../styles/components.scss';
 
 .wrapper {
   @extend %flex-column-center;
@@ -54,19 +55,20 @@
   }
 }
 
-.btn_container {
+.btnContainer {
   margin: 4rem 0 2rem 0;
   width: 400px;
   color: $primary-white;
   position: relative;
-  p {
-    font-size: 10pt;
-    position: absolute;
-    span {
-      font-weight: bold;
-    }
+}
+
+.closeBtn {
+  @extend %font-base;
+  position: absolute;
+  span {
+    font-weight: bold;
   }
-  p:hover {
+  &:hover {
     cursor: pointer;
     display: inline-block;
     text-decoration: underline;

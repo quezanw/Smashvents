@@ -26,7 +26,6 @@
 }
 
 .error {
-  font-family: $primary-font;
+  @extend %font-base;
   color: $primary-red;
-  font-size: 10pt;
 }

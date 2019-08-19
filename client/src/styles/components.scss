@@ -51,3 +51,8 @@
   box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.2);
   border-radius: $primary-border-radius;
 }
+
+%font-base {
+  font-family: $primary-font; 
+  font-size: $primary-font-size;
+}

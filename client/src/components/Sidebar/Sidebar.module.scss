@@ -1,5 +1,6 @@
 @import '../../styles/variables.scss';
 @import '../../styles/layout.scss';
+@import '../../styles/components.scss';
 
 .sidebar {
   height: 100%;
@@ -44,7 +45,7 @@
     font-size: 1.5rem;
   }
   p {
-    font-size: $btn-font;
+    @extend %font-base;
   }
 }
 
@@ -55,14 +56,6 @@
   margin-top: 1rem;
   color: $primary-white;
   background-color: gray;
-}
-
-.login {
-
-}
-
-.logout {
-  // color: rgb(235, 103, 103);
 }
 
 .eventScroller {

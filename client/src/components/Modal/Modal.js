@@ -14,8 +14,8 @@ class Modal extends React.Component {
   render() {
     return (
       <div onClick={this.closeModal} id="modal-wrapper" className={styles.wrapper}>
-        <div className={styles.btn_container}>
-          <p onClick={this.closeModal}>
+        <div className={styles.btnContainer}>
+          <p className={styles.closeBtn} onClick={this.closeModal}>
             <span>x </span>
             close
           </p>

@@ -1,5 +1,6 @@
 @import '../../styles/variables.scss';
 @import '../../styles/layout.scss';
+@import '../../styles/components.scss';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 .container {
@@ -35,11 +36,10 @@
 
 
 .btn {
-  font-size: $btn-font;
-  font-family: $primary-font;
+  @extend %font-base;
   padding: .5rem 1rem;
   background: linear-gradient(180deg, #26aafc, #2196db);
-  border-radius: 3px;
+  border-radius: $primary-border-radius;
   color: $primary-white;
   text-decoration: none;
 
