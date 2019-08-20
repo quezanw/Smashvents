@@ -109,11 +109,6 @@
 
 }
 
-.marker {
-    font-size: 2rem;
-    color: rgb(158, 158, 255);
-}
-
 .btn {
     @include btn-gradient(#26aafc, #2196db);
     border-radius: $primary-border-radius;

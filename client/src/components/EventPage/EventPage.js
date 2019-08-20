@@ -4,6 +4,7 @@ import AttendeeCard from './AttendeeCard/AttendeeCard';
 import Auth from '../Auth/Auth';
 import GoogleMapReact from 'google-map-react';
 import ClipLoader from 'react-spinners/ClipLoader';
+import Marker from './Marker/Marker';
 import moment from 'moment';
 import history from '../../history';
 import styles from './EventPage.module.scss';
@@ -16,7 +17,7 @@ import
   leaveEvent
 } 
 from '../../actions/index';
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+// import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 class EventPage extends React.Component {
 
@@ -69,22 +70,15 @@ class EventPage extends React.Component {
     }
   }
 
-  getCoords = () => async () => {
-    let geocode = await geocodeByAddress(this.props.event.venue)
-    let coords = await getLatLng(geocode[0]);
-    return coords
-  }
+  // getCoords = () => async () => {
+  //   let geocode = await geocodeByAddress(this.props.event.venue)
+  //   let coords = await getLatLng(geocode[0]);
+  //   return coords
+  // }
 
   renderMarker = (event) => {
     if(event.coords) {
-      let { lat, lng } = event.coords;
-      return (
-        <i 
-        className={`${styles.marker} fas fa-map-marker-alt`}
-        lat={lat}
-        lng={lng}
-        text="My Marker"></i>
-      );
+      return <Marker coords={event.coords}/>
     }
   }
 

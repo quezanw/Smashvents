@@ -10,7 +10,7 @@ class CancelEvent extends React.Component {
   }
 
   render() {
-    let event = this.props.event;
+    // let event = this.props.event;
     return (
         <div className={styles.wrapper}>
           <div className={styles.header}>Cancel Event</div>

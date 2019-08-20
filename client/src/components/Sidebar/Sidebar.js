@@ -53,6 +53,8 @@ class Sidebar extends React.Component {
   }
 
   render() {
+    // if e1.user_id === user id e1 else e2
+    // let eventsAttending = this.props.auth.attending.sort((e1, e2) => e1.user_id === this.props.auth.user_id?  )
     const eventsAttending = this.props.auth.attending.map(event => {
       return (
         <div key={event.event_id} onClick={() => this.selectEvent(event)} className={styles.block}>
