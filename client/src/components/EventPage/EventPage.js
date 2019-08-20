@@ -132,9 +132,13 @@ class EventPage extends React.Component {
             <h1>{event.title}</h1>
             <div className={styles.details}>
               <div className={styles.row}>
-                <p>
+                <p className={styles.col}>
                   <i className={`${styles.detailIcon} fas fa-clock`}></i>
                   {start} - {end}
+                </p>
+                <p className={styles.col}>
+                  <i className={`${styles.detailIcon} fas fa-user`}></i>
+                  {event.attendees.length} Attendees
                 </p>
               </div>
               <div className={styles.row}>
@@ -162,6 +166,11 @@ class EventPage extends React.Component {
           <div className={styles.descriptionContainer}>
             <p>
               {this.renderDescription(event.description)}
+            </p>
+          </div>
+          <div className={styles.descriptionContainer}>
+            <p>
+              {this.renderDescription(event.ruleset)}
             </p>
           </div>
           <div className={styles.outerContainer}>

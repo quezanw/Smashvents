@@ -21,7 +21,6 @@ class App extends React.Component {
     }
   }
 
-
   render () {
     return (
       <div className={styles.container}>
@@ -43,7 +42,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state)
   return {
     modal: state.modal
   }

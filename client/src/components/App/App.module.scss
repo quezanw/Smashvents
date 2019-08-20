@@ -8,4 +8,7 @@
 
 .main {
   margin-left: $sidebar-width;
+  @media only screen and (max-width : 800px) {
+    margin-left: 0;
+  }
 }

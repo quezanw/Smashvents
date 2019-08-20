@@ -13,6 +13,9 @@
   display: flex;
   flex-flow: column;
   align-items: center;
+  @media only screen and (max-width : 800px) {
+    display: none;
+  }
 }
 
 .home {
@@ -66,9 +69,9 @@
 }
 
 .block {
-  width: 50px;
+  width: calc(#{$sidebar-width} - 10px);
   border: 1px solid black;
-  height: 50px;
+  height: calc(#{$sidebar-width} - 10px);
   border-radius: 3px;
   margin: .5rem auto;
   background-color: white;

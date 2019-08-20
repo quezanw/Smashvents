@@ -9,6 +9,11 @@ import styles from './EventCarousel.module.scss';
 class EventCarousel extends React.Component {
 
   render() {
+    let responsive = {
+      360: {items: 2},
+      780: {items: 3},
+      1024: {items: 4}
+    }
     let state = { galleryItems: this.props.events.map(event => <EventItem event={event}/>)}
     return (
       <div className={styles.carouselContainer}>       
@@ -23,7 +28,7 @@ class EventCarousel extends React.Component {
           buttonsDisabled={true}
           dotsDisabled={true}
           items={state.galleryItems}
-          responsive={ { 500: { items: 4 } }}
+          responsive={responsive}
           ref={(el) => (this.Carousel = el)}
         />
       </div>
