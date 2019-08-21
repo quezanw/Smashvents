@@ -58,8 +58,12 @@ class Sidebar extends React.Component {
     const eventsAttending = this.props.auth.attending.map(event => {
       return (
         <div key={event.event_id} onClick={() => this.selectEvent(event)} className={styles.block}>
-          <img src={`/assets${event.icon_path}`} alt=""/>
-          <p>{event.title}</p>
+          <img aria-describedby="title" src={`/assets${event.icon_path}`} alt="icon"/>
+          <p id="title">
+            <span>
+              {event.title}
+            </span>
+          </p>
         </div>
       )
     })

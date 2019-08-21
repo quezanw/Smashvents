@@ -20,8 +20,12 @@ class EventCarousel extends React.Component {
         <div className={styles.carouselHeader}>
           <h2>{this.props.title}</h2>
           <div className={styles.carouselBtns}>
-            <i onClick={() => this.Carousel.slidePrev()} className={`${styles.sliderBtn} fas fa-caret-left`}></i>
-            <i onClick={() => this.Carousel.slideNext()} className={`${styles.sliderBtn} fas fa-caret-right`}></i>
+            <button  onClick={() => this.Carousel.slidePrev()} className={styles.btnContainer}>
+              <i className={`${styles.sliderBtn} fas fa-angle-left`}></i>
+            </button>
+            <button onClick={() => this.Carousel.slideNext()} className={styles.btnContainer}>
+              <i className={`${styles.sliderBtn} fas fa-angle-right`}></i>
+            </button>
           </div>
         </div>
         <AliceCarousel

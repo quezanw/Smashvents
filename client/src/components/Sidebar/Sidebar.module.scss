@@ -5,15 +5,15 @@
 .sidebar {
   height: 100%;
   width: $sidebar-width;
-  background-color:rgb(58, 27, 74);
-  border-right: .5px solid rgba(255, 255, 255, 0.694); 
+  background-color:#2b2d42;
+  border-right: .5px solid rgba(176, 176, 176, 0.694); 
   position: fixed;
   overflow:hidden;
   z-index: 1;
   display: flex;
   flex-flow: column;
   align-items: center;
-  @media only screen and (max-width : 800px) {
+  @media only screen and (max-width : 900px) {
     display: none;
   }
 }
@@ -36,7 +36,7 @@
   width: 100%;
   margin-top: auto;
   padding: 1rem 0;
-  border-top: 1.5px solid $primary-white;
+  border-top: .5px solid rgba(176, 176, 176, 0.694);
   color:rgb(199, 198, 198);
 
   &:hover {
@@ -69,9 +69,9 @@
 }
 
 .block {
-  width: calc(#{$sidebar-width} - 10px);
+  width: calc(#{$sidebar-width} - 15px);
   border: 1px solid black;
-  height: calc(#{$sidebar-width} - 10px);
+  height: calc(#{$sidebar-width} - 15px);
   border-radius: 3px;
   margin: .5rem auto;
   background-color: white;
@@ -88,6 +88,11 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity .25s ease-in;
+    clip-path: polygon(10% 0%, 100% 1%, 100% 100%, 10% 100%, 0% 50%);
+    
+    span {
+      margin-left: .5rem;
+    }
   }
 
   &:hover {
@@ -100,7 +105,8 @@
       left: 60px;
       display: block;
       padding: .5rem;
-      background-color: black;
+      border-radius: $primary-border-radius;
+      background-color:  rgba(21, 21, 21, 0.879);
       color:white;
     }
   }

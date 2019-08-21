@@ -15,7 +15,7 @@ class HomePage extends React.Component {
     let upcoming = this.props.events.filter(e => new Date(e.start_date) - new Date() >= 0);
     let past = this.props.events.filter(e => new Date(e.start_date) - new Date() < 0);
     return (
-      <dxiv className={styles.container}>
+      <div className={styles.container}>
         <div className={styles.header}>
           <h1>SMASHVENTS</h1>
           <Link className={styles.btn} to="/event/create">Organize an event</Link>
@@ -24,7 +24,7 @@ class HomePage extends React.Component {
           <EventCarousel events={upcoming} title='Upcoming Tournaments' carouselID='carousel-list1'/>
           <EventCarousel events={past} title='Past Tournaments' carouselID='carousel-list2'/>
         </section>
-      </dxiv>
+      </div>
     );
   }
 }
