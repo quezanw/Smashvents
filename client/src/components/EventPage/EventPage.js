@@ -84,32 +84,36 @@ class EventPage extends React.Component {
 
   renderLocation = () => {
     let event = this.props.event;
-    if(!event.online && event.coords) {
-      let center = { lat: event.coords.lat, lng: event.coords.lng }
-      let zoom = 12;
-      return (
-        <div className={styles.outerContainer}>
-          <h1>Location</h1>
-          <div className={styles.container}>
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
-              defaultCenter={center}
-              defaultZoom={zoom}
-            >
-              {this.renderMarker(event)}
-            </GoogleMapReact>
+    if(!event.online) {
+      if(event.coords) {
+        let center = { lat: event.coords.lat, lng: event.coords.lng }
+        let zoom = 12;
+        return (
+          <div className={styles.outerContainer}>
+            <h1>Location</h1>
+            <div className={styles.container}>
+              <GoogleMapReact
+                bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
+                defaultCenter={center}
+                defaultZoom={zoom}
+              >
+                {this.renderMarker(event)}
+              </GoogleMapReact>
+            </div>
           </div>
-        </div>
-      )
+        )
+      } else {
+        return (
+          <ClipLoader 
+            sizeUnit={"px"}
+            size={150}
+            color={'#123abc'}
+            loading={true}
+          />
+        );
+      }
     }
-    return (
-      <ClipLoader 
-        sizeUnit={"px"}
-        size={150}
-        color={'#123abc'}
-        loading={true}
-      />
-    );
+ 
   }
 
   renderDescription = desc => {
@@ -132,14 +136,14 @@ class EventPage extends React.Component {
             <h1>{event.title}</h1>
             <div className={styles.details}>
               <div className={styles.row}>
-                <p className={styles.col}>
+                <div className={styles.col}>
                   <i className={`${styles.detailIcon} fas fa-clock`}></i>
-                  {start} - {end}
-                </p>
-                <p className={styles.col}>
+                  <p>{start} - {end}</p>
+                </div>
+                <div className={styles.col}>
                   <i className={`${styles.detailIcon} fas fa-user`}></i>
-                  {event.attendees.length} Attendees
-                </p>
+                  <p>{event.attendees.length} Attendees</p>
+                </div>
               </div>
               <div className={styles.row}>
                 <div className={styles.col}>

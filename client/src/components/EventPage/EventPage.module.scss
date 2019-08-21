@@ -27,21 +27,29 @@
 
 .outerContainer {
     margin: 2rem 0;
-    width: 70%;
+    width: 80%;
     h1 {
         font-family: $primary-font;
         font-size: 1.25rem;
         font-weight: bold;
         margin-bottom: 1rem;
     }
+    /* Smartphones (portrait and landscape) ----------- */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 95%;
+    }
 }
 
 .attendees {
     @extend %container-card;
-    padding: 2rem;
+    padding: 2rem 0 2rem 1rem;
     height: auto;
     display: flex;
     flex-flow: row wrap;
+    /* Smartphones (portrait and landscape) ----------- */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        padding: 1rem 0;
+    }
 }
 
 .container {
@@ -51,7 +59,7 @@
 }
 
 .banner {
-    height: 450px;
+    max-height: 450px;
     overflow-y: hidden;
     img {
         width: 100%;
@@ -66,6 +74,10 @@
     display: flex;
     background-color: $primary-white;
     box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.2);
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        padding: 1rem;
+        display: block;
+    }
 }
 
 .header {
@@ -79,6 +91,9 @@
         font-weight: bold;
         font-size: 2rem;
         margin-bottom: .5rem;
+        @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+            font-size: 1.5rem;
+        }
     }
 }
 
@@ -86,6 +101,9 @@
     margin-left: auto;
     align-self: flex-end;
     display: flex;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        margin-top: .5rem;
+    }
 }
 
 .details {
@@ -95,18 +113,31 @@
 .row {
     display: flex;
     margin-bottom: .5rem;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        flex-flow: column;
+        margin: 0;
+    }
 }
 
 .col {
     display: flex;
     margin-right: 1rem;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        margin: .5rem 0 0 0;
+    }
     p {
         font-size: 1rem;
+        // text-overflow: ellipsis;
+        // overflow-x: hidden;
+        // needs set width before overflow will work
+        @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+            font-size: .75rem;
+        }
     }
 }
 
 .detailIcon {
-    color: #9292fa;
+    color: $primary-blue;
     margin-right: .25rem;
 
 }
@@ -115,6 +146,10 @@
     @include btn-gradient(#26aafc, #2196db);
     border-radius: $primary-border-radius;
     border: none;
+    width: 125px;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        flex-basis: 100%;
+    }
 }
 
 .btnEdit {
@@ -122,10 +157,18 @@
     border-radius: $primary-border-radius;
     border: none;
     margin-left: 1rem;
+    width: 125px;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        flex-basis: 100%;
+    }
 }
 
 .btnLeave {
     @include btn-gradient(#e4315b, #d30f3d);
     border-radius: $primary-border-radius;
     border: none;
+    width: 125px;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        flex-basis: 100%;
+    }
 }
