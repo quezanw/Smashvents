@@ -98,7 +98,7 @@ class EventForm extends React.Component {
 
   renderDatePicker = ({input, label, type, meta: {active, touched, error, warning } }) => {
     return (
-      <div className={styles.col}>
+      <div className={`${styles.col} ${styles.dateField}`}>
         <label>{label}</label>
         {/* <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} /> */}
         <DatePicker
@@ -181,7 +181,7 @@ class EventForm extends React.Component {
   }
 
   render() {
-    let banners = [1,2,3,4];
+    let banners = [1,2,3,4,5,6];
     let icons = [1,2,3,4,5];
     const bannerImages = banners.map(val => {
       return (
@@ -258,19 +258,22 @@ class EventForm extends React.Component {
               onChange={this.handleChange}
               validate={[this.required]}
               />
-            <Field 
-              name="start_time" 
-              type="time" 
-              label="Start Time" 
-              component={this.renderTime}
-              validate={[this.required]}
-            />
-            <Field 
-              name="end_time" 
-              type="time" 
-              label="End Time" 
-              component={this.renderTime}
-            />
+            <div className={styles.timeField}>
+              <Field 
+                name="start_time" 
+                type="time" 
+                label="Start Time" 
+                component={this.renderTime}
+                validate={[this.required]}
+              />
+              <Field 
+                name="end_time" 
+                type="time" 
+                label="End Time" 
+                component={this.renderTime}
+              />
+            </div>
+
           </div>
           {this.renderImagesContainer(bannerImages)}
           {this.renderImagesContainer(eventIcons)}

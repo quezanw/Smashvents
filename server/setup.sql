@@ -173,7 +173,7 @@ VALUES (
   '2019-10-23',
   '15:00:00',
   '20:00:00',
-  '/banner2.jpg',
+  '/banner5.jpg',
   '/event_icon1.png'
 );
 
@@ -211,7 +211,7 @@ VALUES (
   '2019-11-05',
   '12:00:00',
   '18:00:00',
-  '/banner1.jpg',
+  '/banner5.jpg',
   '/event_icon2.png'
 );
 
@@ -279,7 +279,7 @@ VALUES (
   '2020-05-12',
   '12:00:00',
   '18:00:00',
-  '/banner3.jpg',
+  '/banner6.jpg',
   '/event_icon2.png'
 );
 
@@ -296,7 +296,7 @@ VALUES (
   '2019-08-12',
   '12:00:00',
   '18:00:00',
-  '/banner3.jpg',
+  '/banner2.jpg',
   '/event_icon3.png'
 );
 

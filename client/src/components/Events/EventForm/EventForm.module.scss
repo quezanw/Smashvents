@@ -29,7 +29,16 @@
 
 .dateTime {
     display: flex;
+    flex-flow: row wrap;
     margin: 1rem 0;
+}
+
+.dateField {
+    margin-bottom: 1rem;
+}
+
+.timeField {
+    display: flex;
 }
 
 .col {
@@ -110,6 +119,7 @@
 }
 
 .bannerImg {
+    margin-top: .5rem;
     width: 200px;
     height: 125px;
 }

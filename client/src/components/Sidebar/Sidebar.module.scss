@@ -2,6 +2,27 @@
 @import '../../styles/layout.scss';
 @import '../../styles/components.scss';
 
+.sidebarContainer {
+  height: 100%;
+  width: $sidebar-width;
+  position: fixed;
+  // // visibility: hidden;
+  // // opacity: 0;
+  // transition: visibility 0s, opacity 0.25s linear;
+
+}
+
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(rgb(57, 57, 57), .8);
+  z-index: 2;
+  transform: none;
+}
+
 .sidebar {
   height: 100%;
   width: $sidebar-width;
@@ -9,25 +30,40 @@
   border-right: .5px solid rgba(176, 176, 176, 0.694); 
   position: fixed;
   overflow:hidden;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-flow: column;
   align-items: center;
+  transition: visibility 0s, opacity 0.25s linear;
   @media only screen and (max-width : 900px) {
-    display: none;
+    // display: none;
+    visibility: hidden;
+    opacity: 0;
   }
 }
 
 .home {
-  margin-top: 1rem;
-  font-size: 1.5rem;
-  display: block;
-  color: white;
+  display: flex;
+  align-items: center;
+  margin: .5rem 0;
+  width: calc(#{$sidebar-width} - 15px);
+  height: calc(#{$sidebar-width} - 15px);
   padding-bottom: 5px;
   border-bottom: .5px solid white;
+  @extend %hover-text;
+}
 
-  &:hover {
-    cursor: pointer;
+.homeContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  i {
+    font-size: 1.5rem;
+    color: white;
+    
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -62,7 +98,7 @@
 }
 
 .eventScroller {
-  margin-top: 5rem;
+  margin-top: 3rem;
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -75,6 +111,9 @@
   border-radius: 3px;
   margin: .5rem auto;
   background-color: white;
+  display: flex;
+  align-items: center;
+
   img {
     width: 100%;
     height: 100%;
@@ -82,14 +121,20 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
-  display: flex;
-  align-items: center;
+  @extend %hover-text;
+}
+
+
+%hover-text {
   p {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity .25s ease-in;
     clip-path: polygon(10% 0%, 100% 1%, 100% 100%, 10% 100%, 0% 50%);
-    
+    font-family: $primary-font;
+    font-size: 10pt;
+    position: fixed;
+    left: 55px;
     span {
       margin-left: .5rem;
     }
@@ -101,9 +146,9 @@
       visibility: visible;
       opacity: 1;
       z-index: 4;
-      position: fixed;
-      left: 60px;
-      display: block;
+      // position: fixed;
+      // left: 55px;
+      // display: block;
       padding: .5rem;
       border-radius: $primary-border-radius;
       background-color:  rgba(21, 21, 21, 0.879);

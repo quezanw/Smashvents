@@ -5,6 +5,7 @@ import { Route, Router, Switch} from 'react-router-dom';
 import history from '../../history';
 import HomePage from '../HomePage/HomePage';
 import Sidebar from '../Sidebar/Sidebar';
+import Topbar from '../Topbar/Topbar';
 import Modal from '../Modal/Modal';
 import EventPage from '../EventPage/EventPage';
 import EventEdit from '../Events/EventEdit/EventEdit';
@@ -27,6 +28,7 @@ class App extends React.Component {
         {this.renderModals()}
         <Sidebar/>
         <div className={styles.main}>
+          <Topbar/>
           <Router history={history}>
             <Switch>
               <Route path="/" exact component={HomePage}/>

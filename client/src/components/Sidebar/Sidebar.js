@@ -68,8 +68,14 @@ class Sidebar extends React.Component {
       )
     })
     return (
-      <div className={styles.sidebar}>
-        <i className={`${styles.home} fas fa-home`} onClick={() => history.push('/')}></i>
+      <div id="sidebar" className={styles.sidebar}>
+        <div className={styles.home}>
+          <div className={styles.homeContainer}>
+            <i className={`fas fa-home`} onClick={() => history.push('/')}></i>
+          </div>
+          <p>Home</p>
+        </div>
+        
         {this.renderIcon()}
         <div className={styles.eventScroller}>
           {eventsAttending}
