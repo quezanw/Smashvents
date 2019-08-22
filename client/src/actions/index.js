@@ -23,6 +23,7 @@ import {
   CALC_EVENT_COORDINATES,
   VIEW_ATTENDEES,
   FETCH_ATTENDING_EVENTS,
+  FETCH_HOSTED_EVENTS,
   FETCH_HOST,
   CREATE_EVENT,
   EDIT_EVENT,
@@ -77,6 +78,11 @@ export const fetchAttendingEvents = user_id => async (dispatch, getState) => {
   dispatch({ type: FETCH_ATTENDING_EVENTS, payload: response.data.rows })
 }
 
+export const fetchHostedEvents = user_id => async (dispatch) => {
+  let response = await events.get(`/hosting/${user_id}`);
+  dispatch({ type: FETCH_HOSTED_EVENTS, payload: response.data.rows })
+}
+
 export const fetchHost = (user_id, event_id)=> async dispatch => {
   let response = await events.get(`/host/${user_id}`);
   dispatch({ type: FETCH_HOST, payload: response.data.rows[0] });
@@ -105,10 +111,11 @@ export const login = formValues => async (dispatch, getState) => {
   dispatch({ type: LOGIN_PENDING});
   const response = await auth.post('/login', {...formValues});
   if(!response.data.error) {
-    dispatch({ type: LOGIN_SUCCESS, payload: response.data.user_id});
+    dispatch({ type: LOGIN_SUCCESS, payload: response.data});
     dispatch(reset('loginForm'));
     dispatch({ type: CLOSE_MODAL });
     dispatch(fetchAttendingEvents(response.data.user_id));
+    dispatch(fetchHostedEvents(response.data.user_id));
   } else {
     dispatch({type: LOGIN_ERROR, payload: response.data.error});
   }
@@ -140,7 +147,8 @@ export const editEvent = formValues => async (dispatch, getState) => {
     dispatch({ type: EDIT_EVENT, payload: response.data });
     dispatch(reset('eventForm'));
     dispatch(selectEvent(formValues));
-    dispatch(fetchAttendingEvents(user_id))
+    dispatch(fetchAttendingEvents(user_id));
+    dispatch(fetchHostedEvents(user_id));
     history.push(`/event/${formValues.title}/details`);
   } else {
     dispatch({ type: EVENT_ERROR, payload: response.data.error});
@@ -153,6 +161,7 @@ export const deleteEvent = event_id => async (dispatch, getState) => {
   const attendeeResponse = await attendees.delete(`/event/delete/${event_id}`);
   dispatch({ type: CLOSE_MODAL });
   dispatch(fetchAttendingEvents(user_id));
+  dispatch(fetchHostedEvents(user_id));
   console.log(eventResponse, attendeeResponse);
   history.push('/');
 }
@@ -168,13 +177,16 @@ export const joinEvent = event_id => async (dispatch, getState) => {
   const response = await attendees.post('/join', {event_id, user_id});
   console.log(response)
   dispatch(getAttendees(event_id));
-  dispatch(fetchAttendingEvents(user_id))
+  dispatch(fetchAttendingEvents(user_id));
+  dispatch(fetchHostedEvents(user_id));
 }
 
 export const leaveEvent = (event_id) => async (dispatch, getState) => {
   const { user_id } = getState().auth;
   const response = await attendees.delete(`/leave/${user_id}/${event_id}`); 
   console.log(response)
+  dispatch({ type: CLOSE_MODAL });
   dispatch(getAttendees(event_id));
   dispatch(fetchAttendingEvents(user_id));
+  dispatch(fetchHostedEvents(user_id));
 }

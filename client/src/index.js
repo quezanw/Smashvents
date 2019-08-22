@@ -14,6 +14,7 @@ import reducers from './reducers';
 const persistConfig = {
   key: 'root',
   storage: storage,
+  blacklist: ['modal'],
   stateReconciler: autoMergeLevel2 // see "Merge Process" section for details.
  };
 

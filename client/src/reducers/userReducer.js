@@ -7,12 +7,14 @@ import {
 	REGISTRATION_SUCCESS,
 	REGISTRATION_ERROR,
 	CLEAR_LOGIN_REG,
-	FETCH_ATTENDING_EVENTS
+	FETCH_ATTENDING_EVENTS,
+	FETCH_HOSTED_EVENTS
 } from '../actions/types';
 
 
 const INITIAL_STATE = {
 	user_id: null,
+	username: null,
 	isSigninPending: false,
 	isSignedIn: false,
 	isSignedOut: true,
@@ -20,7 +22,8 @@ const INITIAL_STATE = {
 	registrationPending: false,
 	registrationSuccess: false,
 	registrationError: null,
-	attending: []
+	attending: [],
+	hosting: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -34,6 +37,7 @@ export default (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				user_id: null,
+				username: null,
 				isSigninPending: true,
 				isSignedIn: false,
 				isSignedOut: true
@@ -41,7 +45,8 @@ export default (state = INITIAL_STATE, action) => {
 		case LOGIN_SUCCESS:
 			return {
 				...state, 
-				user_id: action.payload,
+				user_id: action.payload.user_id,
+				username: action.payload.username,
 				isSigninPending: false,
 				isSignedIn: true, 
 				isSignedOut: false, 
@@ -51,6 +56,7 @@ export default (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				user_id: null,
+				username: null,
 				isSigninPending: false,
 				isSignedIn: false, 
 				isSignedOut: true, 
@@ -89,6 +95,11 @@ export default (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				attending: action.payload
+			}
+		case FETCH_HOSTED_EVENTS:
+			return {
+				...state,
+				hosting: action.payload
 			}
 		default:
 			return state;

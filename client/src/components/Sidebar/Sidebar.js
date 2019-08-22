@@ -1,15 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { openModal, logout, fetchAttendingEvents, selectEvent } from '../../actions/index';
 import styles from './Sidebar.module.scss';
 import history from '../../history';
 import Auth from '../Auth/Auth';
+import { 
+  openModal, 
+  logout, 
+  fetchAttendingEvents, 
+  fetchHostedEvents,
+  selectEvent
+
+} 
+from '../../actions/index';
 
 class Sidebar extends React.Component {
   
   componentDidMount() {
     if(this.props.auth.isSignedIn) {
       this.props.fetchAttendingEvents(this.props.auth.user_id);
+      this.props.fetchHostedEvents(this.props.auth.user_id);
     }
   }
 
@@ -46,27 +55,29 @@ class Sidebar extends React.Component {
     let auth = this.props.auth;
     if(auth.isSignedIn) {
       return (
-        <i className={`${styles.user} far fa-user`}></i>
-        // <p>{auth.first_name.charAt(0).toUpperCase}</p>
+        <div className={styles.user}>
+          {auth.username.charAt(0)}
+        </div>
       )
     }
   }
 
+  createEventIcon = event => {
+    return (
+      <div key={event.event_id} onClick={() => this.selectEvent(event)} className={styles.block}>
+        <img aria-describedby="title" src={`/assets${event.icon_path}`} alt="icon"/>
+        <p id="title">
+          <span>
+            {event.title}
+          </span>
+        </p>
+      </div>
+    );
+  }
+
   render() {
-    // if e1.user_id === user id e1 else e2
-    // let eventsAttending = this.props.auth.attending.sort((e1, e2) => e1.user_id === this.props.auth.user_id?  )
-    const eventsAttending = this.props.auth.attending.map(event => {
-      return (
-        <div key={event.event_id} onClick={() => this.selectEvent(event)} className={styles.block}>
-          <img aria-describedby="title" src={`/assets${event.icon_path}`} alt="icon"/>
-          <p id="title">
-            <span>
-              {event.title}
-            </span>
-          </p>
-        </div>
-      )
-    })
+    const eventsHosting = this.props.auth.hosting.map(this.createEventIcon);
+    const eventsAttending = this.props.auth.attending.map(this.createEventIcon);
     return (
       <div id="sidebar" className={styles.sidebar}>
         <div className={styles.home}>
@@ -77,6 +88,9 @@ class Sidebar extends React.Component {
         </div>
         
         {this.renderIcon()}
+        <div className={styles.eventScrollerHosting}>
+          {eventsHosting}
+        </div>
         <div className={styles.eventScroller}>
           {eventsAttending}
         </div>
@@ -92,4 +106,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { openModal, logout, fetchAttendingEvents, selectEvent })(Sidebar);
+export default connect(mapStateToProps, 
+  { 
+    openModal, 
+    logout, 
+    fetchAttendingEvents, 
+    fetchHostedEvents,
+    selectEvent 
+  })(Sidebar);

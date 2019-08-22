@@ -9,7 +9,6 @@
   // // visibility: hidden;
   // // opacity: 0;
   // transition: visibility 0s, opacity 0.25s linear;
-
 }
 
 .cover {
@@ -89,19 +88,19 @@
 }
 
 .user {
-  padding: 1rem;
-  border: 2px solid $primary-white;
-  border-radius: 100%;
+  @extend %default-icon;
   margin-top: 1rem;
-  color: $primary-white;
-  background-color: gray;
 }
 
 .eventScroller {
+  @extend %event-scroller;
+}
+
+.eventScrollerHosting {
   margin-top: 3rem;
-  width: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  @extend %event-scroller;
+  padding-bottom: 5px;
+  border-bottom: .5px solid  rgba(176, 176, 176, 0.694); 
 }
 
 .block {

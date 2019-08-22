@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AttendeeCard from './AttendeeCard/AttendeeCard';
 import Auth from '../Auth/Auth';
+import LeaveEvent from './LeaveEvent/LeaveEvent';
 import GoogleMapReact from 'google-map-react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Marker from './Marker/Marker';
@@ -26,6 +27,11 @@ class EventPage extends React.Component {
     this.props.openModal({ content: <Auth/> })
   }
 
+  openLeaveEvent = e => {
+    e.preventDefault();
+    this.props.openModal({ content: <LeaveEvent event={this.props.event} leaveEvent={this.props.leaveEvent}/> })
+  }
+
   isAttending = (user_id) => {
     for(let user of this.props.event.attendees) {
       if(user.user_id === user_id) return true;
@@ -35,7 +41,7 @@ class EventPage extends React.Component {
 
   joinEvent = () => this.props.joinEvent(this.props.event.event_id);
 
-  leaveEvent = () => this.props.leaveEvent(this.props.event.event_id);
+  leaveEvent = (e) => this.openLeaveEvent(e);
 
   editEvent = () => history.push(`/event/${this.props.event.title}/edit`);
 

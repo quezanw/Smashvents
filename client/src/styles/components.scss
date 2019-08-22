@@ -57,6 +57,25 @@
   font-size: $primary-font-size;
 }
 
+%default-icon {
+  width: 35px;
+  height: 35px;
+  font-family: $primary-font;
+  background-color: teal; 
+  color: white;
+  border: 3px solid rgb(160, 160, 160);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%event-scroller {
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 
 
 @mixin btn-gradient($color1, $color2) {
@@ -73,3 +92,5 @@
     cursor: pointer;
   }
 }
+
+
