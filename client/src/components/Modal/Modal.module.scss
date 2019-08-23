@@ -12,6 +12,9 @@
   background-color: rgba(rgb(57, 57, 57), .8);
   z-index: 3;
   transform: none;
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    background-color: $secondary-white;
+  }
 }
 
 .modal {
@@ -65,7 +68,8 @@
   color: $primary-white;
   position: relative;
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    display: none;
+    margin-top: 1rem;
+    color: darkgray;
   }
 }
 
