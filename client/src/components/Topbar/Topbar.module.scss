@@ -6,6 +6,7 @@
     width: 100%;
     position: fixed;
     background-color: #2b2d42;
+    display: none;
     box-shadow: 3px 3px 2px darken(#2b2d42, 2%);
     @media only screen and (max-width : 900px) {
         display: flex;

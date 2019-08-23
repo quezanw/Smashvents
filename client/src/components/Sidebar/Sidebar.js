@@ -23,16 +23,21 @@ class Sidebar extends React.Component {
   }
 
   selectEvent = event => {
+    this.hideSidebar();
     this.props.selectEvent(event);
     history.push(`/event/${event.title}/details`);
   }
 
   openModal = e => {
+    this.hideSidebar();
     e.preventDefault();
     this.props.openModal({ content: <Auth/> })
   }
 
-  logout = () => this.props.logout();
+  logout = () => { 
+    this.hideSidebar();
+    this.props.logout();
+  }
 
   renderLogin = () => {
     if(this.props.auth.isSignedIn) {
@@ -75,8 +80,16 @@ class Sidebar extends React.Component {
     );
   }
 
+  hideSidebar = () => {
+    if(window.innerWidth < 900) {
+      document.getElementById('sidebar').style.opacity = 0;
+      document.getElementById('sidebar').style.visibility = 'hidden';
+    }
+  }
+
   goHome = e => {
-    history.push('/')
+    this.hideSidebar();
+    history.push('/');
   }
 
   render() {

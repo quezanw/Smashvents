@@ -11,7 +11,7 @@ class LeaveEvent extends React.Component {
     let event = this.props.event;
     return (
         <div className={styles.wrapper}>
-          <div className={styles.header}>Laeve Event</div>
+          <div className={styles.header}>Leave Event</div>
           <div className={styles.content}>
             <h1 className={styles.message}>
               Are you sure you want to leave {event.title}?

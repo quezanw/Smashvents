@@ -139,13 +139,14 @@ class EventForm extends React.Component {
 
   renderBannerImage = ({ input }) => {
     return (
-      <div>
+      <div className={styles.bannerImgWrapper}>
         <label>
           <input
             {...input}
             type="radio" 
             value={input.value}
             checked={this.state.banner === input.value}
+            className={styles.radioImageBtn}
           />
           <img className={styles.bannerImg} src={`/assets${input.value}`} alt="banner"/>
         </label>
@@ -163,7 +164,7 @@ class EventForm extends React.Component {
             value={input.value}
             checked={this.state.event_icon === input.value}
           />
-          <img className={styles.event_icon} src={`/assets${input.value}`} alt="banner"/>
+          <img className={styles.eventIcon} src={`/assets${input.value}`} alt="banner"/>
         </label>
       </div>
     );

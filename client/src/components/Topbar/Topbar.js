@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Topbar.module.scss';
 
 class Topbar extends React.Component {
-  state = { isDisplayed: false }
   toggleSidebar = (e) => {
     e.preventDefault();
     document.getElementById('sidebar').style.visibility = 'visible';
