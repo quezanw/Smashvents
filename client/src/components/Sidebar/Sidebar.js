@@ -75,6 +75,10 @@ class Sidebar extends React.Component {
     );
   }
 
+  goHome = e => {
+    history.push('/')
+  }
+
   render() {
     const eventsHosting = this.props.auth.hosting.map(this.createEventIcon);
     const eventsAttending = this.props.auth.attending.map(this.createEventIcon);
@@ -82,7 +86,7 @@ class Sidebar extends React.Component {
       <div id="sidebar" className={styles.sidebar}>
         <div className={styles.home}>
           <div className={styles.homeContainer}>
-            <i className={`fas fa-home`} onClick={() => history.push('/')}></i>
+            <i className={`fas fa-home`} onClick={this.goHome}></i>
           </div>
           <p>Home</p>
         </div>

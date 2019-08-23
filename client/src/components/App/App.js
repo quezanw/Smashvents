@@ -31,7 +31,10 @@ class App extends React.Component {
   }
 
   handleTouch = e => {
-    if(window.innerWidth < 900 && e.target.id !== 'sidebar') {
+    let target = e.target;
+    let parent = target.offsetParent.id;
+    console.log(target);
+    if(window.innerWidth < 900 && target.id !== 'sidebar' && parent !== 'sidebar') {
       document.getElementById('sidebar').style.opacity = 0;
       document.getElementById('sidebar').style.visibility = 'hidden';
     }
