@@ -33,9 +33,8 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  transition: visibility 0s, opacity 0.25s linear;
+  transition: visibility .25s, opacity 0.25s linear;
   @media only screen and (max-width : 900px) {
-    // display: none;
     visibility: hidden;
     opacity: 0;
   }

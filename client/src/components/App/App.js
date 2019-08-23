@@ -13,8 +13,29 @@ import EventCreate from '../Events/EventCreate/EventCreate';
 import styles from './App.module.scss';
 import '../../styles/main.scss';
 
+/* 
+create state for window size = null
+once app component mounts set state for window size
+if window size is under 900px width hide sidebar and display topbar
+
+if topbar is clicked show sidebar
+add event listener to window for scrolling.
+if window is scrolling change app state of isScrolling to true
+if isScrolling is true and state of window size is under 900px width hide sidebar
+
+*/
 
 class App extends React.Component {
+  componentDidMount() {
+    window.addEventListener('touchend', this.handleTouch);
+  }
+
+  handleTouch = e => {
+    if(window.innerWidth < 900 && e.target.id !== 'sidebar') {
+      document.getElementById('sidebar').style.opacity = 0;
+      document.getElementById('sidebar').style.visibility = 'hidden';
+    }
+  }
 
   renderModals = () => {
     if(this.props.modal.content) {
@@ -26,7 +47,8 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         {this.renderModals()}
-        <Sidebar/>
+        {/* {this.state.showSidbar ? <Sidebar/> : ''} */}
+        <Sidebar ref={this.sidebarRef} />
         <div className={styles.main}>
           <Topbar/>
           <Router history={history}>
