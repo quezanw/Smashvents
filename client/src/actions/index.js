@@ -53,13 +53,6 @@ export const getCoordinates = address => async (dispatch, getState) => {
 }
 
 export const selectEvent = event => async (dispatch, getState) => {
-  // if(!event.online) {
-  //   let geocode = await geocodeByAddress(event.venue);
-  //   let coords = await getLatLng(geocode[0]);
-  //   dispatch({ type: VIEW_EVENT, payload: {...event, coords: coords} });
-  // } else {
-  //   dispatch({ type: VIEW_EVENT, payload: event });
-  // }
   dispatch({ type: VIEW_EVENT, payload: event });
   dispatch(getAttendees(event.event_id));
   dispatch(fetchHost(event.user_id));

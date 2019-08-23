@@ -9,7 +9,7 @@ class AttendeeCard extends React.Component {
     return ( 
       <div className={styles.wrapper}>
         <div className={styles.playerIcon}>
-          {user.username.charAt(0)}
+          <p>{user.username.charAt(0)}</p>
           {/* <i className={`${styles.user} far fa-user`}></i> */}
         </div>
         <div className={styles.playerDetails}>

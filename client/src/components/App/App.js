@@ -36,6 +36,11 @@ class App extends React.Component {
   }
 
   render () {
+    const Page404 = ({ location }) => (
+      <div className={styles.headerError}>
+         <h2>No match found for <code>{location.pathname}</code></h2>
+      </div>
+   );
     return (
       <div className={styles.container}>
         {this.renderModals()}
@@ -48,6 +53,7 @@ class App extends React.Component {
               <Route path="/event/create" exact component={EventCreate}/>
               <Route path="/event/:title/details" exact component={EventPage}/>
               <Route path="/event/:title/edit" exact component={EventEdit}/>
+              <Route component={Page404}/>
             </Switch>
           </Router>
         </div>

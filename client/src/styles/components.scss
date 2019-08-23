@@ -58,6 +58,9 @@
 }
 
 %default-icon {
+  flex-basis: 35px;
+  flex-grow: 0;
+  flex-shrink: 0;
   width: 35px;
   height: 35px;
   font-family: $primary-font;
