@@ -3,7 +3,6 @@
 .item {
   height: 200px;
   width: 200px;
-  // margin-right: 1rem;
   border: 1px solid rgb(205, 205, 205);
   border-radius: $primary-border-radius;
   background-color: $primary-white;
@@ -32,7 +31,6 @@
     background-repeat: no-repeat;
     background-size: contain;
   }
-  // border-radius: 3px 3px 0 0;
 }
 
 .details {

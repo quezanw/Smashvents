@@ -199,6 +199,7 @@ class EventForm extends React.Component {
     const eventIcons = icons.map(val => {
       return (
         <Field
+          key={val}
           name="icon_path"
           type="radio"
           component={this.renderEventIcon}
