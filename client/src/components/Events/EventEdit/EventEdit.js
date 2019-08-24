@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import EventForm from '../EventForm/EventForm';
-import { editEvent, openModal } from '../../../actions/index';
+import { editEvent, openModal, deleteEvent } from '../../../actions/index';
 import CancelEvent from '../CancelEvent/CancelEvent';
+import ConfirmPopup from '../../ConfirmPopup/ConfirmPopup';
 import moment from 'moment';
 
 import styles from './EventEdit.module.scss'
@@ -13,10 +14,19 @@ class EventEdit extends React.Component {
     this.props.editEvent(formValues);
   }
 
-  openCancel = e => {
-    e.preventDefault();
-    this.props.openModal({ content: <CancelEvent event={this.props.event} /> })
+  cancelEvent = () => {
+    this.props.deleteEvent(this.props.event.event_id);
   }
+
+  openCancel = () => {
+    let config = {
+      confirm: this.cancelEvent,
+      header: 'Cancel Event',
+      message: `Are you sure you want to cancel ${this.props.event.title}? This cannot be undone.`
+    }
+    this.props.openModal({ content: <ConfirmPopup config={config} /> })
+  }
+
 
   renderError = () => {
     let error = this.props.error;
@@ -63,4 +73,9 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { editEvent, openModal })(EventEdit)
+export default connect(mapStateToProps, 
+  { 
+    editEvent, 
+    openModal, 
+    deleteEvent
+  })(EventEdit)

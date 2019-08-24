@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AttendeeCard from './AttendeeCard/AttendeeCard';
 import Auth from '../Auth/Auth';
 import LeaveEvent from './LeaveEvent/LeaveEvent';
+import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
 import GoogleMapReact from 'google-map-react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Marker from './Marker/Marker';
@@ -27,9 +28,19 @@ class EventPage extends React.Component {
     this.props.openModal({ content: <Auth/> })
   }
 
-  openLeaveEvent = e => {
-    e.preventDefault();
-    this.props.openModal({ content: <LeaveEvent event={this.props.event} leaveEvent={this.props.leaveEvent}/> })
+  leaveEvent = () => {
+    this.props.leaveEvent(this.props.event.event_id);
+  };
+
+  openLeaveEvent = () => {
+    let config = {
+      confirm: this.leaveEvent,
+      header: 'Leave Event',
+      message: `Are you sure you want to leave ${this.props.event.title}?`
+    }
+    this.props.openModal({ 
+      content: <ConfirmPopup config={config}/> 
+    });
   }
 
   isAttending = (user_id) => {
@@ -41,8 +52,6 @@ class EventPage extends React.Component {
 
   joinEvent = () => this.props.joinEvent(this.props.event.event_id);
 
-  leaveEvent = (e) => this.openLeaveEvent(e);
-
   editEvent = () => history.push(`/event/${this.props.event.title}/edit`);
 
   renderJoinButton = () => {
@@ -50,7 +59,7 @@ class EventPage extends React.Component {
     if(auth.isSignedIn) {
       if(this.isAttending(auth.user_id)) {
         return (
-          <button className={styles.btnLeave} onClick={this.leaveEvent}>
+          <button className={styles.btnLeave} onClick={this.openLeaveEvent}>
             Leave Event
           </button>
         );
