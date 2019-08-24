@@ -157,7 +157,6 @@ router.delete('/delete/:event_id', (req, res, next) => {
     if(error) {
       throw error;
     }
-    res.status(200).json(results.rows);
   })
 });
 

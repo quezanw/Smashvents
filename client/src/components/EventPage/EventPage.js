@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AttendeeCard from './AttendeeCard/AttendeeCard';
 import Auth from '../Auth/Auth';
-import LeaveEvent from './LeaveEvent/LeaveEvent';
 import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
 import GoogleMapReact from 'google-map-react';
 import ClipLoader from 'react-spinners/ClipLoader';

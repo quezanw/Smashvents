@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import EventForm from '../EventForm/EventForm';
 import { editEvent, openModal, deleteEvent } from '../../../actions/index';
-import CancelEvent from '../CancelEvent/CancelEvent';
 import ConfirmPopup from '../../ConfirmPopup/ConfirmPopup';
 import moment from 'moment';
 
