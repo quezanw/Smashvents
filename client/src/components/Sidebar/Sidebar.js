@@ -9,7 +9,6 @@ import {
   fetchAttendingEvents, 
   fetchHostedEvents,
   selectEvent
-
 } 
 from '../../actions/index';
 
@@ -28,9 +27,13 @@ class Sidebar extends React.Component {
     history.push(`/event/${event.title}/details`);
   }
 
-  openModal = e => {
+  openProfileSettings = () => {
     this.hideSidebar();
-    e.preventDefault();
+    history.push('/profile/settings')
+  }
+
+  openModal = () => {
+    this.hideSidebar();
     this.props.openModal({ content: <Auth/> })
   }
 
@@ -60,8 +63,11 @@ class Sidebar extends React.Component {
     let auth = this.props.auth;
     if(auth.isSignedIn) {
       return (
-        <div className={styles.user}>
-          {auth.username.charAt(0)}
+        <div onClick={this.openProfileSettings} className={styles.user}>
+          <div className={styles.userIcon}>{auth.username.charAt(0)}</div>
+          <p>
+            <span>Profile Settings</span>
+          </p>
         </div>
       )
     }

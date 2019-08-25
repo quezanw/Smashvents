@@ -10,6 +10,7 @@ import Modal from '../Modal/Modal';
 import EventPage from '../EventPage/EventPage';
 import EventEdit from '../Events/EventEdit/EventEdit';
 import EventCreate from '../Events/EventCreate/EventCreate';
+import ProfileSettings from '../ProfileSettings/ProfileSettings';
 import styles from './App.module.scss';
 import '../../styles/main.scss';
 
@@ -53,6 +54,7 @@ class App extends React.Component {
               <Route path="/event/create" exact component={EventCreate}/>
               <Route path="/event/:title/details" exact component={EventPage}/>
               <Route path="/event/:title/edit" exact component={EventEdit}/>
+              <Route path="/profile/settings" exact component={ProfileSettings}/>
               <Route component={Page404}/>
             </Switch>
           </Router>

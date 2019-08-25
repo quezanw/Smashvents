@@ -2,15 +2,6 @@
 @import '../../styles/layout.scss';
 @import '../../styles/components.scss';
 
-.sidebarContainer {
-  height: 100%;
-  width: $sidebar-width;
-  position: fixed;
-  // // visibility: hidden;
-  // // opacity: 0;
-  // transition: visibility 0s, opacity 0.25s linear;
-}
-
 .cover {
   position: fixed;
   top: 0;
@@ -87,8 +78,15 @@
 }
 
 .user {
-  @extend %default-icon;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
   margin-top: 1rem;
+  @extend %hover-text;  
+}
+
+.userIcon {
+  @extend %default-icon;
 }
 
 .eventScroller {
