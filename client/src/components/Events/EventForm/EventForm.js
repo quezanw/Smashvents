@@ -275,7 +275,6 @@ class EventForm extends React.Component {
                 component={this.renderTime}
               />
             </div>
-
           </div>
           {this.renderImagesContainer(bannerImages)}
           {this.renderImagesContainer(eventIcons)}

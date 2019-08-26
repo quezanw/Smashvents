@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/components.scss';
+@import '../../../styles/layout.scss';
+
+.formWrapper {
+    @extend %container-card;
+    margin: 4rem 0;
+    width: 80%;
+}
+
+.form {
+    @extend %form-flex;
+}
