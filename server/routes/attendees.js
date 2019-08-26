@@ -24,7 +24,7 @@ router.get('/all', (req, res, next) => {
 router.get('/event/:id', (req, res, next) => {
   let event_id = req.params.id;
   console.log(event_id)
-  let query = `SELECT users.user_id, users.username, users.first_name, users.last_name 
+  let query = `SELECT users.user_id, users.username, users.first_name, users.last_name, users.theme_color 
                FROM attendees
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id

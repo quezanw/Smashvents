@@ -15,6 +15,7 @@ import {
 const INITIAL_STATE = {
 	user_id: null,
 	username: null,
+	theme_color: null,
 	isSigninPending: false,
 	isSignedIn: false,
 	isSignedOut: true,
@@ -38,6 +39,7 @@ export default (state = INITIAL_STATE, action) => {
 				...state,
 				user_id: null,
 				username: null,
+				theme_color: null,
 				isSigninPending: true,
 				isSignedIn: false,
 				isSignedOut: true
@@ -47,6 +49,7 @@ export default (state = INITIAL_STATE, action) => {
 				...state, 
 				user_id: action.payload.user_id,
 				username: action.payload.username,
+				theme_color: action.payload.theme_color,
 				isSigninPending: false,
 				isSignedIn: true, 
 				isSignedOut: false, 
@@ -57,6 +60,7 @@ export default (state = INITIAL_STATE, action) => {
 				...state,
 				user_id: null,
 				username: null,
+				theme_color: null,
 				isSigninPending: false,
 				isSignedIn: false, 
 				isSignedOut: true, 

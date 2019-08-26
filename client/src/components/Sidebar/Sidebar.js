@@ -64,7 +64,7 @@ class Sidebar extends React.Component {
     if(auth.isSignedIn) {
       return (
         <div onClick={this.openProfileSettings} className={styles.user}>
-          <div className={styles.userIcon}>{auth.username.charAt(0)}</div>
+          <div style={{backgroundColor: auth.theme_color}} className={styles.userIcon}>{auth.username.charAt(0)}</div>
           <p>
             <span>Profile Settings</span>
           </p>

@@ -28,6 +28,7 @@ CREATE TABLE users (
   last_name    VARCHAR(254) NOT NULL,
   email        VARCHAR(254) NOT NULL,
   password     VARCHAR(254) NOT NULL,
+  theme_color  VARCHAR(254) NOT NULL,
   created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
   updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()
 );
@@ -39,104 +40,126 @@ CREATE TABLE attendees (
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'Salem',
   'Akeil',
   'Young',
   'test@account1.com',
-  'password123'
+  'password123',
+  '#7185AD'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'Mkleo',
   'Leonardo',
   'Perez',
   'test@account2.com',
-  'password123'
+  'password123',
+  '#AAADC7'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'Samsora',
   'Ezra',
   'Morris',
   'test@account3.com',
-  'password123'
+  'password123',
+  '#D8753B'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'Bassmage',
   'Troy',
   'Waters',
   'test@account4.com',
-  'password123'
+  'password123',
+  '#F19A49'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'ESAM',
   'Eric',
   'Lew',
   'test@account5.com',
-  'password123'
+  'password123',
+  '#38A089'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'Zero',
   'Gonzalo',
   'Barrios',
   'test@account6.com',
-  'password123'
+  'password123',
+  '#6ABBAA'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'leffen',
   'William',
   'Hjelte',
   'test@account7.com',
-  'password123'
+  'password123',
+  '#FF7480'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'Zackray',
   'Sota',
   'Okada',
   'test@account8.com',
-  'password123'
+  'password123',
+  '#FF9DA6'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'CrossXG',
   'Best',
   'Puff',
   'test@account9.com',
-  'password123'
+  'password123',
+  '#69A6C3'
 );
 
 INSERT INTO users
-(username, first_name, last_name, email, password)
+(username, first_name, last_name, email, password, theme_color)
 VALUES (
   'Tweek',
   'Gavin',
   'Dempsey',
   'test@account10.com',
-  'password123'
+  'password123',
+  '#795D50'
 );
+
+INSERT INTO users
+(username, first_name, last_name, email, password, theme_color)
+VALUES (
+  'Wizzrobe',
+  'Justin',
+  'Hallet',
+  'test@account10.com',
+  'password123',
+  '#2A2A2A'
+);
+
 
 INSERT INTO events 
 (user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
@@ -308,6 +331,7 @@ INSERT INTO attendees (user_id, event_id) VALUES (5,1);
 INSERT INTO attendees (user_id, event_id) VALUES (6,1);
 INSERT INTO attendees (user_id, event_id) VALUES (7,1);
 INSERT INTO attendees (user_id, event_id) VALUES (8,1);
+INSERT INTO attendees (user_id, event_id) VALUES (9,1);
 
 INSERT INTO attendees (user_id, event_id) VALUES (9,2);
 INSERT INTO attendees (user_id, event_id) VALUES (2,2);
@@ -335,6 +359,7 @@ INSERT INTO attendees (user_id, event_id) VALUES (5,4);
 INSERT INTO attendees (user_id, event_id) VALUES (6,4);
 INSERT INTO attendees (user_id, event_id) VALUES (7,4);
 INSERT INTO attendees (user_id, event_id) VALUES (8,4);
+INSERT INTO attendees (user_id, event_id) VALUES (9,4);
 
 INSERT INTO attendees (user_id, event_id) VALUES (1,5);
 INSERT INTO attendees (user_id, event_id) VALUES (2,5);
@@ -362,6 +387,7 @@ INSERT INTO attendees (user_id, event_id) VALUES (5,7);
 INSERT INTO attendees (user_id, event_id) VALUES (6,7);
 INSERT INTO attendees (user_id, event_id) VALUES (7,7);
 INSERT INTO attendees (user_id, event_id) VALUES (8,7);
+INSERT INTO attendees (user_id, event_id) VALUES (9,7);
 
 INSERT INTO attendees (user_id, event_id) VALUES (1,8);
 INSERT INTO attendees (user_id, event_id) VALUES (2,8);
