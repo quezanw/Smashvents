@@ -109,6 +109,8 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
+// user can change user name, theme color and password
+// old password must match, before changing to new password
 router.put('/edit', function(req, res, next) {
   // let { username, }
 });

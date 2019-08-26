@@ -8,7 +8,10 @@ import {
 	REGISTRATION_ERROR,
 	CLEAR_LOGIN_REG,
 	FETCH_ATTENDING_EVENTS,
-	FETCH_HOSTED_EVENTS
+	FETCH_HOSTED_EVENTS,
+	PROFILE_SETTINGS_SUCCESS,
+	PROFILE_SETTINGS_PENDING,
+	PROFILE_SETTINGS_ERROR
 } from '../actions/types';
 
 
@@ -23,6 +26,9 @@ const INITIAL_STATE = {
 	registrationPending: false,
 	registrationSuccess: false,
 	registrationError: null,
+	profileSettingsSuccess: false,
+	profileSettingsPending: false,
+	profileSettingsError: null,
 	attending: [],
 	hosting: []
 }
@@ -94,6 +100,27 @@ export default (state = INITIAL_STATE, action) => {
 				loginError: null,
 				registrationError: null,
 				registrationSuccess: false
+			}
+		case PROFILE_SETTINGS_SUCCESS:
+			return {
+				...state,
+				profileSettingsSuccess: true,
+				profileSettingsPending: false,
+				profileSettingsError: null,
+			}
+		case PROFILE_SETTINGS_PENDING:
+			return {
+				...state,
+				profileSettingsSuccess: false,
+				profileSettingsPending: false,
+				profileSettingsError: null,
+			}
+		case PROFILE_SETTINGS_ERROR: 
+			return {
+				...state,
+				profileSettingsSuccess: false,
+				profileSettingsPending: false,
+				profileSettingsError: action.payload,
 			}
 		case FETCH_ATTENDING_EVENTS:
 			return {

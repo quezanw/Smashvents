@@ -28,7 +28,10 @@ import {
   CREATE_EVENT,
   EDIT_EVENT,
   FETCH_ALL_EVENTS,
-  EVENT_ERROR
+  EVENT_ERROR,
+  PROFILE_SETTINGS_SUCCESS,
+  PROFILE_SETTINGS_PENDING,
+  PROFILE_SETTINGS_ERROR
 }
 from './types';
 
@@ -111,6 +114,19 @@ export const login = formValues => async (dispatch, getState) => {
     dispatch(fetchHostedEvents(response.data.user_id));
   } else {
     dispatch({type: LOGIN_ERROR, payload: response.data.error});
+  }
+}
+
+export const editProfileSettings = formValues => async (dispatch, getState) => {
+  const { user_id } = getState().auth;
+  dispatch({ type: PROFILE_SETTINGS_PENDING });
+  const response = await auth.put('/edit', {...formValues, user_id});
+  if(!response.data.error) {
+    dispatch({ type: PROFILE_SETTINGS_SUCCESS, payload: response.data });
+    dispatch(reset('profileForm'));
+    history.push('/');
+  } else {
+    dispatch({ type: PROFILE_SETTINGS_ERROR, payload: response.data.error });
   }
 }
 
