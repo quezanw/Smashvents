@@ -117,6 +117,20 @@ router.put('/edit', function(req, res, next) {
   let { username, password, theme_color } = req.body;
 });
 
+router.put('/edit/theme_color', function(req, res, next) {
+  let { user_id, theme_color } = req.body;
+  let query = `UPDATE users
+               SET theme_color='${theme_color}' 
+               WHERE user_id='${user_id}' 
+               RETURNING theme_color`;
+  pool.query(query, (err, result) => {
+    if(err) {
+      throw err;
+    }
+    return res.status(200).json({...result});
+  })
+});
+
 router.get('/delete', function(req, res, next) {
   res.send('respond with a resource');
 });

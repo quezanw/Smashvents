@@ -4,8 +4,20 @@ import ProfileForm from './ProfileForm/ProfileForm';
 import ThemeForm from './ThemeForm/ThemeForm';
 import Auth from '../Auth/Auth';
 import { connect } from 'react-redux';
+import { editThemeColor } from '../../actions/index';
 
 class ProfileSettings extends React.Component {
+
+  submitThemeColor = formValues => {
+    this.props.editThemeColor(formValues)
+  }
+
+  submitProfileEdit = formValues => {
+
+  }
+
+
+
   render() {
     if(this.props.auth.isSignedIn) {
       let {username, first_name, last_name, theme_color} = this.props.auth;
@@ -26,7 +38,7 @@ class ProfileSettings extends React.Component {
             </div>
             <ProfileForm/>
           </div>
-          <ThemeForm theme_color={theme_color}/>
+          <ThemeForm onSubmit={this.submitThemeColor} theme_color={theme_color}/>
         </div>
       );
     }
@@ -48,4 +60,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ProfileSettings);
+export default connect(mapStateToProps,{ editThemeColor })(ProfileSettings);

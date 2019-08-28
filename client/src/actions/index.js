@@ -130,6 +130,20 @@ export const editProfileSettings = formValues => async (dispatch, getState) => {
   }
 }
 
+export const editThemeColor = formValues => async (dispatch, getState) => {
+  const { user_id } = getState().auth;
+  dispatch({ type: PROFILE_SETTINGS_PENDING });
+  const response = await auth.put('/edit/theme_color', {...formValues, user_id});
+  if(!response.data.error) {
+    dispatch({ type: PROFILE_SETTINGS_SUCCESS, payload: response.data.rows[0] });
+    dispatch(reset('themeForm'));
+    history.push('/profile/settings');
+  } else {
+    dispatch({ type: PROFILE_SETTINGS_ERROR, payload: response.data.error });
+  }
+  console.log(response);
+}
+
 export const createEvent = formValues => async (dispatch, getState) => {
   const { user_id } = getState().auth;
   const response = await events.post('/new', {...formValues, user_id});

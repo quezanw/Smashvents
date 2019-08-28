@@ -22,7 +22,7 @@ class ProfileForm extends React.Component {
   render() {
     return (
       <div className={styles.formWrapper}>
-        <form className={styles.form} >
+        <form className={styles.form} onSubmit={this.props.submitProfileEdit}>
           <Field
             name="username"
             label="Username"
@@ -30,7 +30,7 @@ class ProfileForm extends React.Component {
             component={this.renderInput}
             validate={[this.required]}
           />
-          <button className={styles.saveBtn}>Save</button>
+          <button className={styles.saveBtn} type="submit">Save</button>
         </form>
       </div>
     );

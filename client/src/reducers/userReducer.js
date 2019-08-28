@@ -112,6 +112,7 @@ export default (state = INITIAL_STATE, action) => {
 		case PROFILE_SETTINGS_SUCCESS:
 			return {
 				...state,
+				...action.payload,
 				profileSettingsSuccess: true,
 				profileSettingsPending: false,
 				profileSettingsError: null,

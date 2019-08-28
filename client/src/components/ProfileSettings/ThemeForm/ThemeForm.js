@@ -28,6 +28,10 @@ class ThemeForm extends React.Component {
     );
   }
 
+  onSubmit = formValues => {
+    this.props.onSubmit(formValues);
+  }
+
   render() {
     const colors = ['#7185AD', '#AAADC7', '#D8753B', 
                     '#F19A49', '#38A089', '#6ABBAA', 
@@ -48,12 +52,12 @@ class ThemeForm extends React.Component {
     return (
       <div className={styles.formWrapper}>
         <h1>Theme Color</h1>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <h3>Choose a theme color for your profile icon!</h3>
           <div className={styles.themeColorWrapper}>
             {themeColors}
           </div>
-          <button className={styles.saveBtn}>Save</button>
+          <button className={styles.saveBtn} type="submit">Save</button>
         </form>
       </div>
     );
