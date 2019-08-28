@@ -16,3 +16,28 @@
 .form {
     @extend %form-flex;
 }
+
+.row {
+    display: flex;
+    flex-flow: column;
+
+    label {
+        font-size: 10pt;
+        font-weight: bold;
+        font-family: $primary-font;
+        margin-bottom: .5rem;
+    }
+}
+
+.saveBtn {
+    @include btn-gradient(#26aafc, #2196db);
+    border: none;
+    width: 70px;
+    margin-top: 1rem;
+}
+
+.error {
+    @extend %font-base;
+    margin-top: .25rem;
+    color: $primary-red;
+  }

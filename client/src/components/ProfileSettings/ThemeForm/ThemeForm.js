@@ -53,7 +53,7 @@ class ThemeForm extends React.Component {
           <div className={styles.themeColorWrapper}>
             {themeColors}
           </div>
-          <button className={styles.saveBtn}>save</button>
+          <button className={styles.saveBtn}>Save</button>
         </form>
       </div>
     );

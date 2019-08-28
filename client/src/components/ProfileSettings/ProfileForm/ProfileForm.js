@@ -17,6 +17,8 @@ class ProfileForm extends React.Component {
     );
   };
 
+  required = value => value ? undefined : 'Required';
+
   render() {
     return (
       <div className={styles.formWrapper}>
@@ -26,8 +28,9 @@ class ProfileForm extends React.Component {
             label="Username"
             type="text"
             component={this.renderInput}
+            validate={[this.required]}
           />
-          <button>Save</button>
+          <button className={styles.saveBtn}>Save</button>
         </form>
       </div>
     );
