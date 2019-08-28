@@ -147,7 +147,6 @@ export const createEvent = formValues => async (dispatch, getState) => {
   const { user_id } = getState().auth;
   const response = await events.post('/new', {...formValues, user_id});
   if(!response.data.error) {
-    console.log(response.data)
     dispatch({ type: CREATE_EVENT, payload: response.data });
     dispatch(reset('eventForm'));
     dispatch(selectEvent(response.data.event));

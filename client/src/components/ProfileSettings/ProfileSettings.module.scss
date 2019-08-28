@@ -28,19 +28,20 @@
   justify-content: space-between;
   margin-bottom: 2rem;
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    flex-flow: column;
+
   }
 }
 
 .userCard {
   @extend %container-card;
   width: 30%;
-  min-width: 210px;
+  min-width: 240px;
   padding: 2rem;
   display: flex;
   align-items: center;
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     width: 100%;
+    margin-bottom: 1rem;
   }
 }
 
