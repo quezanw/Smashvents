@@ -120,11 +120,11 @@ export const login = formValues => async (dispatch, getState) => {
 export const editProfileSettings = formValues => async (dispatch, getState) => {
   const { user_id } = getState().auth;
   dispatch({ type: PROFILE_SETTINGS_PENDING });
-  const response = await auth.put('/edit', {...formValues, user_id});
+  const response = await auth.put('/edit/profile', {...formValues, user_id});
   if(!response.data.error) {
-    dispatch({ type: PROFILE_SETTINGS_SUCCESS, payload: response.data });
+    dispatch({ type: PROFILE_SETTINGS_SUCCESS, payload: response.data.rows[0] });
     dispatch(reset('profileForm'));
-    history.push('/');
+    history.push('/profile/settings');
   } else {
     dispatch({ type: PROFILE_SETTINGS_ERROR, payload: response.data.error });
   }
@@ -141,7 +141,6 @@ export const editThemeColor = formValues => async (dispatch, getState) => {
   } else {
     dispatch({ type: PROFILE_SETTINGS_ERROR, payload: response.data.error });
   }
-  console.log(response);
 }
 
 export const createEvent = formValues => async (dispatch, getState) => {

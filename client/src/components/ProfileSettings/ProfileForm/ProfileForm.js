@@ -19,10 +19,12 @@ class ProfileForm extends React.Component {
 
   required = value => value ? undefined : 'Required';
 
+  onSubmit = formValues => this.props.onSubmit(formValues);
+
   render() {
     return (
       <div className={styles.formWrapper}>
-        <form className={styles.form} onSubmit={this.props.submitProfileEdit}>
+        <form className={styles.form} onSubmit={this.props.handleSubmit(this.onSubmit)} >
           <Field
             name="username"
             label="Username"

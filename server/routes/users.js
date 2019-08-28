@@ -32,7 +32,7 @@ router.post('/register', async (req, res, next) => {
     return res.json({error: 'FIRST NAME CANNOT BE BLANK'});
   } else if(last_name === undefined) {
     return res.json({error: 'LAST NAME CANNOT BE BLANK'});
-   }else if(email === undefined) {
+  } else if(email === undefined) {
     return res.json({error: 'EMAIL CANNOT BE BLANK'});
   } else if(!EMAIL_REGEX.test(email.trim())) {
     return res.json({error: 'INVALID EMAIL'});
@@ -111,12 +111,6 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
-// user can change user name, theme color and password
-// old password must match, before changing to new password
-router.put('/edit', function(req, res, next) {
-  let { username, password, theme_color } = req.body;
-});
-
 router.put('/edit/theme_color', function(req, res, next) {
   let { user_id, theme_color } = req.body;
   let query = `UPDATE users
@@ -129,6 +123,29 @@ router.put('/edit/theme_color', function(req, res, next) {
     }
     return res.status(200).json({...result});
   })
+});
+
+router.put('/edit/profile', async (req, res, next) => {
+  let { user_id, username } = req.body;
+  if(username === undefined) {
+    return res.json({error: 'USERNAME CANNOT BE BLANK'});
+  }
+  let usernameQuery = `SELECT username FROM users WHERE username='${username}' LIMIT 1`;
+  let usernameResponse = await checkIfExists('username', usernameQuery);
+  if (usernameResponse.exist) {
+    return res.json({error: usernameResponse.message});
+  } else {
+    let query = `UPDATE users
+                SET username='${username}' 
+                WHERE user_id='${user_id}' 
+                RETURNING username`;
+    pool.query(query, (err, result) => {
+      if(err) {
+        throw err;
+      }
+      return res.status(200).json({...result});
+    })
+  }
 });
 
 router.get('/delete', function(req, res, next) {

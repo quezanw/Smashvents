@@ -4,21 +4,16 @@ import ProfileForm from './ProfileForm/ProfileForm';
 import ThemeForm from './ThemeForm/ThemeForm';
 import Auth from '../Auth/Auth';
 import { connect } from 'react-redux';
-import { editThemeColor } from '../../actions/index';
+import { editThemeColor, editProfileSettings } from '../../actions/index';
 
 class ProfileSettings extends React.Component {
 
-  submitThemeColor = formValues => {
-    this.props.editThemeColor(formValues)
-  }
+  submitThemeColor = formValues => this.props.editThemeColor(formValues);
 
-  submitProfileEdit = formValues => {
-
-  }
-
-
-
+  submitProfileEdit = formValues => this.props.editProfileSettings(formValues);
+  
   render() {
+    let initialValues = { username: this.props.auth.username };
     if(this.props.auth.isSignedIn) {
       let {username, first_name, last_name, theme_color} = this.props.auth;
       return ( 
@@ -36,7 +31,7 @@ class ProfileSettings extends React.Component {
                 <p className={styles.fullname}>{first_name} {last_name}</p>
               </div>
             </div>
-            <ProfileForm/>
+            <ProfileForm onSubmit={this.submitProfileEdit} initialValues={initialValues}/>
           </div>
           <ThemeForm onSubmit={this.submitThemeColor} theme_color={theme_color}/>
         </div>
@@ -60,4 +55,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps,{ editThemeColor })(ProfileSettings);
+export default connect(mapStateToProps,{ editThemeColor, editProfileSettings })(ProfileSettings);

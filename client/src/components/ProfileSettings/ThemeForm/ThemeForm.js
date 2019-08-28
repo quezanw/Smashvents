@@ -28,9 +28,7 @@ class ThemeForm extends React.Component {
     );
   }
 
-  onSubmit = formValues => {
-    this.props.onSubmit(formValues);
-  }
+  onSubmit = formValues => this.props.onSubmit(formValues);
 
   render() {
     const colors = ['#7185AD', '#AAADC7', '#D8753B', 
