@@ -17,6 +17,8 @@ import {
 
 const INITIAL_STATE = {
 	user_id: null,
+	first_name: null,
+	last_name: null,
 	username: null,
 	theme_color: null,
 	isSigninPending: false,
@@ -44,6 +46,8 @@ export default (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				user_id: null,
+				first_name: null,
+				last_name: null,
 				username: null,
 				theme_color: null,
 				isSigninPending: true,
@@ -54,6 +58,8 @@ export default (state = INITIAL_STATE, action) => {
 			return {
 				...state, 
 				user_id: action.payload.user_id,
+				first_name: action.payload.first_name,
+				last_name: action.payload.last_name,
 				username: action.payload.username,
 				theme_color: action.payload.theme_color,
 				isSigninPending: false,
@@ -65,6 +71,8 @@ export default (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				user_id: null,
+				first_name: null,
+				last_name: null,
 				username: null,
 				theme_color: null,
 				isSigninPending: false,

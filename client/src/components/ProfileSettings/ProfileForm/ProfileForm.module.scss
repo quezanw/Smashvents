@@ -4,8 +4,13 @@
 
 .formWrapper {
     @extend %container-card;
-    margin: 4rem 0;
-    width: 80%;
+    // margin: 4rem 0;
+    width: 50%;
+    min-width: 240px;
+    padding: 2rem;
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 100%;
+    }
 }
 
 .form {

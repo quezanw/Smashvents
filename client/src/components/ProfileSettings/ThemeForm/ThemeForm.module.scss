@@ -1,0 +1,62 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/components.scss';
+@import '../../../styles/layout.scss';
+
+.formWrapper {
+    width: 80%;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-flow: column;
+    h1 {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+}
+
+.form {
+    @extend %container-card;
+    padding: 2rem;
+    display: flex;
+    flex-flow: column;
+    h3 {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: .9rem;
+        color: rgba(#3a3a3aee, 0.7)
+    }
+}
+
+.iconWrapper {
+    margin-right: .5rem;
+}
+
+
+.themeColorIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    
+}
+
+.themeColorWrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.radioBtn {
+    position: relative;
+    top: 20px;
+    left: 30px;
+    margin-left: -25px;
+    // @media only screen and (min-width : 320px) and (max-width: 480px) {
+    //     top: -20px;
+    // }
+}
+
+.saveBtn {
+    @include btn-gradient(#26aafc, #2196db);
+    border: none;
+    width: 70px;
+    margin-top: 1rem;
+}
