@@ -109,7 +109,7 @@ export const login = formValues => async (dispatch, getState) => {
   if(!response.data.error) {
     dispatch({ type: LOGIN_SUCCESS, payload: response.data});
     dispatch(reset('loginForm'));
-    dispatch({ type: CLOSE_MODAL });
+    dispatch(closeModal());
     dispatch(fetchAttendingEvents(response.data.user_id));
     dispatch(fetchHostedEvents(response.data.user_id));
   } else {
@@ -150,6 +150,7 @@ export const createEvent = formValues => async (dispatch, getState) => {
     dispatch({ type: CREATE_EVENT, payload: response.data });
     dispatch(reset('eventForm'));
     dispatch(selectEvent(response.data.event));
+    dispatch(fetchHostedEvents(user_id));
     history.push(`/event/${response.data.event.title}/details`);
   } else {
     dispatch({ type: EVENT_ERROR, payload: response.data.error});
@@ -180,7 +181,7 @@ export const deleteEvent = event_id => async (dispatch, getState) => {
   let { user_id } = getState().auth; 
   const eventResponse = await events.delete(`/delete/${event_id}`);
   const attendeeResponse = await attendees.delete(`/event/delete/${event_id}`);
-  dispatch({ type: CLOSE_MODAL });
+  dispatch(closeModal());
   dispatch(fetchAttendingEvents(user_id));
   dispatch(fetchHostedEvents(user_id));
   console.log(eventResponse, attendeeResponse);
@@ -206,7 +207,7 @@ export const leaveEvent = (event_id) => async (dispatch, getState) => {
   const { user_id } = getState().auth;
   const response = await attendees.delete(`/leave/${user_id}/${event_id}`); 
   console.log(response)
-  dispatch({ type: CLOSE_MODAL });
+  dispatch(closeModal());
   dispatch(getAttendees(event_id));
   dispatch(fetchAttendingEvents(user_id));
   dispatch(fetchHostedEvents(user_id));

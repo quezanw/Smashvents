@@ -28,6 +28,7 @@ router.get('/', (req, res, next) => {
   })
 });
 
+// GET username
 router.get('/host/:user_id', (req,res,next) => {
   let { user_id } = req.params;
   let query = `SELECT username FROM users WHERE user_id=${user_id}`;
@@ -39,6 +40,7 @@ router.get('/host/:user_id', (req,res,next) => {
   })
 });
 
+// GET all events a user is hosting
 router.get('/hosting/:user_id', (req, res, next) => {
   let { user_id } = req.params;
   let query = `SELECT * FROM events WHERE user_id=${user_id}`;
@@ -50,6 +52,7 @@ router.get('/hosting/:user_id', (req, res, next) => {
   })
 });
 
+// GET all events a user is attending
 router.get('/attending/:user_id', (req, res, next) => {
   let { user_id } = req.params;
   let query = `SELECT events.* FROM events
@@ -75,7 +78,6 @@ router.get('/all', function(req, res, next) {
 
 // Create new event
 router.post('/new', (req, res, next) => {
-  console.log(req.body);
   let {user_id, title, description, ruleset, venue, 
        online, start_date, start_time, end_time,
        banner_path, icon_path
@@ -157,6 +159,7 @@ router.delete('/delete/:event_id', (req, res, next) => {
     if(error) {
       throw error;
     }
+    res.status(200).json(results);
   })
 });
 
