@@ -229,7 +229,7 @@ class EventForm extends React.Component {
             name="ruleset" 
             type="text" 
             label="Ruleset" 
-            component={this.renderInput}
+            component={this.renderTextarea}
           />
           <div className={styles.radioWrapper}>
             <p className={styles.label}>Online / Offline</p>
