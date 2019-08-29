@@ -5,6 +5,7 @@ import Auth from '../Auth/Auth';
 import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
 import GoogleMapReact from 'google-map-react';
 import ClipLoader from 'react-spinners/ClipLoader';
+import BeatLoader from 'react-spinners/BeatLoader';
 import Marker from './Marker/Marker';
 import moment from 'moment';
 import history from '../../history';
@@ -139,68 +140,82 @@ class EventPage extends React.Component {
     let event = this.props.event
     let start = moment(event.start_time, 'hh:mm:ss').format('h:mm A')
     let end = moment(event.end_time, 'hh:mm:ss').format('h:mm A')
-    const renderAttendees = event.attendees.map(user => <AttendeeCard key={user.username} user={user} />)
-    return (
-      <div className={styles.wrapper}>
-        <div className={styles.banner}>
-          <img src={`/assets${event.banner_path}`} alt="banner"/>
-        </div>
-        <div className={styles.headerWrapper}>
-          <div className={styles.header}>
-            <h1>{event.title}</h1>
-            <div className={styles.details}>
-              <div className={styles.row}>
-                <div className={styles.col}>
-                  <i className={`${styles.detailIcon} fas fa-clock`}></i>
-                  <p>{start} - {end}</p>
+    const renderAttendees = event.attendees.map(user => <AttendeeCard key={user.username} user={user}/>)
+    if(event.host) { 
+      return (
+        <div className={styles.wrapper}>
+          <div className={styles.banner}>
+            <img src={`/assets${event.banner_path}`} alt="banner"/>
+          </div>
+          <div className={styles.headerWrapper}>
+            <div className={styles.header}>
+              <h1>{event.title}</h1>
+              <div className={styles.details}>
+                <div className={styles.row}>
+                  <div className={styles.col}>
+                    <i className={`${styles.detailIcon} fas fa-clock`}></i>
+                    <p>{start} - {end}</p>
+                  </div>
+                  <div className={styles.col}>
+                    <i className={`${styles.detailIcon} fas fa-user`}></i>
+                    <p>{event.attendees.length} Attendees</p>
+                  </div>
                 </div>
-                <div className={styles.col}>
-                  <i className={`${styles.detailIcon} fas fa-user`}></i>
-                  <p>{event.attendees.length} Attendees</p>
-                </div>
-              </div>
-              <div className={styles.row}>
-                <div className={styles.col}>
-                  <i className={`${styles.detailIcon} fas fa-calendar-alt`}></i>
-                  <p>{moment(event.start_date).format('MMM Do YYYY')}</p>
-                </div>
-                <div className={styles.col}>
-                  <i className={`${styles.detailIcon} fas fa-map-marker-alt`}></i>
-                  <p>{event.online ? 'Online' : event.venue}</p>
-                </div>
-                <div className={styles.col}>
-                  <i className={`${styles.detailIcon} fas fa-user-tag`}></i>
-                  <p>{event.host ? event.host.username : '...loading'}</p>
+                <div className={styles.row}>
+                  <div className={styles.col}>
+                    <i className={`${styles.detailIcon} fas fa-calendar-alt`}></i>
+                    <p>{moment(event.start_date).format('MMM Do YYYY')}</p>
+                  </div>
+                  <div className={styles.col}>
+                    <i className={`${styles.detailIcon} fas fa-map-marker-alt`}></i>
+                    <p>{event.online ? 'Online' : event.venue}</p>
+                  </div>
+                  <div className={styles.col}>
+                    <i className={`${styles.detailIcon} fas fa-user-tag`}></i>
+                    <p>{event.host ? event.host.username : '...loading'}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className={styles.btnContainer}>
-            {this.renderJoinButton()}
-            {this.renderAdminButton()}
-          </div>
-        </div>
-        <div className={styles.body}>
-          <div className={styles.descriptionContainer}>
-            <p>
-              {this.renderDescription(event.description)}
-            </p>
-          </div>
-          <div className={styles.descriptionContainer}>
-            <p>
-              {this.renderDescription(event.ruleset)}
-            </p>
-          </div>
-          <div className={styles.outerContainer}>
-            <h1>Attendees</h1>
-            <div className={styles.attendees}>
-              {renderAttendees}
+            <div className={styles.btnContainer}>
+              {this.renderJoinButton()}
+              {this.renderAdminButton()}
             </div>
           </div>
-          {this.renderLocation()}
+          <div className={styles.body}>
+            <div className={styles.descriptionContainer}>
+              <p>
+                {this.renderDescription(event.description)}
+              </p>
+            </div>
+            <div className={styles.descriptionContainer}>
+              <p>
+                {this.renderDescription(event.ruleset)}
+              </p>
+            </div>
+            <div className={styles.outerContainer}>
+              <h1>Attendees</h1>
+              <div className={styles.attendees}>
+                {renderAttendees}
+              </div>
+            </div>
+            {this.renderLocation()}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className={styles.loaderWrapper}>
+          <BeatLoader
+          // css={override}
+          sizeUnit={"px"}
+          size={75}
+          color={'#36D7B7'}
+          loading={true}
+        />
+        </div>
+      );
+    }
   }
 }
 
