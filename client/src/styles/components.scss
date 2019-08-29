@@ -84,7 +84,7 @@
   @extend %font-base;
   padding: .5rem 1rem;
   background: linear-gradient(180deg, $color1, $color2);
-  // background: linear-gradient(180deg, #26aafc, #2196db);
+  border: none;
   border-radius: $primary-border-radius;
   color: $primary-white;
   text-decoration: none;

@@ -10,7 +10,6 @@ class AttendeeCard extends React.Component {
       <div className={styles.wrapper}>
         <div style={{backgroundColor: user.theme_color}}className={styles.playerIcon}>
           <p>{user.username.charAt(0)}</p>
-          {/* <i className={`${styles.user} far fa-user`}></i> */}
         </div>
         <div className={styles.playerDetails}>
           <p className={styles.username}>
@@ -23,7 +22,6 @@ class AttendeeCard extends React.Component {
       </div>
     );
   }
-
 }
 
 // const mapStateToProps = state => {

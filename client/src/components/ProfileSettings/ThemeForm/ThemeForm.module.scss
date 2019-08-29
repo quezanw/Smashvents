@@ -3,60 +3,60 @@
 @import '../../../styles/layout.scss';
 
 .formWrapper {
-    width: 80%;
-    margin-bottom: 2rem;
-    display: flex;
-    flex-flow: column;
-    h1 {
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 1.25rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-    }
+  width: 80%;
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-family: $primary-font;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
 }
 
 .form {
-    @extend %container-card;
-    padding: 2rem;
-    display: flex;
-    flex-flow: column;
-    h3 {
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: .9rem;
-        color: rgba(#3a3a3aee, 0.7)
-    }
+  @extend %container-card;
+  display: flex;
+  flex-flow: column;
+  padding: 2rem;
+
+  h3 {
+    font-family: $primary-font;
+    font-size: $primary-font-size;
+    color: rgba(#3a3a3aee, 0.7)
+  }
 }
 
 .iconWrapper {
-    margin-right: .5rem;
+  margin-right: .5rem;
 }
 
-
 .themeColorIcon {
-    width: 50px;
-    height: 50px;
-    border-radius: 3px;
-    
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
 }
 
 .themeColorWrapper {
-    display: flex;
-    flex-flow: row wrap;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .radioBtn {
-    position: relative;
-    top: 20px;
-    left: 30px;
-    margin-left: -25px;
-    // @media only screen and (min-width : 320px) and (max-width: 480px) {
-    //     top: -20px;
-    // }
+  position: relative;
+  top: 20px;
+  left: 30px;
+  margin-left: -25px;
+  // @media only screen and (min-width : 320px) and (max-width: 480px) {
+  //     top: -20px;
+  // }
 }
 
 .saveBtn {
-    @include btn-gradient(#26aafc, #2196db);
-    border: none;
-    width: 70px;
-    margin-top: 1rem;
+  @include btn-gradient($primary-blue, $secondary-blue);
+  width: 70px;
+  margin-top: 1rem;
+  border: none;
 }

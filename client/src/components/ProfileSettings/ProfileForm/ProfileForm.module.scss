@@ -3,41 +3,40 @@
 @import '../../../styles/layout.scss';
 
 .formWrapper {
-    @extend %container-card;
-    // margin: 4rem 0;
-    width: 50%;
-    min-width: 240px;
-    padding: 2rem;
-    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-        width: 100%;
-    }
+  @extend %container-card;
+  width: 50%;
+  min-width: 240px;
+  padding: 2rem;
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    width: 100%;
+  }
 }
 
 .form {
-    @extend %form-flex;
+  @extend %form-flex;
 }
 
 .row {
-    display: flex;
-    flex-flow: column;
+  display: flex;
+  flex-flow: column;
 
-    label {
-        font-size: 10pt;
-        font-weight: bold;
-        font-family: $primary-font;
-        margin-bottom: .5rem;
-    }
+  label {
+    @extend %font-base;
+    font-weight: bold;
+    margin-bottom: .5rem;
+  }
 }
 
 .saveBtn {
-    @include btn-gradient(#26aafc, #2196db);
-    border: none;
-    width: 70px;
-    margin-top: 1rem;
+  @include btn-gradient(#26aafc, #2196db);
+  width: 70px;
+  margin-top: 1rem;
+  border: none;
 }
 
 .error {
-    @extend %font-base;
-    margin-top: .25rem;
-    color: $primary-red;
-  }
+  @extend %font-base;
+  margin-top: .25rem;
+  color: $primary-red;
+}

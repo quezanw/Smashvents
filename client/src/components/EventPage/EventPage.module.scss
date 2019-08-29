@@ -14,9 +14,9 @@
 
 .descriptionContainer {
   @extend %container-card;
-  padding: 2rem;
   width: 90%;
   margin: 2rem 0;
+  padding: 2rem;
 
   p {
     font-size: 12pt;
@@ -45,10 +45,10 @@
 
 .attendees {
   @extend %container-card;
-  padding: 2rem 0 2rem 1rem;
   height: auto;
   display: flex;
   flex-flow: row wrap;
+  padding: 2rem 0 2rem 1rem;
 
   /* Smartphones (portrait and landscape) ----------- */
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
@@ -70,9 +70,6 @@
   img {
     width: 100%;
     background-repeat: no-repeat;
-
-    // background-size: contain;
-    // background-position: center;
     @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
       margin-top: 3rem;
     }
@@ -80,14 +77,14 @@
 }
 
 .headerWrapper {
-  padding: 2rem 4rem;
   display: flex;
+  padding: 2rem 4rem;
   background-color: $primary-white;
   box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.2);
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    padding: 1rem;
     display: block;
+    padding: 1rem;
   }
 }
 
@@ -96,8 +93,7 @@
   flex-flow: column;
   justify-content: flex-end;
 
-  h1,
-  p {
+  h1, p {
     font-family: $primary-font;
   }
 
@@ -122,8 +118,6 @@
   }
 }
 
-.details {}
-
 .row {
   display: flex;
   margin-bottom: .5rem;
@@ -143,7 +137,7 @@
   }
 
   p {
-    font-size: 1rem;
+    font-size: $primary-font-size;
     // text-overflow: ellipsis;
     // overflow-x: hidden;
     // needs set width before overflow will work
@@ -156,13 +150,10 @@
 .detailIcon {
   color: $primary-blue;
   margin-right: .25rem;
-
 }
 
 .btn {
   @include btn-gradient(#26aafc, #2196db);
-  border-radius: $primary-border-radius;
-  border: none;
   width: 125px;
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
@@ -172,10 +163,8 @@
 
 .btnEdit {
   @include btn-gradient(#e4ba31, #e3a215);
-  border-radius: $primary-border-radius;
-  border: none;
-  margin-left: 1rem;
   width: 125px;
+  margin-left: 1rem;
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     flex-basis: 100%;
@@ -184,8 +173,6 @@
 
 .btnLeave {
   @include btn-gradient(#e4315b, #d30f3d);
-  border-radius: $primary-border-radius;
-  border: none;
   width: 125px;
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

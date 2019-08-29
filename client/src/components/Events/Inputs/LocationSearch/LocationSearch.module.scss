@@ -1,28 +1,24 @@
 @import '../../../../styles/variables.scss';
+@import '../../../../styles/components.scss';
 
 .search {
-    width: 100%;
+  width: 100%;
 }
 
-.dropdownContainer {
-
-}
+.dropdownContainer {}
 
 .searchVal {
-    font-family: $primary-font;
-    font-size: 10pt;
-    margin-top: .4rem;
-    padding-left: .25rem;
+  @extend %font-base;
+  margin-top: .4rem;
+  padding-left: .25rem;
 }
 
 .error {
-    font-family: $primary-font;
-    font-size: 10pt;
-    color: red;
+  @extend %font-base;
+  color: $primary-red;
 }
 
 .label {
-    font-family: $primary-font;
-    font-size: 10pt;
-    font-weight: bold;
+  @extend %font-base;
+  font-weight: bold;
 }

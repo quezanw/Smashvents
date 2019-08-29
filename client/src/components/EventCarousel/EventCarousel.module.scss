@@ -12,27 +12,26 @@
   margin-bottom: .25rem;
   h2 {
     font-family: $primary-font;
-    font-size: 1rem;
+    font-size: $sub-header;
     font-weight: bold;
   }
 }
 
 .carouselBtns {
+  display: flex;
   margin-left: auto;
   margin-right: 5%;
-  display: flex;
-
 }
 
 .btnContainer {
   height: 25px;
   width: 25px;
-  border: none;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  border: none;
+  border-radius: 50%;
+  background-color: $primary-white;
   box-shadow: 0 0 2px darkslategray;
   
   &:nth-child(1) {
@@ -41,17 +40,15 @@
 
   &:hover {
     cursor: pointer;
+    i {
+      cursor: pointer;
+      color: lighten($primary-blue, 20%);
+    }
   }
-
 }
 
 .sliderBtn {
   color: $primary-blue;
-
-  &:hover {
-    cursor: pointer;
-    color: lighten($primary-blue, 10%);
-  }
-
+  font-size: 10pt;
 }
 

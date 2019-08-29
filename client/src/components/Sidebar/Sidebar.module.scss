@@ -16,15 +16,16 @@
 .sidebar {
   height: 100%;
   width: $sidebar-width;
-  background-color:#2b2d42;
-  border-right: .5px solid rgba(176, 176, 176, 0.694); 
+  background-color: #2b2d42;
+  border-right: .5px solid rgba(176, 176, 176, 0.694);
   position: fixed;
-  overflow:hidden;
+  overflow: hidden;
   z-index: 2;
   display: flex;
   flex-flow: column;
   align-items: center;
   transition: visibility .25s, opacity 0.25s linear;
+
   @media only screen and (max-width : 900px) {
     visibility: hidden;
     opacity: 0;
@@ -32,13 +33,13 @@
 }
 
 .home {
+  width: calc(#{$sidebar-width} - 15px);
+  height: calc(#{$sidebar-width} - 15px);
   display: flex;
   align-items: center;
   margin: .5rem 0;
-  width: calc(#{$sidebar-width} - 15px);
-  height: calc(#{$sidebar-width} - 15px);
   padding-bottom: 5px;
-  border-bottom: .5px solid white;
+  border-bottom: .5px solid $primary-white;
   @extend %hover-text;
 }
 
@@ -46,10 +47,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
   i {
     font-size: 1.5rem;
-    color: white;
-    
+    color: $primary-white;
+
     &:hover {
       cursor: pointer;
     }
@@ -62,7 +64,7 @@
   margin-top: auto;
   padding: 1rem 0;
   border-top: .5px solid rgba(176, 176, 176, 0.694);
-  color:rgb(199, 198, 198);
+  color: rgb(199, 198, 198);
 
   &:hover {
     cursor: pointer;
@@ -72,6 +74,7 @@
   i {
     font-size: 1.5rem;
   }
+
   p {
     @extend %font-base;
   }
@@ -82,7 +85,7 @@
   flex-flow: row nowrap;
   align-items: center;
   margin-top: 1rem;
-  @extend %hover-text;  
+  @extend %hover-text;
 }
 
 .userIcon {
@@ -94,21 +97,21 @@
 }
 
 .eventScrollerHosting {
-  margin-top: 3rem;
   @extend %event-scroller;
+  margin-top: 3rem;
   padding-bottom: 5px;
-  border-bottom: .5px solid  rgba(176, 176, 176, 0.694); 
+  border-bottom: .5px solid rgba(176, 176, 176, 0.694);
 }
 
 .block {
   width: calc(#{$sidebar-width} - 15px);
-  border: 1px solid black;
   height: calc(#{$sidebar-width} - 15px);
-  border-radius: 3px;
-  margin: .5rem auto;
-  background-color: white;
   display: flex;
   align-items: center;
+  margin: .5rem auto;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: $primary-white;
 
   img {
     width: 100%;
@@ -117,20 +120,22 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
+
   @extend %hover-text;
 }
 
 
 %hover-text {
   p {
+    position: fixed;
+    left: 55px;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity .25s ease-in;
     clip-path: polygon(10% 0%, 100% 1%, 100% 100%, 10% 100%, 0% 50%);
     font-family: $primary-font;
-    font-size: 10pt;
-    position: fixed;
-    left: 55px;
+    font-size: $primary-font-size;
+
     span {
       margin-left: .5rem;
     }
@@ -138,17 +143,15 @@
 
   &:hover {
     cursor: pointer;
+
     p {
       visibility: visible;
       opacity: 1;
       z-index: 4;
-      // position: fixed;
-      // left: 55px;
-      // display: block;
       padding: .5rem;
       border-radius: $primary-border-radius;
-      background-color:  rgba(21, 21, 21, 0.879);
-      color:white;
+      background-color: rgba(21, 21, 21, 0.879);
+      color: $primary-white;
     }
   }
 }

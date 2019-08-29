@@ -2,16 +2,16 @@
 @import '../../../styles/variables.scss';
 
 .wrapper {
+  width: 200px;
   display: flex;
   padding: 1rem;
-  border: 1px solid rgba(222, 220, 220, 0.851);
-  width: 200px;
   margin: 0 0 1rem 2rem;
+  border: 1px solid lighten($primary-gray, 20%);
   border-radius: $primary-border-radius;
   /* Smartphones (portrait and landscape) ----------- */
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    margin-left: 0;
     width: 125px;
+    margin-left: 0;
   }
 }
 
@@ -30,13 +30,13 @@
 }
 
 .username {
-  font-size: .85rem;
+  font-size: $primary-font-size;
   font-weight: bold;
   margin-bottom: .25rem;
 }
 
 .fullname {
-  font-size: .75rem;
+  font-size: $secondary-font-size;
   color: rgba(#3a3a3aee, 0.7)
 }
 

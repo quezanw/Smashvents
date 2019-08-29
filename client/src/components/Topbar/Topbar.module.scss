@@ -1,29 +1,31 @@
 @import '../../styles/variables.scss';
 
 .topbar {
-    padding: .7rem;
-    height: 40px;
-    width: 100%;
-    position: fixed;
-    background-color: #2b2d42;
-    display: none;
-    box-shadow: 3px 3px 2px darken(#2b2d42, 2%);
-    z-index: 1;
-    @media only screen and (max-width : 900px) {
-        display: flex;
-        align-items: center;
-    }
-    h1 {
-        font-family: 'Open Sans', sans-serif;
-        letter-spacing: .25rem;
-        font-size: 1.25rem;
-        font-weight: bold;
-        margin-left: .75rem;
-        color: $secondary-white;
-    }
+  height: 40px;
+  width: 100%;
+  position: fixed;
+  display: none;
+  z-index: 1;
+  padding: .7rem;
+  background-color: #2b2d42;
+  box-shadow: 3px 3px 2px darken(#2b2d42, 2%);
+
+  @media only screen and (max-width : 900px) {
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: .25rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-left: .75rem;
+    color: $secondary-white;
+  }
 }
 
 .menu {
-    font-size: 2rem;
-    color: rgb(227, 227, 227);
+  font-size: 2rem;
+  color: rgb(227, 227, 227);
 }
