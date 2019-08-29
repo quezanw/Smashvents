@@ -123,8 +123,8 @@ export const editProfileSettings = formValues => async (dispatch, getState) => {
   const response = await auth.put('/edit/profile', {...formValues, user_id});
   if(!response.data.error) {
     dispatch({ type: PROFILE_SETTINGS_SUCCESS, payload: response.data.rows[0] });
-    dispatch(reset('profileForm'));
-    history.push('/profile/settings');
+    // dispatch(reset('profileForm'));
+    // history.push('/profile/settings');
   } else {
     dispatch({ type: PROFILE_SETTINGS_ERROR, payload: response.data.error });
   }
