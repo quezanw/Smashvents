@@ -95,6 +95,10 @@
     display: block;
     padding: 1rem;
   }
+
+  @media only screen and (max-device-width : 900px) {
+    padding: 2rem 1rem; 
+  }
 }
 
 .header {
@@ -137,6 +141,10 @@
   }
 }
 
+.bottomRow {
+  width: 100%;
+}
+
 .col {
   display: flex;
   margin-right: 1rem;
@@ -152,6 +160,17 @@
     // needs set width before overflow will work
     @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
       font-size: .75rem;
+    }
+  }
+}
+
+.location {
+  @media only screen and (min-device-width : 480px) and (max-device-width : 900px) {
+    p {
+      width: 225px;
+      text-overflow: ellipsis;
+      overflow:hidden;
+      white-space:nowrap;
     }
   }
 }

@@ -132,7 +132,6 @@ class EventPage extends React.Component {
   }
 
   renderDescription = desc => {
-    // console.log(desc, desc === 'undefined')
     return desc === 'undefined' ? "description hasn't been added yet" : desc;
   }
 
@@ -161,18 +160,18 @@ class EventPage extends React.Component {
                     <p>{event.attendees.length} Attendees</p>
                   </div>
                 </div>
-                <div className={styles.row}>
+                <div className={`${styles.row} ${styles.bottomRow}`}>
                   <div className={styles.col}>
                     <i className={`${styles.detailIcon} fas fa-calendar-alt`}></i>
                     <p>{moment(event.start_date).format('MMM Do YYYY')}</p>
                   </div>
                   <div className={styles.col}>
-                    <i className={`${styles.detailIcon} fas fa-map-marker-alt`}></i>
-                    <p>{event.online ? 'Online' : event.venue}</p>
-                  </div>
-                  <div className={styles.col}>
                     <i className={`${styles.detailIcon} fas fa-user-tag`}></i>
                     <p>{event.host ? event.host.username : '...loading'}</p>
+                  </div>
+                  <div className={`${styles.col} ${styles.location}`}>
+                    <i className={`${styles.detailIcon} fas fa-map-marker-alt`}></i>
+                    <p>{event.online ? 'Online' : event.venue}</p>
                   </div>
                 </div>
               </div>
