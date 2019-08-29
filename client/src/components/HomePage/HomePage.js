@@ -12,8 +12,11 @@ class HomePage extends React.Component {
   }
 
   render() {
-    let upcoming = this.props.events.filter(e => new Date(e.start_date) - new Date() >= 0);
-    let past = this.props.events.filter(e => new Date(e.start_date) - new Date() < 0);
+    let events = this.props.events;
+    let upcoming = events.filter(e => new Date(e.start_date) - new Date() >= 0).sort((a,b) => {
+      return a.start_date > b.start_date;
+    });
+    let past = events.filter(e => new Date(e.start_date) - new Date() < 0);
     return (
       <div className={styles.container}>
         <div className={styles.header}>
