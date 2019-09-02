@@ -16,21 +16,34 @@
   @extend %flex-column-center;
   justify-content: center;
   grid-row: 1;
-  background: #41295a;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2b2d42, #4f326d);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2b2d42, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #485563;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
   color: $primary-white;
 
   h1 {
     font-family: 'Open Sans', sans-serif;
     letter-spacing: .25rem;
     font-size: 3.5rem;
-    margin-bottom: 1rem;
     font-weight: 700;
     @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
       font-size: 2rem;
     }
   }
+
+  p {
+    font-size: 1.25rem;
+    font-family: $primary-font;
+    color: lighten(#485563, 10%);
+    margin-bottom: 1rem;
+  }
+}
+
+.line {
+  height: 5px;
+  width: 125px;
+  background-color: red;
+  margin: 1.5rem 0;
 }
 
 .eventsSection {
@@ -40,4 +53,6 @@
 
 .btn {
   @include btn-gradient(#26aafc, #2196db);
+  padding: .75rem 1rem;
+  font-size: 11pt;
 }

@@ -16,7 +16,7 @@
 .sidebar {
   height: 100%;
   width: $sidebar-width;
-  background-color: #2b2d42;
+  background-color: #29323c;
   border-right: .5px solid rgba(176, 176, 176, 0.694);
   position: fixed;
   overflow: hidden;
@@ -39,7 +39,7 @@
   align-items: center;
   margin: .5rem 0;
   padding-bottom: 5px;
-  border-bottom: .5px solid $primary-white;
+  border-bottom: .5px solid rgba(176, 176, 176, 0.694);
   @extend %hover-text;
 }
 
@@ -50,10 +50,11 @@
 
   i {
     font-size: 1.5rem;
-    color: $primary-white;
+    color: rgb(199, 198, 198);
 
     &:hover {
       cursor: pointer;
+      color: $primary-white;
     }
   }
 }

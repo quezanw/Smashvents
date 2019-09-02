@@ -170,10 +170,10 @@ class EventForm extends React.Component {
     );
   }
 
-  renderImagesContainer = (images) => {
+  renderImagesContainer = (images, title) => {
     return (
       <div className={styles.imagesWrapper}>
-        <p className={styles.label}>Event Banner</p>
+        <p className={styles.label}>{title}</p>
         <div className={styles.images}>
           {images}
         </div>
@@ -276,8 +276,8 @@ class EventForm extends React.Component {
               />
             </div>
           </div>
-          {this.renderImagesContainer(bannerImages)}
-          {this.renderImagesContainer(eventIcons)}
+          {this.renderImagesContainer(bannerImages, 'Event Banner')}
+          {this.renderImagesContainer(eventIcons, 'Event Icons')}
           <button className={styles.submit} type="submit">Submit</button>
         </form>
       </div>

@@ -43,7 +43,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('keyboardkitteh'));
-// app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.set('trust proxy', 1);
 
 app.use(session({
@@ -58,9 +58,9 @@ app.use('/auth', usersRouter);
 app.use('/attendees', attendeesRouter);
 // app.use(indexRouter);
 
-// app.get('*', function(req, res) {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
