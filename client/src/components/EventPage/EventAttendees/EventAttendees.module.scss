@@ -1,0 +1,20 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/components.scss';
+
+.largeOuterContainer {
+  @extend %large-outer-container;
+}
+
+.attendees {
+  @extend %container-card;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 2rem 0 2rem 1rem;
+
+  /* Smartphones (portrait and landscape) ----------- */
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    padding: 1rem 0;
+    justify-content: space-evenly;
+  }
+}

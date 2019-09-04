@@ -16,60 +16,9 @@
   padding-bottom: 2rem;
 }
 
-.body {
+.bodyLayout {
   width: 100%;
   @extend %flex-column-center;
-}
-
-.descriptionContainer {
-  @extend %container-card;
-  width: 90%;
-  margin: 2rem 0;
-  padding: 2rem;
-
-  p {
-    font-size: 12pt;
-    font-family: $primary-font;
-    line-height: 2rem;
-    text-align: left;
-  }
-}
-
-.outerContainer {
-  margin: 2rem 0;
-  width: 80%;
-
-  h1 {
-    font-family: $primary-font;
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-
-  /* Smartphones (portrait and landscape) ----------- */
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    width: 95%;
-  }
-}
-
-.attendees {
-  @extend %container-card;
-  height: auto;
-  display: flex;
-  flex-flow: row wrap;
-  padding: 2rem 0 2rem 1rem;
-
-  /* Smartphones (portrait and landscape) ----------- */
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    padding: 1rem 0;
-    justify-content: space-evenly;
-  }
-}
-
-.container {
-  @extend %container-card;
-  height: 500px;
-  width: 100%;
 }
 
 .banner {
@@ -101,26 +50,6 @@
   }
 }
 
-.header {
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-end;
-
-  h1, p {
-    font-family: $primary-font;
-  }
-
-  h1 {
-    font-weight: bold;
-    font-size: 2rem;
-    margin-bottom: .5rem;
-
-    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-      font-size: 1.5rem;
-    }
-  }
-}
-
 .btnContainer {
   margin-left: auto;
   align-self: flex-end;
@@ -131,54 +60,6 @@
   }
 }
 
-.row {
-  display: flex;
-  margin-bottom: .5rem;
-
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    flex-flow: column;
-    margin: 0;
-  }
-}
-
-.bottomRow {
-  width: 100%;
-}
-
-.col {
-  display: flex;
-  margin-right: 1rem;
-
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    margin: .5rem 0 0 0;
-  }
-
-  p {
-    font-size: $primary-font-size;
-    // text-overflow: ellipsis;
-    // overflow-x: hidden;
-    // needs set width before overflow will work
-    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-      font-size: .75rem;
-    }
-  }
-}
-
-.location {
-  @media only screen and (min-device-width : 480px) and (max-device-width : 900px) {
-    p {
-      width: 225px;
-      text-overflow: ellipsis;
-      overflow:hidden;
-      white-space:nowrap;
-    }
-  }
-}
-
-.detailIcon {
-  color: $primary-blue;
-  margin-right: .25rem;
-}
 
 .btn {
   @include btn-gradient(#26aafc, #2196db);

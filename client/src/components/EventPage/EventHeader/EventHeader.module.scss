@@ -1,0 +1,72 @@
+@import '../../../styles/variables.scss';
+// @import '../../styles/components.scss';
+// @import '../../styles/layout.scss';
+
+.header {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+
+  h1, p {
+    font-family: $primary-font;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: .5rem;
+
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.row {
+  display: flex;
+  margin-bottom: .5rem;
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    flex-flow: column;
+    margin: 0;
+  }
+}
+
+.col {
+  display: flex;
+  margin-right: 1rem;
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    margin: .5rem 0 0 0;
+  }
+
+  p {
+    font-size: $primary-font-size;
+    // text-overflow: ellipsis;
+    // overflow-x: hidden;
+    // needs set width before overflow will work
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+      font-size: .75rem;
+    }
+  }
+}
+
+.detailIcon {
+  color: $primary-blue;
+  margin-right: .25rem;
+}
+
+.location {
+  @media only screen and (min-device-width : 480px) and (max-device-width : 900px) {
+    p {
+      width: 225px;
+      text-overflow: ellipsis;
+      overflow:hidden;
+      white-space:nowrap;
+    }
+  }
+}
+
+.bottomRow {
+  width: 100%;
+}

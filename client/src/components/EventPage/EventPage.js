@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import AttendeeCard from './AttendeeCard/AttendeeCard';
 import Auth from '../Auth/Auth';
 import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
-import GoogleMapReact from 'google-map-react';
-import ClipLoader from 'react-spinners/ClipLoader';
 import BeatLoader from 'react-spinners/BeatLoader';
-import Marker from './Marker/Marker';
-import moment from 'moment';
+import VenueMap from './VenueMap/VenueMap';
+import EventHeader from './EventHeader/EventHeader';
+import EventBodyText from './EventBodyText/EventBodyText';
+import EventAttendees from './EventAttendees/EventAttendees';
 import history from '../../history';
 import styles from './EventPage.module.scss';
 import 
@@ -19,18 +18,16 @@ import
   leaveEvent
 } 
 from '../../actions/index';
-// import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 class EventPage extends React.Component {
 
-  openAuth = e => {
-    e.preventDefault();
-    this.props.openModal({ content: <Auth/> })
-  }
+  openAuth = () => this.props.openModal({ content: <Auth/> });
 
-  leaveEvent = () => {
-    this.props.leaveEvent(this.props.event.event_id);
-  };
+  joinEvent = () => this.props.joinEvent(this.props.event.event_id);
+
+  editEvent = () => history.push(`/event/${this.props.event.title}/edit`);
+
+  leaveEvent = () => this.props.leaveEvent(this.props.event.event_id);
 
   openLeaveEvent = () => {
     let config = {
@@ -38,108 +35,40 @@ class EventPage extends React.Component {
       header: 'Leave Event',
       message: `Are you sure you want to leave ${this.props.event.title}?`
     }
-    this.props.openModal({ 
-      content: <ConfirmPopup config={config}/> 
-    });
+    this.props.openModal({ content: <ConfirmPopup config={config}/> });
   }
 
-  isAttending = (user_id) => {
-    for(let user of this.props.event.attendees) {
-      if(user.user_id === user_id) return true;
+  isAttending = (user_id, attendees) => {
+    for(let user of attendees) {
+      if(user.user_id === user_id) {
+        return true;
+      }
     }
     return false;
   }
 
-  joinEvent = () => this.props.joinEvent(this.props.event.event_id);
-
-  editEvent = () => history.push(`/event/${this.props.event.title}/edit`);
-
-  renderJoinButton = () => {
-    let auth = this.props.auth;
-    if(auth.isSignedIn) {
-      if(this.isAttending(auth.user_id)) {
-        return (
-          <button className={styles.btnLeave} onClick={this.openLeaveEvent}>
-            Leave Event
-          </button>
-        );
-      }
-      return (
-        <button className={styles.btn} onClick={this.joinEvent}>
-          Join Event
-        </button>
-      );
-    }
-    return (
-      <button className={styles.btn} onClick={e => this.openAuth(e)}>
-        Login to join the event!
-      </button>
-    );
+  renderButton = (style, onClick, text) => {
+    return <button className={style} onClick={onClick}>{text}</button>
   }
 
-  renderAdminButton = () => {
-    if(this.props.event.user_id === this.props.auth.user_id) {
-      return (
-        <button className={styles.btnEdit} onClick={this.editEvent}>Edit Event</button>
-      )
+  renderJoinButton = (auth, attendees) => {
+    let { isSignedIn, user_id } = auth;
+    const login = this.renderButton(styles.btn, this.openAuth, 'Login to join the event!');
+    const leave = this.renderButton(styles.btnLeave, this.openLeaveEvent, 'Leave Event');
+    const join = this.renderButton(styles.btn, this.joinEvent, 'Join Event');
+    if(!isSignedIn) {
+      return login;
     }
+    return this.isAttending(user_id, attendees) ? leave : join;
   }
 
-  // getCoords = () => async () => {
-  //   let geocode = await geocodeByAddress(this.props.event.venue)
-  //   let coords = await getLatLng(geocode[0]);
-  //   return coords
-  // }
-
-  renderMarker = (event) => {
-    if(event.coords) {
-      return <Marker coords={event.coords}/>
-    }
-  }
-
-  renderLocation = () => {
-    let event = this.props.event;
-    if(!event.online) {
-      if(event.coords) {
-        let center = { lat: event.coords.lat, lng: event.coords.lng }
-        let zoom = 12;
-        return (
-          <div className={styles.outerContainer}>
-            <h1>Location</h1>
-            <div className={styles.container}>
-              <GoogleMapReact
-                bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
-                defaultCenter={center}
-                defaultZoom={zoom}
-              >
-                {this.renderMarker(event)}
-              </GoogleMapReact>
-            </div>
-          </div>
-        )
-      } else {
-        return (
-          <ClipLoader 
-            sizeUnit={"px"}
-            size={150}
-            color={'#123abc'}
-            loading={true}
-          />
-        );
-      }
-    }
- 
-  }
-
-  renderDescription = desc => {
-    return desc === 'undefined' ? "description hasn't been added yet" : desc;
+  renderAdminButton = (user_id, host_id) => {
+    return user_id === host_id ? this.renderButton(styles.btnEdit, this.editEvent, 'Edit Event') : '';
   }
 
   render() {
-    let event = this.props.event
-    let start = moment(event.start_time, 'hh:mm:ss').format('h:mm A')
-    let end = moment(event.end_time, 'hh:mm:ss').format('h:mm A')
-    const renderAttendees = event.attendees.map(user => <AttendeeCard key={user.username} user={user}/>)
+    let event = this.props.event;
+    let auth = this.props.auth;
     if(event.host) { 
       return (
         <div className={styles.wrapper}>
@@ -147,74 +76,31 @@ class EventPage extends React.Component {
             <img src={`/assets${event.banner_path}`} alt="banner"/>
           </div>
           <div className={styles.headerWrapper}>
-            <div className={styles.header}>
-              <h1>{event.title}</h1>
-              <div className={styles.details}>
-                <div className={styles.row}>
-                  <div className={styles.col}>
-                    <i className={`${styles.detailIcon} fas fa-clock`}></i>
-                    <p>{start} - {end}</p>
-                  </div>
-                  <div className={styles.col}>
-                    <i className={`${styles.detailIcon} fas fa-user`}></i>
-                    <p>{event.attendees.length} Attendees</p>
-                  </div>
-                </div>
-                <div className={`${styles.row} ${styles.bottomRow}`}>
-                  <div className={styles.col}>
-                    <i className={`${styles.detailIcon} fas fa-calendar-alt`}></i>
-                    <p>{moment(event.start_date).format('MMM Do YYYY')}</p>
-                  </div>
-                  <div className={styles.col}>
-                    <i className={`${styles.detailIcon} fas fa-user-tag`}></i>
-                    <p>{event.host ? event.host.username : '...loading'}</p>
-                  </div>
-                  <div className={`${styles.col} ${styles.location}`}>
-                    <i className={`${styles.detailIcon} fas fa-map-marker-alt`}></i>
-                    <p>{event.online ? 'Online' : event.venue}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <EventHeader event={event} />
             <div className={styles.btnContainer}>
-              {this.renderJoinButton()}
-              {this.renderAdminButton()}
+              {this.renderJoinButton(auth, event.attendees)}
+              {this.renderAdminButton(auth.user_id, event.user_id)}
             </div>
           </div>
-          <div className={styles.body}>
-            <div className={styles.descriptionContainer}>
-              <p>
-                {this.renderDescription(event.description)}
-              </p>
-            </div>
-            <div className={styles.descriptionContainer}>
-              <p>
-                {this.renderDescription(event.ruleset)}
-              </p>
-            </div>
-            <div className={styles.outerContainer}>
-              <h1>Attendees</h1>
-              <div className={styles.attendees}>
-                {renderAttendees}
-              </div>
-            </div>
-            {this.renderLocation()}
+          <div className={styles.bodyLayout}>
+            <EventBodyText bodyText={event.description}/>
+            <EventBodyText bodyText={event.ruleset}/>
+            <EventAttendees attendees={event.attendees}/>
+            <VenueMap event={event}/>
           </div>
         </div>
       );
-    } else {
-      return (
-        <div className={styles.loaderWrapper}>
-          <BeatLoader
-          // css={override}
+    }
+    return (
+      <div className={styles.loaderWrapper}>
+        <BeatLoader
           sizeUnit={"px"}
           size={75}
           color={'#36D7B7'}
           loading={true}
         />
-        </div>
-      );
-    }
+      </div>
+    );
   }
 }
 

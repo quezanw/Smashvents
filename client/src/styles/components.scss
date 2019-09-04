@@ -52,6 +52,23 @@
   border-radius: $primary-border-radius;
 }
 
+%large-outer-container {
+  margin: 2rem 0;
+  width: 80%;
+
+  h1 {
+    font-family: $primary-font;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  /* Smartphones (portrait and landscape) ----------- */
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    width: 95%;
+  }
+}
+
 %font-base {
   font-family: $primary-font; 
   font-size: $primary-font-size;
