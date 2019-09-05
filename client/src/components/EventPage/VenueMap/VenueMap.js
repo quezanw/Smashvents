@@ -18,7 +18,7 @@ const VenueMap = props => {
             defaultCenter={center}
             defaultZoom={zoom}
           >
-            <Marker coords={coords}/> 
+            <Marker lat={coords.lat} lng={coords.lng} /> 
           </GoogleMapReact>
         </div>
       </div>
