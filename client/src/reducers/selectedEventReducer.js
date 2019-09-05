@@ -1,7 +1,14 @@
-import { VIEW_EVENT, VIEW_ATTENDEES, FETCH_HOST, CALC_EVENT_COORDINATES } from '../actions/types';
+import { 
+    VIEW_EVENT, 
+    VIEW_ATTENDEES, 
+    TOTAL_ATTENDEES,
+    FETCH_HOST, 
+    CALC_EVENT_COORDINATES
+} from '../actions/types';
 
 const INITIAL_STATE = {
-    attendees: [], 
+    attendees: [],
+    totalAttendees: null, 
     host: null,
     coords: null
 }
@@ -15,6 +22,8 @@ export default (state = INITIAL_STATE, action) => {
             return {...state, host: action.payload};
         case CALC_EVENT_COORDINATES:
             return {...state, coords: action.payload};
+        case TOTAL_ATTENDEES:
+            return {...state, totalAttendees: action.payload};
         default: 
             return state;
     }

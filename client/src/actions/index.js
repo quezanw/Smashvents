@@ -22,6 +22,7 @@ import {
   VIEW_EVENT,
   CALC_EVENT_COORDINATES,
   VIEW_ATTENDEES,
+  TOTAL_ATTENDEES,
   FETCH_ATTENDING_EVENTS,
   FETCH_HOSTED_EVENTS,
   FETCH_HOST,
@@ -58,6 +59,7 @@ export const getCoordinates = address => async (dispatch, getState) => {
 export const selectEvent = event => async (dispatch, getState) => {
   dispatch({ type: VIEW_EVENT, payload: event });
   dispatch(getAttendees(event.event_id));
+  dispatch(getAttendeesCount(event.event_id));
   dispatch(fetchHost(event.user_id));
   if(!event.online) {
     dispatch(getCoordinates(event.venue));
@@ -67,6 +69,11 @@ export const selectEvent = event => async (dispatch, getState) => {
 export const getAttendees = event_id => async (dispatch, getState) => {
   let response = await attendees.get(`/event/${event_id}`);
   dispatch({type: VIEW_ATTENDEES, payload: response.data});
+}
+
+export const getAttendeesCount = event_id => async dispatch => {
+  let response = await attendees.get(`/event/count/${event_id}`);
+  dispatch({type: TOTAL_ATTENDEES, payload: response.data[0].count});
 }
 
 export const fetchAttendingEvents = user_id => async (dispatch, getState) => {
