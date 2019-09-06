@@ -8,6 +8,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import Topbar from '../Topbar/Topbar';
 import Modal from '../Modal/Modal';
 import EventPage from '../EventPage/EventPage';
+import AttendeesList from '../AttendeesList/AttendeesList';
 import EventEdit from '../Events/EventEdit/EventEdit';
 import EventCreate from '../Events/EventCreate/EventCreate';
 import ProfileSettings from '../ProfileSettings/ProfileSettings';
@@ -53,6 +54,7 @@ class App extends React.Component {
               <Route path="/" exact component={HomePage}/>
               <Route path="/event/create" exact component={EventCreate}/>
               <Route path="/event/:title/details" exact component={EventPage}/>
+              <Route path="/event/:title/attendees" exact component={AttendeesList}/>
               <Route path="/event/:title/edit" exact component={EventEdit}/>
               <Route path="/profile/settings" exact component={ProfileSettings}/>
               <Route component={Page404}/>
