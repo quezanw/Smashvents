@@ -8,13 +8,33 @@
 .attendees {
   @extend %container-card;
   height: auto;
+  // display: flex;
+  // flex-flow: row wrap;
+  padding: 2rem 0 2rem 1rem;
+}
+
+.innerContainer {
   display: flex;
   flex-flow: row wrap;
-  padding: 2rem 0 2rem 1rem;
 
-  /* Smartphones (portrait and landscape) ----------- */
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     padding: 1rem 0;
     justify-content: space-evenly;
+  }
+}
+
+.footer {
+  text-align: center;
+  margin-left: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  font-family: $primary-font;
+  font-size: $primary-font-size;
+  color: $primary-blue;
+
+  &:hover {
+    text-decoration: underline;
   }
 }

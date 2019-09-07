@@ -6,7 +6,7 @@
   display: flex;
   padding: 1rem;
   margin: 0 0 1rem 2rem;
-  border: 1px solid lighten($primary-gray, 20%);
+  // border: 1px solid lighten($primary-gray, 20%);
   border-radius: $primary-border-radius;
   /* Smartphones (portrait and landscape) ----------- */
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

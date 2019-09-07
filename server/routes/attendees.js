@@ -27,7 +27,7 @@ router.get('/event/:id', (req, res, next) => {
                FROM attendees
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id
-               WHERE attendees.event_id=${event_id} LIMIT 9`;
+               WHERE attendees.event_id=${event_id}`;
   pool.query(query, (error, results) => {
     if(error) {
       throw error
@@ -35,6 +35,7 @@ router.get('/event/:id', (req, res, next) => {
     res.status(200).json(results.rows);
   })
 });
+
 
 // GET COUNT OF ATTENDEES
 router.get('/event/count/:id', (req, res, next) => {
@@ -44,6 +45,21 @@ router.get('/event/count/:id', (req, res, next) => {
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id
                WHERE attendees.event_id=${event_id}`;
+  pool.query(query, (error, results) => {
+    if(error) {
+      throw error
+    }
+    res.status(200).json(results.rows);
+  })
+});
+
+router.get('/event/:id/:limit', (req, res, next) => {
+  let { event_id, limit } = req.params;
+  let query = `SELECT users.user_id, users.username, users.first_name, users.last_name, users.theme_color 
+               FROM attendees
+               JOIN users ON attendees.user_id=users.user_id
+               JOIN events ON attendees.event_id=events.event_id
+               WHERE attendees.event_id=${event_id} LIMIT ${limit}`;
   pool.query(query, (error, results) => {
     if(error) {
       throw error

@@ -85,7 +85,7 @@ class EventPage extends React.Component {
           <div className={styles.bodyLayout}>
             <EventBodyText bodyText={event.description}/>
             <EventBodyText bodyText={event.ruleset}/>
-            <EventAttendees attendees={event.attendees}/>
+            <EventAttendees attendees={event.attendees} title={event.title}/>
             <VenueMap event={event}/>
           </div>
         </div>
