@@ -53,13 +53,16 @@ router.get('/event/count/:id', (req, res, next) => {
   })
 });
 
-router.get('/event/:id/:limit', (req, res, next) => {
-  let { event_id, limit } = req.params;
+router.get('/event/:id/:offset', (req, res, next) => {
+  let { event_id, offset } = req.params;
+  offset = (offset - 1) * 10;
   let query = `SELECT users.user_id, users.username, users.first_name, users.last_name, users.theme_color 
                FROM attendees
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id
-               WHERE attendees.event_id=${event_id} LIMIT ${limit}`;
+               WHERE attendees.event_id=${event_id} 
+               OFFSET ${offset}
+               LIMIT 10`;
   pool.query(query, (error, results) => {
     if(error) {
       throw error
