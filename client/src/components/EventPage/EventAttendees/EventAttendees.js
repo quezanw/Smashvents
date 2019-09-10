@@ -1,5 +1,5 @@
 import React from 'react'
-import AttendeeCard from '../AttendeeCard/AttendeeCard';
+import AttendeeCard from '../../AttendeeCard/AttendeeCard';
 import { Link } from 'react-router-dom';
 import styles from './EventAttendees.module.scss';
 
