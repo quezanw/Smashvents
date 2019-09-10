@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './EventAttendees.module.scss';
 
 const EventAttendees = props => {
-  let total = props.attendees.length;
-  const attendees = props.attendees.slice(0, 9).map(user => <AttendeeCard key={user.username} user={user}/>)
+  const attendees = props.attendees.map(user => <AttendeeCard key={user.username} user={user}/>)
   return (
     <div className={styles.largeOuterContainer}>
       <h1>Attendees</h1>
@@ -15,7 +14,7 @@ const EventAttendees = props => {
         </div>
         <div className={styles.footer}>
           <Link className={styles.link} to={`/event/${props.title}/attendees`}>
-            View All {total} Attendees
+            View All {props.total} Attendees
           </Link>
         </div>
         

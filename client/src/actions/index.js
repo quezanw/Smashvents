@@ -23,6 +23,7 @@ import {
   CALC_EVENT_COORDINATES,
   VIEW_ATTENDEES,
   TOTAL_ATTENDEES,
+  FETCH_ATTENDEE_PAGE,
   FETCH_ATTENDING_EVENTS,
   FETCH_HOSTED_EVENTS,
   FETCH_HOST,
@@ -35,6 +36,8 @@ import {
   PROFILE_SETTINGS_ERROR
 }
 from './types';
+
+const ATTENDEEE_DISPLAY_LIMIT = 9;
 
 export const openModal = config => {
   return {
@@ -66,19 +69,24 @@ export const selectEvent = event => async (dispatch, getState) => {
 }
 
 export const getAttendees = event_id => async (dispatch, getState) => {
-  let response = await attendees.get(`/event/${event_id}`);
+  let response = await attendees.get(`/limit/${event_id}/${ATTENDEEE_DISPLAY_LIMIT}`);
   dispatch({type: VIEW_ATTENDEES, payload: response.data});
   dispatch(getAttendeesCount(event_id));
 }
 
 export const getAttendeesCount = event_id => async dispatch => {
-  let response = await attendees.get(`/event/count/${event_id}`);
+  let response = await attendees.get(`/count/${event_id}`);
   dispatch({type: TOTAL_ATTENDEES, payload: response.data[0].count});
 }
 
 export const fetchAttendingEvents = user_id => async (dispatch, getState) => {
   let response = await events.get(`/attending/${user_id}`);
   dispatch({ type: FETCH_ATTENDING_EVENTS, payload: response.data.rows })
+}
+
+export const fetchAttendeeList = (event_id, offset) => async (dispatch) => {
+  let response = await attendees.get(`/offset/${event_id}/${offset}`);
+  dispatch({ type: FETCH_ATTENDEE_PAGE, payload: response.data });
 }
 
 export const fetchHostedEvents = user_id => async (dispatch) => {

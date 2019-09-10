@@ -23,6 +23,7 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const VIEW_EVENT = 'VIEW_EVENT';
 export const VIEW_ATTENDEES = 'VIEW_ATTNDEES';
 export const TOTAL_ATTENDEES = 'TOTAL_ATTENDEES';
+export const FETCH_ATTENDEE_PAGE = 'FETCH_ATTENDEE_PAGE';
 export const FETCH_HOST = 'FETCH_HOST';
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
