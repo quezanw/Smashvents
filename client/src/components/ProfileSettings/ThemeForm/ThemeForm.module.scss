@@ -55,7 +55,7 @@
 }
 
 .saveBtn {
-  @include btn-gradient($primary-blue, $secondary-blue);
+  @include btn($primary-blue);
   width: 70px;
   margin-top: 1rem;
   border: none;

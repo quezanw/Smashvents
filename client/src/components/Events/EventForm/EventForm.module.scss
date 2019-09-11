@@ -97,7 +97,7 @@
 
 
 .submit {
-  @include btn-gradient($primary-blue, $secondary-blue);
+  @include btn($primary-blue);
 }
 
 .error {

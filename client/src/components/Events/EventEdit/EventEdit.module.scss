@@ -28,7 +28,7 @@
   }
 
   .btnCancel {
-    @include btn-gradient(#e83838, #de1a1a);
+    @include btn(#e83838);
     margin-right: 2rem;
     border: none;
     border-radius: $primary-border-radius;

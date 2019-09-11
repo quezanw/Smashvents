@@ -62,7 +62,7 @@
 
 
 .btn {
-  @include btn-gradient(#26aafc, #2196db);
+  @include btn(#26aafc);
   width: 125px;
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
@@ -71,7 +71,7 @@
 }
 
 .btnEdit {
-  @include btn-gradient(#e4ba31, #e3a215);
+  @include btn(#e4ba31);
   width: 125px;
   margin-left: 1rem;
 
@@ -81,7 +81,7 @@
 }
 
 .btnLeave {
-  @include btn-gradient(#e4315b, #d30f3d);
+  @include btn(#e4315b);
   width: 125px;
 
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

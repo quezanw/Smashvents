@@ -32,7 +32,7 @@
 }
 
 .saveBtn {
-  @include btn-gradient(#26aafc, #2196db);
+  @include btn(#26aafc);
   width: 70px;
   margin-top: 1rem;
   border: none;

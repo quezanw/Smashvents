@@ -96,17 +96,19 @@
 
 
 
-@mixin btn-gradient($color1, $color2) {
+@mixin btn($color) {
   @extend %font-base;
   padding: .5rem 1rem;
-  background: linear-gradient(180deg, $color1, $color2);
+  background-color: $color;
   border: none;
   border-radius: $primary-border-radius;
   color: $primary-white;
   text-decoration: none;
+  transition: background-color 0.25s ease;
 
   &:hover {
-    background: linear-gradient(180deg, lighten($color1, 10%),lighten($color2, 10%));
+    background-color: lighten($color, 10%);
+
     cursor: pointer;
   }
 }

@@ -53,9 +53,29 @@
   @extend %flex-column-center;
 }
 
+.btnContainer {
+  display: flex;
+}
 
 .btn {
-  @include btn-gradient(#26aafc, #2196db);
+  @include btn(#26aafc);
   padding: .75rem 1rem;
   font-size: 11pt;
+  margin-right: 1rem;
+}
+
+.btnHollow {
+  padding: .75rem 1rem;
+  font-size: 11pt;
+  font-family: $primary-font;
+  text-decoration: none;
+  color: $primary-blue;
+  border: 3px solid $primary-blue;
+  border-radius: 3px;
+  transition: border .25s ease, color .25s ease;
+
+  &:hover {
+    border: 3px solid lighten($primary-blue, 10%);
+    color: lighten($primary-blue, 10%);
+  }
 }

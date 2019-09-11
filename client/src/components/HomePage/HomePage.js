@@ -22,7 +22,10 @@ class HomePage extends React.Component {
           <h1>SMASHVENTS</h1>
           <div className={styles.line}></div>
           <p>Empowering your local smash community</p>
-          <Link className={styles.btn} to="/event/create">Organize an event</Link>
+          <div className={styles.btnContainer}>
+            <Link className={styles.btn} to="/event/create">Organize an event</Link>
+            <Link className={styles.btnHollow} to="/event/find">Find an event</Link>
+          </div>
         </div>
         <section className={styles.eventsSection}>
           <EventCarousel events={upcoming} title='Upcoming Tournaments' carouselID='carousel-list1'/>
