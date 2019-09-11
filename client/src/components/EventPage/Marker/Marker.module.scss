@@ -1,9 +1,4 @@
 .marker {
     font-size: 2rem;
     color: rgb(158, 158, 255);
-    
-    &:hover {
-        color: darken(rgb(158, 158, 255), 5%);
-        cursor: pointer;
-    }
 }

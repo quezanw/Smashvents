@@ -66,6 +66,12 @@ class EventPage extends React.Component {
     return user_id === host_id ? this.renderButton(styles.btnEdit, this.editEvent, 'Edit Event') : '';
   }
 
+  renderBodyText = text => {
+    if(text || text.length > 1) {
+      return <EventBodyText bodyText={text}/>
+    }
+    return "";
+  }
   render() {
     let event = this.props.event;
     let auth = this.props.auth;
@@ -83,8 +89,8 @@ class EventPage extends React.Component {
             </div>
           </div>
           <div className={styles.bodyLayout}>
-            <EventBodyText bodyText={event.description}/>
-            <EventBodyText bodyText={event.ruleset}/>
+            {this.renderBodyText(event.description)}
+            {this.renderBodyText(event.ruleset)}
             <EventAttendees attendees={event.attendees} total={event.totalAttendees} title={event.title}/>
             <VenueMap event={event}/>
           </div>
