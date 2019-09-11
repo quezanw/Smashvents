@@ -32,13 +32,15 @@
 
 .error {
   @extend %message;
-  background-color: rgb(255, 151, 151);
+  @extend %font-base;
+  text-transform: lowercase;
   color: rgb(218, 0, 0);
 }
 
 .success {
   @extend %message;
-  background-color: rgb(25, 250, 108);
+  @extend %font-base;
+  text-transform: lowercase;
   color: rgb(58, 171, 26);
 }
 
