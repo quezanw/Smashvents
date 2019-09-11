@@ -8,7 +8,9 @@ import AttendeeCard from '../AttendeeCard/AttendeeCard';
 class AttendeesList extends React.Component {
   state = { 
     currentPage: 1,
-    search: ''
+    search: '',
+    prev: true,
+    next: (this.props.event.totalAttendees <= 15)
   }
 
   componentDidMount() {
@@ -24,19 +26,30 @@ class AttendeesList extends React.Component {
   }
 
   nextPage = () => {
+    let total = this.props.event.totalAttendees;
     let page = this.state.currentPage + 1;
-    this.setState({currentPage: page});
+    this.setState({
+      currentPage: page, 
+      next: total <= 15 * page, 
+      prev: page === 1
+    });
     this.props.fetchAttendeeList(this.props.event.event_id, page)
   }
 
   prevPage = () => {
+    let total = this.props.event.totalAttendees;
     let page = Math.max(this.state.currentPage - 1, 1);
-    this.setState({currentPage: page});
+    this.setState({
+      currentPage: page, 
+      next: total <= 15 * page, 
+      prev: page === 1
+    });
     this.props.fetchAttendeeList(this.props.event.event_id, page)
   }
 
   render() {
-    const list = this.props.event.page.map(this.renderAttendees);
+    let event = this.props.event;
+    const list = event.page.map(this.renderAttendees);
     return (
       <div className={styles.wrapper}>
         <div className={styles.header}>
@@ -52,16 +65,22 @@ class AttendeesList extends React.Component {
         <div className={styles.listWrapper}>
           <div className={styles.subHeader}>
             <h1>Attendees</h1>
-            <button>v</button>
+            <button className={styles.btnSort}>
+              <i className="fas fa-sort-down"></i>
+            </button>
           </div>
           <div>
             {list}
           </div>
           <div className={styles.footer}>
             <div className={styles.pageControls}>
-              <button onClick={this.prevPage}>prev page</button>
+              <button className={styles.btn} disabled={this.state.prev} onClick={this.prevPage}>
+                <i className="far fa-caret-square-left"></i> 
+              </button>
               <p>{this.state.currentPage}</p>
-              <button onClick={this.nextPage}>next page</button>
+              <button className={styles.btn} disabled={this.state.next} onClick={this.nextPage}>
+              <i className="far fa-caret-square-right"></i>
+              </button>
             </div>
           </div>
         </div>

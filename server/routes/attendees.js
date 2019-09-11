@@ -44,7 +44,8 @@ router.get('/offset/:id/:offset', (req, res, next) => {
                FROM attendees
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id
-               WHERE attendees.event_id=${id} 
+               WHERE attendees.event_id=${id}
+               ORDER BY users.username
                OFFSET ${offset}
                LIMIT 15`;
   pool.query(query, (error, results) => {
