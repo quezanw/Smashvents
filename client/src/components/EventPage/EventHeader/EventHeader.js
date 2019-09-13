@@ -17,7 +17,7 @@ const EventHeader = props => {
           </div>
           <div className={styles.col}>
             <i className={`${styles.detailIcon} fas fa-user`}></i>
-            <p>{event.totalAttendees} Attendees</p>
+            <p>{event.attendees.length} Attendees</p>
           </div>
         </div>
         <div className={`${styles.row} ${styles.bottomRow}`}>

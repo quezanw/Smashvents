@@ -7,17 +7,28 @@ import AttendeeCard from '../AttendeeCard/AttendeeCard';
 
 class AttendeesList extends React.Component {
   state = { 
+    attendees: [],
+    filtered_attendees: [],
+    page: [],
     currentPage: 1,
-    search: '',
+    max: 1,
+    searchVal: '',
     prev: true,
-    next: (this.props.event.totalAttendees <= 15)
+    next: true,
   }
 
   componentDidMount() {
-    this.props.fetchAttendeeList(this.props.event.event_id, 1)
+    let { attendees } = this.props.event;
+    let max = Math.floor(attendees.length / 10);
+    this.setState({
+      attendees,
+      page: attendees.slice(0,10),
+      max,
+      next: 1 > max,
+    });
   }
 
-  renderAttendees = user => {
+  renderAttendee = user => {
     return (
       <div key={user.username} className={styles.row}>
         <AttendeeCard user={user} />
@@ -25,31 +36,46 @@ class AttendeesList extends React.Component {
     );
   }
 
-  nextPage = () => {
-    let total = this.props.event.totalAttendees;
-    let page = this.state.currentPage + 1;
+  changePage = page => {
+    let { filtered_attendees, attendees } = this.state;
+    let list = filtered_attendees.length > 0 ? filtered_attendees : attendees;
+    let start = (page - 1) * 10;
+    let end = page * 10;
     this.setState({
+      page: list.slice(start, end),
       currentPage: page, 
-      next: total <= 15 * page, 
+      next: page > this.state.max,
       prev: page === 1
     });
-    this.props.fetchAttendeeList(this.props.event.event_id, page)
   }
 
-  prevPage = () => {
-    let total = this.props.event.totalAttendees;
-    let page = Math.max(this.state.currentPage - 1, 1);
-    this.setState({
-      currentPage: page, 
-      next: total <= 15 * page, 
-      prev: page === 1
+  nextPage = () => this.changePage(this.state.currentPage + 1);
+
+  prevPage = () => this.changePage(Math.max(this.state.currentPage - 1, 1));
+
+  sortAttendees = val => {
+    let filtered_attendees = this.props.event.attendees.filter(user => { 
+      return user.username.toLowerCase().includes(val);
     });
-    this.props.fetchAttendeeList(this.props.event.event_id, page)
+    let max = Math.floor(filtered_attendees.length / 10);
+    this.setState({
+      filtered_attendees,
+      page: filtered_attendees.slice(0,10),
+      currentPage: 1, 
+      max,
+      next: 1 > max,
+      prev: true,
+    });
   }
+
+  handleSearch = e => {
+    let val = e.target.value;
+    this.setState({ searchVal: val }, () => this.sortAttendees(val));
+  }
+
 
   render() {
-    let event = this.props.event;
-    const list = event.page.map(this.renderAttendees);
+    const renderList = this.state.page.map(this.renderAttendee);
     return (
       <div className={styles.wrapper}>
         <div className={styles.header}>
@@ -57,9 +83,11 @@ class AttendeesList extends React.Component {
         </div>
         <div className={styles.searchWrapper}>
           <input 
+            onChange={this.handleSearch}
             className={styles.search} 
             placeholder='search player' 
             type="text"
+            value={this.searchVal}
           />
         </div>
         <div className={styles.listWrapper}>
@@ -70,7 +98,7 @@ class AttendeesList extends React.Component {
             </button>
           </div>
           <div>
-            {list}
+            {renderList}
           </div>
           <div className={styles.footer}>
             <div className={styles.pageControls}>
@@ -88,7 +116,6 @@ class AttendeesList extends React.Component {
     )
   }
 }
-
 
 const mapStateToProps = state => {
   return {

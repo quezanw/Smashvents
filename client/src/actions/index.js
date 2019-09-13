@@ -69,9 +69,10 @@ export const selectEvent = event => async (dispatch, getState) => {
 }
 
 export const getAttendees = event_id => async (dispatch, getState) => {
-  let response = await attendees.get(`/limit/${event_id}/${ATTENDEEE_DISPLAY_LIMIT}`);
+  // let response = await attendees.get(`/limit/${event_id}/${ATTENDEEE_DISPLAY_LIMIT}`);
+  let response = await attendees.get(`/all/${event_id}`);
   dispatch({type: VIEW_ATTENDEES, payload: response.data});
-  dispatch(getAttendeesCount(event_id));
+  // dispatch(getAttendeesCount(event_id));
 }
 
 export const getAttendeesCount = event_id => async dispatch => {

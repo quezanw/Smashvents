@@ -11,8 +11,13 @@ const pool = new Pool({
   port: config.PSQL_PORT
 })
 
-router.get('/all', (req, res, next) => {
-  let query = `SELECT * FROM attendees`;
+router.get('/all/:id', (req, res, next) => {
+  let { id } = req.params;
+  let query = `SELECT users.user_id, users.username, users.first_name, users.last_name, users.theme_color 
+               FROM attendees
+               JOIN users ON attendees.user_id=users.user_id
+               JOIN events ON attendees.event_id=events.event_id
+               WHERE attendees.event_id=${id}`;
   pool.query(query, (error, results) => {
     if(error) {
       throw error

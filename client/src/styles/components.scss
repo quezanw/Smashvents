@@ -100,14 +100,15 @@
   @extend %font-base;
   padding: .5rem 1rem;
   background-color: $color;
-  border: none;
+  border: 3px solid $color;
   border-radius: $primary-border-radius;
   color: $primary-white;
   text-decoration: none;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease, border-color .25s ease;
 
   &:hover {
     background-color: lighten($color, 10%);
+    border-color: lighten($color, 10%);
 
     cursor: pointer;
   }
