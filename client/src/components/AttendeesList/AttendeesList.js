@@ -55,7 +55,7 @@ class AttendeesList extends React.Component {
 
   sortAttendees = val => {
     let filtered_attendees = this.props.event.attendees.filter(user => { 
-      return user.username.toLowerCase().includes(val);
+      return user.username.toLowerCase().includes(val.toLowerCase());
     });
     let max = Math.floor(filtered_attendees.length / 10);
     this.setState({
@@ -72,7 +72,7 @@ class AttendeesList extends React.Component {
     let val = e.target.value;
     this.setState({ searchVal: val }, () => this.sortAttendees(val));
   }
-  
+
   render() {
     const renderList = this.state.page.map(this.renderAttendee);
     return (
