@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './EventSearch.module.scss';
-import EventItem from '../EventItem/EventItem';
+import EventItemLong from '../EventItemLong/EventItemLong';
 import { connect } from 'react-redux';
 
 class EventSearch extends React.Component {
@@ -13,7 +13,13 @@ class EventSearch extends React.Component {
   }
 
   render() {
-    const renderEvents = this.props.events.map(event => <EventItem event={event}/>);
+    const renderEvents = this.props.events.map(event => {
+      return (
+        <div className={styles.row}>
+          <EventItemLong event={event}/>
+        </div>
+      )
+    });
     return (
       <div className={styles.wrapper}>
         <div className={styles.header}>Event Search</div>

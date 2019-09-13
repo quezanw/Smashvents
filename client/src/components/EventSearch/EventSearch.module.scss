@@ -30,7 +30,11 @@
 .container {
   width: 85%;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  border: 1px solid black;
+  flex-flow: column;
+}
+
+.row {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
 }

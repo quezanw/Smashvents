@@ -68,7 +68,12 @@ router.get('/attending/:user_id', (req, res, next) => {
 
 /* GET all events */
 router.get('/all', function(req, res, next) {
-  pool.query('SELECT * FROM events', (error, results) => {
+  let query = `SELECT * from events 
+               JOIN 
+                (SELECT DISTINCT COUNT(attendees.event_id), event_id 
+                 FROM attendees GROUP BY event_id) 
+                AS count ON count.event_id=events.event_id;`;
+  pool.query(query, (error, results) => {
     if (error) {
       throw error
     }

@@ -1,0 +1,33 @@
+@import '../../styles/variables.scss';
+@import '../../styles/components.scss';
+
+.wrapper {
+  @extend %container-card;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.imgContainer {
+  width: auto;
+  height: 100%;
+  display: flex;
+  padding: 1rem;
+
+  img {
+    width: 225px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.detailsContainer {
+  display: flex;
+  flex-flow: column;
+  padding: 1rem 1rem 1rem 0;
+}
