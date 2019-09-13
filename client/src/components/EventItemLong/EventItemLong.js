@@ -21,10 +21,19 @@ class EventItemLong extends React.Component {
           <img className={styles.img} src={src} alt="event banner"/>
         </div>
         <div className={styles.detailsContainer}>
-          <p onClick={() => this.selectEvent(event)} className={styles.title}>{event.title}</p>
-          <p>{moment(event.start_date).format('MMM Do YYYY')}</p>
-          <p>{event.online ? 'Online' : 'Offline'}</p>
-          <p>{event.count} Attendees</p>
+          <h2 onClick={() => this.selectEvent(event)} className={styles.title}>{event.title}</h2>
+          <p className={styles.date}>
+            <i className={`${styles.detailIcon} fas fa-calendar-alt`}></i>
+            {moment(event.start_date).format('MMM Do YYYY')}
+          </p>
+          <p className={styles.online}>
+            <i className={`${styles.detailIcon} fas fa-map-marker-alt`}></i>
+            {event.online ? 'Online' : event.venue}
+          </p>
+          <p className={styles.count}>
+            <i className={`${styles.detailIcon} fas fa-user`}></i>
+            {event.count} Attendees
+          </p>
         </div>
       </div>
     );

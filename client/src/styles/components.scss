@@ -60,6 +60,7 @@
   box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.2);
   @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     margin-top: 4rem;
+    padding-left: 3rem;
   }
 }
 
@@ -121,6 +122,10 @@
     border-color: lighten($color, 10%);
 
     cursor: pointer;
+  }
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    width: 100%;
   }
 }
 

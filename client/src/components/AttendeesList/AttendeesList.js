@@ -72,8 +72,7 @@ class AttendeesList extends React.Component {
     let val = e.target.value;
     this.setState({ searchVal: val }, () => this.sortAttendees(val));
   }
-
-
+  
   render() {
     const renderList = this.state.page.map(this.renderAttendee);
     return (

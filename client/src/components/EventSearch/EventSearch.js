@@ -26,7 +26,7 @@ class EventSearch extends React.Component {
         <div className={styles.searchWrapper}>
           <input 
             className={styles.search} 
-            placeholder='search player' 
+            placeholder='search events' 
             type="text"
           />
         </div>

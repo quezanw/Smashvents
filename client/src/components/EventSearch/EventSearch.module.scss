@@ -18,6 +18,10 @@
   width: 85%;
   padding: 1rem 0;
   margin: 2rem 0;
+  @media only screen and (min-width : 320px) and (max-width: 480px) {
+    width: 100%;
+    margin: 1rem 0;
+  }
 }
 
 .search {
@@ -25,12 +29,18 @@
   height: 25px;
   margin-left: 1rem;
   padding-left: .5rem;
+  @media only screen and (min-width : 320px) and (max-width: 480px) {
+    width: 85%;
+  }
 }
 
 .container {
   width: 85%;
   display: flex;
   flex-flow: column;
+  @media only screen and (min-width : 320px) and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .row {

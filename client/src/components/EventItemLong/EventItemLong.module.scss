@@ -19,6 +19,10 @@
     height: 150px;
     background-repeat: no-repeat;
     background-size: contain;
+    @media only screen and (min-width : 320px) and (max-width: 480px) {
+      width: 335px;
+      height: 175px;
+    }
   }
 
   &:hover {
@@ -30,4 +34,30 @@
   display: flex;
   flex-flow: column;
   padding: 1rem 1rem 1rem 0;
+
+  h2, p { font-family: $primary-font }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    font-size: $primary-font-size;
+    margin-bottom: .25rem;
+  }
+
+  i {
+    margin-right: .25rem;
+    color: $primary-blue;
+  }
+
+  @media only screen and (min-width : 320px) and (max-width: 480px) {
+    padding: 0 1rem 1rem 1rem;
+  }
 }
