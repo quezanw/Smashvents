@@ -24,7 +24,7 @@ class HomePage extends React.Component {
           <p>Empowering your local smash community</p>
           <div className={styles.btnContainer}>
             <Link className={styles.btn} to="/event/create">Organize an event</Link>
-            <Link className={styles.btnHollow} to="/event/find">Find an event</Link>
+            <Link className={styles.btnHollow} to="/event/search">Find an event</Link>
           </div>
         </div>
         <section className={styles.eventsSection}>

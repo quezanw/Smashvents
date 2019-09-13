@@ -11,6 +11,7 @@ import EventPage from '../EventPage/EventPage';
 import AttendeesList from '../AttendeesList/AttendeesList';
 import EventEdit from '../Events/EventEdit/EventEdit';
 import EventCreate from '../Events/EventCreate/EventCreate';
+import EventSearch from '../EventSearch/EventSearch';
 import ProfileSettings from '../ProfileSettings/ProfileSettings';
 import styles from './App.module.scss';
 import '../../styles/main.scss';
@@ -52,6 +53,7 @@ class App extends React.Component {
           <Router history={history}>
             <Switch>
               <Route path="/" exact component={HomePage}/>
+              <Route path="/event/search" exact component={EventSearch}/>
               <Route path="/event/create" exact component={EventCreate}/>
               <Route path="/event/:title/details" exact component={EventPage}/>
               <Route path="/event/:title/attendees" exact component={AttendeesList}/>

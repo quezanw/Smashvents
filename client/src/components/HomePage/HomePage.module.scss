@@ -72,10 +72,11 @@
   color: $primary-blue;
   border: 3px solid $primary-blue;
   border-radius: 3px;
-  transition: border .25s ease, color .25s ease;
+  transition: border .25s ease, color .25s ease, background-color .25s ease;
 
   &:hover {
     border: 3px solid lighten($primary-blue, 10%);
     color: lighten($primary-blue, 10%);
+    background-color: rgba(112, 112, 238, 0.516);
   }
 }
