@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './EventSearch.module.scss';
 import EventItemLong from '../EventItemLong/EventItemLong';
 import { connect } from 'react-redux';
+import { getAllEvents } from '../../actions/index';
 
 class EventSearch extends React.Component {
   state = {
@@ -16,6 +17,7 @@ class EventSearch extends React.Component {
   };
 
   componentDidMount() {
+    this.props.getAllEvents();
     let { events } = this.props;
     events = events.sort((a,b) => a.start_date < b.start_date);
     let max = Math.floor(events.length / 10);
@@ -111,5 +113,5 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(EventSearch);
+export default connect(mapStateToProps, { getAllEvents })(EventSearch);
 

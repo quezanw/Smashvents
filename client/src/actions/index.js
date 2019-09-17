@@ -203,7 +203,6 @@ export const deleteEvent = event_id => async (dispatch, getState) => {
 export const getAllEvents = () => async (dispatch, getState) => {
   const response = await events.get('/all');
   dispatch({type: FETCH_ALL_EVENTS, payload: response.data.rows});
-  history.push('/');
 }
 
 export const joinEvent = event_id => async (dispatch, getState) => {
