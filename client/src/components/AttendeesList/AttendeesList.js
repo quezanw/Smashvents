@@ -14,7 +14,7 @@ class AttendeesList extends React.Component {
     max: 1,
     searchVal: '',
     prev: true,
-    next: true,
+    next: true
   }
 
   componentDidMount() {
@@ -92,9 +92,6 @@ class AttendeesList extends React.Component {
         <div className={styles.listWrapper}>
           <div className={styles.subHeader}>
             <h1>Attendees</h1>
-            <button className={styles.btnSort}>
-              <i className="fas fa-sort-down"></i>
-            </button>
           </div>
           <div>
             {renderList}

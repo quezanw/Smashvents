@@ -425,6 +425,76 @@ VALUES (
   '/event_icon3.png'
 );
 
+INSERT INTO events 
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
+VALUES ( 
+  2,
+  'Glitch 7 - Minus World',
+  'Glitch is back and better than ever! Glitch 7 is a Super Mario Bros. themed event! Well be bringing out players through our compendium to celebrate all things Mario! This includes Mario, Luigi, Wario, Peach/Daisy, Yoshi, Piranha Plant, Bowser, Bowser Jr, Dr. Mario, and Rosalina Mains! Were also proud to announce our partnership with Rivals of Aether and the Bounty system well be doing with them. Make sure and snag our Glitch shirt at check out!',
+  'no rules',
+  '198 Laurel Race Track Road, Laurel, MD 20725, USA',
+  FALSE,
+  '2018-08-12',
+  '10:00:00',
+  '20:00:00',
+  '/banner4.jpg',
+  '/event_icon5.png'
+);
+
+INSERT INTO events 
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
+VALUES ( 
+  7,
+  'Big House 8',
+  'The Big House is the largest fall Super Smash Brothers event. Since 2011, it has been the go-to annual convention for Smash fans not only in the Midwest, but across the world!',
+  'no rules',
+  '1 Washington Blvd, Detroit, MI 48226, USA',
+  FALSE,
+  '2018-10-05',
+  '10:00:00',
+  '20:00:00',
+  '/banner1.jpg',
+  '/event_icon5.png'
+);
+
+INSERT INTO events 
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
+VALUES ( 
+  7,
+  'Big House 5',
+  'The Big House is the largest fall Super Smash Brothers event. Since 2011, it has been the go-to annual convention for Smash fans not only in the Midwest, but across the world!',
+  'no rules',
+  '1 Washington Blvd, Detroit, MI 48226, USA',
+  FALSE,
+  '2016-10-05',
+  '10:00:00',
+  '20:00:00',
+  '/banner1.jpg',
+  '/event_icon5.png'
+);
+
+
+INSERT INTO events 
+(user_id, title, description, ruleset, venue, online, start_date, start_time, end_time, banner_path, icon_path)
+VALUES (
+  5,
+  'Orbitar 54',
+  'Bring your controller out every other Friday for Orbitar, Seattles premier Smash Ultimate bi-weekly, at GameWorks! PREREGISTRATION ONLINE IS MANDATORY. Sign up here before 10 PM on Thursday the week of the event, then pay at the venue with cash! Our player cap is 160 entrants, so make sure you sign up soon if you plan on going.
+  In addition to the bracket, we’ll have setups dedicated to friendlies. Smashers of all skill levels--and ages--are welcome! (Minors normally have to leave GameWorks at 10 PM, but anyone attending our event can stay for the whole duration!)
+  If you can’t make it out, you should be able to catch some of the action at https://twitch.tv/SatelliteSmash and https://twitch.tv/GameWorksSeattle. VODs will later be uploaded to www.satellitesmash.com.',
+  'no rules',
+  '1511 7th Ave, Seattle, WA 98101, USA',
+  FALSE,
+  '2017-10-23',
+  '15:00:00',
+  '20:00:00',
+  '/banner5.jpg',
+  '/event_icon1.png'
+);
+
+
+
+
 INSERT INTO attendees (user_id, event_id) VALUES (1,1);
 INSERT INTO attendees (user_id, event_id) VALUES (2,1);
 INSERT INTO attendees (user_id, event_id) VALUES (3,1);
@@ -540,6 +610,14 @@ INSERT INTO attendees (user_id, event_id) VALUES (5,3);
 INSERT INTO attendees (user_id, event_id) VALUES (6,3);
 INSERT INTO attendees (user_id, event_id) VALUES (7,3);
 INSERT INTO attendees (user_id, event_id) VALUES (8,3);
+INSERT INTO attendees (user_id, event_id) VALUES (20,2);
+INSERT INTO attendees (user_id, event_id) VALUES (21,2);
+INSERT INTO attendees (user_id, event_id) VALUES (22,2);
+INSERT INTO attendees (user_id, event_id) VALUES (23,2);
+INSERT INTO attendees (user_id, event_id) VALUES (24,2);
+INSERT INTO attendees (user_id, event_id) VALUES (25,2);
+INSERT INTO attendees (user_id, event_id) VALUES (26,2);
+INSERT INTO attendees (user_id, event_id) VALUES (27,2);
 
 INSERT INTO attendees (user_id, event_id) VALUES (1,4);
 INSERT INTO attendees (user_id, event_id) VALUES (2,4);
@@ -550,6 +628,14 @@ INSERT INTO attendees (user_id, event_id) VALUES (6,4);
 INSERT INTO attendees (user_id, event_id) VALUES (7,4);
 INSERT INTO attendees (user_id, event_id) VALUES (8,4);
 INSERT INTO attendees (user_id, event_id) VALUES (9,4);
+INSERT INTO attendees (user_id, event_id) VALUES (30,2);
+INSERT INTO attendees (user_id, event_id) VALUES (31,2);
+INSERT INTO attendees (user_id, event_id) VALUES (32,2);
+INSERT INTO attendees (user_id, event_id) VALUES (33,2);
+INSERT INTO attendees (user_id, event_id) VALUES (34,2);
+INSERT INTO attendees (user_id, event_id) VALUES (35,2);
+INSERT INTO attendees (user_id, event_id) VALUES (36,2);
+INSERT INTO attendees (user_id, event_id) VALUES (37,2);
 INSERT INTO attendees (user_id, event_id) VALUES (60,4);
 INSERT INTO attendees (user_id, event_id) VALUES (61,4);
 INSERT INTO attendees (user_id, event_id) VALUES (62,4);
@@ -622,6 +708,35 @@ INSERT INTO attendees (user_id, event_id) VALUES (24,6);
 INSERT INTO attendees (user_id, event_id) VALUES (25,6);
 INSERT INTO attendees (user_id, event_id) VALUES (26,6);
 INSERT INTO attendees (user_id, event_id) VALUES (27,6);
+INSERT INTO attendees (user_id, event_id) VALUES (30,2);
+INSERT INTO attendees (user_id, event_id) VALUES (31,2);
+INSERT INTO attendees (user_id, event_id) VALUES (32,2);
+INSERT INTO attendees (user_id, event_id) VALUES (33,2);
+INSERT INTO attendees (user_id, event_id) VALUES (34,2);
+INSERT INTO attendees (user_id, event_id) VALUES (35,2);
+INSERT INTO attendees (user_id, event_id) VALUES (36,2);
+INSERT INTO attendees (user_id, event_id) VALUES (37,2);
+INSERT INTO attendees (user_id, event_id) VALUES (40,2);
+INSERT INTO attendees (user_id, event_id) VALUES (41,2);
+INSERT INTO attendees (user_id, event_id) VALUES (42,2);
+INSERT INTO attendees (user_id, event_id) VALUES (43,2);
+INSERT INTO attendees (user_id, event_id) VALUES (44,2);
+INSERT INTO attendees (user_id, event_id) VALUES (45,2);
+INSERT INTO attendees (user_id, event_id) VALUES (46,2);
+INSERT INTO attendees (user_id, event_id) VALUES (47,2);
+INSERT INTO attendees (user_id, event_id) VALUES (48,2);
+INSERT INTO attendees (user_id, event_id) VALUES (49,2);
+INSERT INTO attendees (user_id, event_id) VALUES (50,2);
+INSERT INTO attendees (user_id, event_id) VALUES (51,2);
+INSERT INTO attendees (user_id, event_id) VALUES (52,2);
+INSERT INTO attendees (user_id, event_id) VALUES (53,2);
+INSERT INTO attendees (user_id, event_id) VALUES (54,2);
+INSERT INTO attendees (user_id, event_id) VALUES (55,2);
+INSERT INTO attendees (user_id, event_id) VALUES (56,2);
+INSERT INTO attendees (user_id, event_id) VALUES (57,2);
+INSERT INTO attendees (user_id, event_id) VALUES (58,2);
+INSERT INTO attendees (user_id, event_id) VALUES (59,2);
+
 
 INSERT INTO attendees (user_id, event_id) VALUES (1,7);
 INSERT INTO attendees (user_id, event_id) VALUES (2,7);
@@ -696,5 +811,168 @@ INSERT INTO attendees (user_id, event_id) VALUES (85,8);
 INSERT INTO attendees (user_id, event_id) VALUES (86,8);
 INSERT INTO attendees (user_id, event_id) VALUES (87,8);
 
+INSERT INTO attendees (user_id, event_id) VALUES (1,9);
+INSERT INTO attendees (user_id, event_id) VALUES (2,9);
+INSERT INTO attendees (user_id, event_id) VALUES (3,9);
+INSERT INTO attendees (user_id, event_id) VALUES (4,9);
+INSERT INTO attendees (user_id, event_id) VALUES (5,9);
+INSERT INTO attendees (user_id, event_id) VALUES (6,9);
+INSERT INTO attendees (user_id, event_id) VALUES (7,9);
+INSERT INTO attendees (user_id, event_id) VALUES (8,9);
+INSERT INTO attendees (user_id, event_id) VALUES (10,9);
+INSERT INTO attendees (user_id, event_id) VALUES (11,9);
+INSERT INTO attendees (user_id, event_id) VALUES (12,9);
+INSERT INTO attendees (user_id, event_id) VALUES (13,9);
+INSERT INTO attendees (user_id, event_id) VALUES (14,9);
+INSERT INTO attendees (user_id, event_id) VALUES (15,9);
+INSERT INTO attendees (user_id, event_id) VALUES (16,9);
+INSERT INTO attendees (user_id, event_id) VALUES (17,9);
+INSERT INTO attendees (user_id, event_id) VALUES (18,9);
+INSERT INTO attendees (user_id, event_id) VALUES (19,9);
+INSERT INTO attendees (user_id, event_id) VALUES (20,9);
+INSERT INTO attendees (user_id, event_id) VALUES (21,9);
+INSERT INTO attendees (user_id, event_id) VALUES (22,9);
+INSERT INTO attendees (user_id, event_id) VALUES (23,9);
+INSERT INTO attendees (user_id, event_id) VALUES (24,9);
+INSERT INTO attendees (user_id, event_id) VALUES (25,9);
+INSERT INTO attendees (user_id, event_id) VALUES (26,9);
+INSERT INTO attendees (user_id, event_id) VALUES (27,9);
+INSERT INTO attendees (user_id, event_id) VALUES (50,9);
+INSERT INTO attendees (user_id, event_id) VALUES (51,9);
+INSERT INTO attendees (user_id, event_id) VALUES (52,9);
+INSERT INTO attendees (user_id, event_id) VALUES (53,9);
+INSERT INTO attendees (user_id, event_id) VALUES (54,9);
+INSERT INTO attendees (user_id, event_id) VALUES (55,9);
+INSERT INTO attendees (user_id, event_id) VALUES (56,9);
+INSERT INTO attendees (user_id, event_id) VALUES (57,9);
+INSERT INTO attendees (user_id, event_id) VALUES (58,9);
+INSERT INTO attendees (user_id, event_id) VALUES (59,9);
+INSERT INTO attendees (user_id, event_id) VALUES (80,9);
+INSERT INTO attendees (user_id, event_id) VALUES (81,9);
+INSERT INTO attendees (user_id, event_id) VALUES (82,9);
+INSERT INTO attendees (user_id, event_id) VALUES (83,9);
+INSERT INTO attendees (user_id, event_id) VALUES (84,9);
+INSERT INTO attendees (user_id, event_id) VALUES (85,9);
+INSERT INTO attendees (user_id, event_id) VALUES (86,9);
+INSERT INTO attendees (user_id, event_id) VALUES (87,9);
+
+INSERT INTO attendees (user_id, event_id) VALUES (1,10);
+INSERT INTO attendees (user_id, event_id) VALUES (2,10);
+INSERT INTO attendees (user_id, event_id) VALUES (3,10);
+INSERT INTO attendees (user_id, event_id) VALUES (4,10);
+INSERT INTO attendees (user_id, event_id) VALUES (5,10);
+INSERT INTO attendees (user_id, event_id) VALUES (6,10);
+INSERT INTO attendees (user_id, event_id) VALUES (7,10);
+INSERT INTO attendees (user_id, event_id) VALUES (8,10);
+INSERT INTO attendees (user_id, event_id) VALUES (10,10);
+INSERT INTO attendees (user_id, event_id) VALUES (11,10);
+INSERT INTO attendees (user_id, event_id) VALUES (12,10);
+INSERT INTO attendees (user_id, event_id) VALUES (13,10);
+INSERT INTO attendees (user_id, event_id) VALUES (14,10);
+INSERT INTO attendees (user_id, event_id) VALUES (15,10);
+INSERT INTO attendees (user_id, event_id) VALUES (16,10);
+INSERT INTO attendees (user_id, event_id) VALUES (17,10);
+INSERT INTO attendees (user_id, event_id) VALUES (18,10);
+INSERT INTO attendees (user_id, event_id) VALUES (19,10);
+INSERT INTO attendees (user_id, event_id) VALUES (20,10);
+INSERT INTO attendees (user_id, event_id) VALUES (21,10);
+INSERT INTO attendees (user_id, event_id) VALUES (22,10);
+INSERT INTO attendees (user_id, event_id) VALUES (23,10);
+INSERT INTO attendees (user_id, event_id) VALUES (24,10);
+INSERT INTO attendees (user_id, event_id) VALUES (25,10);
+INSERT INTO attendees (user_id, event_id) VALUES (26,10);
+INSERT INTO attendees (user_id, event_id) VALUES (27,10);
+INSERT INTO attendees (user_id, event_id) VALUES (50,10);
+INSERT INTO attendees (user_id, event_id) VALUES (51,10);
+INSERT INTO attendees (user_id, event_id) VALUES (52,10);
+INSERT INTO attendees (user_id, event_id) VALUES (53,10);
+INSERT INTO attendees (user_id, event_id) VALUES (54,10);
+INSERT INTO attendees (user_id, event_id) VALUES (55,10);
+INSERT INTO attendees (user_id, event_id) VALUES (56,10);
+INSERT INTO attendees (user_id, event_id) VALUES (57,10);
+INSERT INTO attendees (user_id, event_id) VALUES (58,10);
+INSERT INTO attendees (user_id, event_id) VALUES (59,10);
+INSERT INTO attendees (user_id, event_id) VALUES (80,10);
+INSERT INTO attendees (user_id, event_id) VALUES (81,10);
+INSERT INTO attendees (user_id, event_id) VALUES (82,10);
+INSERT INTO attendees (user_id, event_id) VALUES (83,10);
+INSERT INTO attendees (user_id, event_id) VALUES (84,10);
+INSERT INTO attendees (user_id, event_id) VALUES (85,10);
+INSERT INTO attendees (user_id, event_id) VALUES (86,10);
+INSERT INTO attendees (user_id, event_id) VALUES (87,10);
+
+INSERT INTO attendees (user_id, event_id) VALUES (40,11);
+INSERT INTO attendees (user_id, event_id) VALUES (41,11);
+INSERT INTO attendees (user_id, event_id) VALUES (42,11);
+INSERT INTO attendees (user_id, event_id) VALUES (43,11);
+INSERT INTO attendees (user_id, event_id) VALUES (44,11);
+INSERT INTO attendees (user_id, event_id) VALUES (45,11);
+INSERT INTO attendees (user_id, event_id) VALUES (46,11);
+INSERT INTO attendees (user_id, event_id) VALUES (47,11);
+INSERT INTO attendees (user_id, event_id) VALUES (48,11);
+INSERT INTO attendees (user_id, event_id) VALUES (49,11);
+INSERT INTO attendees (user_id, event_id) VALUES (30,11);
+INSERT INTO attendees (user_id, event_id) VALUES (31,11);
+INSERT INTO attendees (user_id, event_id) VALUES (32,11);
+INSERT INTO attendees (user_id, event_id) VALUES (33,11);
+INSERT INTO attendees (user_id, event_id) VALUES (34,11);
+INSERT INTO attendees (user_id, event_id) VALUES (35,11);
+INSERT INTO attendees (user_id, event_id) VALUES (36,11);
+INSERT INTO attendees (user_id, event_id) VALUES (37,11);
+INSERT INTO attendees (user_id, event_id) VALUES (50,11);
+INSERT INTO attendees (user_id, event_id) VALUES (51,11);
+INSERT INTO attendees (user_id, event_id) VALUES (52,11);
+INSERT INTO attendees (user_id, event_id) VALUES (53,11);
+INSERT INTO attendees (user_id, event_id) VALUES (54,11);
+INSERT INTO attendees (user_id, event_id) VALUES (55,11);
+INSERT INTO attendees (user_id, event_id) VALUES (56,11);
+INSERT INTO attendees (user_id, event_id) VALUES (57,11);
+INSERT INTO attendees (user_id, event_id) VALUES (58,11);
+INSERT INTO attendees (user_id, event_id) VALUES (59,11);
+INSERT INTO attendees (user_id, event_id) VALUES (20,11);
+INSERT INTO attendees (user_id, event_id) VALUES (21,11);
+INSERT INTO attendees (user_id, event_id) VALUES (22,11);
+INSERT INTO attendees (user_id, event_id) VALUES (23,11);
+INSERT INTO attendees (user_id, event_id) VALUES (24,11);
+INSERT INTO attendees (user_id, event_id) VALUES (25,11);
+INSERT INTO attendees (user_id, event_id) VALUES (26,11);
+INSERT INTO attendees (user_id, event_id) VALUES (27,11);
+
+INSERT INTO attendees (user_id, event_id) VALUES (40,12);
+INSERT INTO attendees (user_id, event_id) VALUES (41,12);
+INSERT INTO attendees (user_id, event_id) VALUES (42,12);
+INSERT INTO attendees (user_id, event_id) VALUES (43,12);
+INSERT INTO attendees (user_id, event_id) VALUES (44,12);
+INSERT INTO attendees (user_id, event_id) VALUES (45,12);
+INSERT INTO attendees (user_id, event_id) VALUES (46,12);
+INSERT INTO attendees (user_id, event_id) VALUES (47,12);
+INSERT INTO attendees (user_id, event_id) VALUES (48,12);
+INSERT INTO attendees (user_id, event_id) VALUES (49,12);
+INSERT INTO attendees (user_id, event_id) VALUES (30,12);
+INSERT INTO attendees (user_id, event_id) VALUES (31,12);
+INSERT INTO attendees (user_id, event_id) VALUES (32,12);
+INSERT INTO attendees (user_id, event_id) VALUES (33,12);
+INSERT INTO attendees (user_id, event_id) VALUES (34,12);
+INSERT INTO attendees (user_id, event_id) VALUES (35,12);
+INSERT INTO attendees (user_id, event_id) VALUES (36,12);
+INSERT INTO attendees (user_id, event_id) VALUES (37,12);
+INSERT INTO attendees (user_id, event_id) VALUES (50,12);
+INSERT INTO attendees (user_id, event_id) VALUES (51,12);
+INSERT INTO attendees (user_id, event_id) VALUES (52,12);
+INSERT INTO attendees (user_id, event_id) VALUES (53,12);
+INSERT INTO attendees (user_id, event_id) VALUES (54,12);
+INSERT INTO attendees (user_id, event_id) VALUES (55,12);
+INSERT INTO attendees (user_id, event_id) VALUES (56,12);
+INSERT INTO attendees (user_id, event_id) VALUES (57,12);
+INSERT INTO attendees (user_id, event_id) VALUES (58,12);
+INSERT INTO attendees (user_id, event_id) VALUES (59,12);
+INSERT INTO attendees (user_id, event_id) VALUES (20,12);
+INSERT INTO attendees (user_id, event_id) VALUES (21,12);
+INSERT INTO attendees (user_id, event_id) VALUES (22,12);
+INSERT INTO attendees (user_id, event_id) VALUES (23,12);
+INSERT INTO attendees (user_id, event_id) VALUES (24,12);
+INSERT INTO attendees (user_id, event_id) VALUES (25,12);
+INSERT INTO attendees (user_id, event_id) VALUES (26,12);
+INSERT INTO attendees (user_id, event_id) VALUES (27,12);
 
 

@@ -17,6 +17,7 @@ class EventSearch extends React.Component {
 
   componentDidMount() {
     let { events } = this.props;
+    events = events.sort((a,b) => a.start_date < b.start_date);
     let max = Math.floor(events.length / 10);
     this.setState({
       events,
@@ -87,6 +88,17 @@ class EventSearch extends React.Component {
         </div>
         <div className={styles.container}>
           {renderEvents}
+        </div>
+        <div className={styles.footer}>
+          <div className={styles.pageControls}>
+            <button className={styles.btn} disabled={this.state.prev} onClick={this.prevPage}>
+              <i className="far fa-caret-square-left"></i> 
+            </button>
+            <p>{this.state.currentPage}</p>
+            <button className={styles.btn} disabled={this.state.next} onClick={this.nextPage}>
+              <i className="far fa-caret-square-right"></i>
+            </button>
+          </div>
         </div>
       </div>
     );
