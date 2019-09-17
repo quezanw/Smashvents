@@ -1,15 +1,12 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import styles from './EventForm.module.scss';
-import DatePicker from "react-datepicker";
 import LocationSearch from '../Inputs/LocationSearch/LocationSearch';
-
-import "react-datepicker/dist/react-datepicker.css";
-
+import ImagesContainer from '../Inputs/ImagesContainer/ImagesContainer';
+import DateField from '../Inputs/DateField/DateField';
 
 class EventForm extends React.Component {
-  state = { online: this.props.initialValues.online ? 'true' : 'false', 
-            startDate: new Date(),
+  state = { online: this.props.initialValues.online ? 'true' : 'false',
             banner: this.props.initialValues.banner_path,
             event_icon: this.props.initialValues.icon_path,
           }
@@ -83,46 +80,10 @@ class EventForm extends React.Component {
     );
   }
 
-  renderTime = ({input, label, type, meta: {active, touched, error, warning }}) => {
-    return (
-      <div className={styles.col}>
-        <label>{label}</label>
-        <input {...input} type={type} autoComplete="off" />
-        {touched && (
-          (error && <span className={styles.error}>{error}</span>) 
-          || (warning && <span>{warning}</span>)
-        )}
-      </div>
-    );
-  }
-
-  renderDatePicker = ({input, label, type, meta: {active, touched, error, warning } }) => {
-    return (
-      <div className={`${styles.col} ${styles.dateField}`}>
-        <label>{label}</label>
-        {/* <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} /> */}
-        <DatePicker
-          {...input}
-          dateForm="MM/DD/YYYY"
-          selected={this.state.startDate}
-          onChange={input.onChange}
-          minDate={new Date()}
-          type={type}
-        />
-          {touched && (
-          (error && <span className={styles.error}>{error}</span>) 
-          || (warning && <span>{warning}</span>)
-        )}
-      </div>
-    );
-  }
-
   renderVenue = () => {
     let offline = this.state.online;
-    let value = '';
-    if(this.props.initialValues.venue) {
-      value = this.props.initialValues.venue;
-    }
+    let { initialValues } = this.props
+    let value = initialValues.venue ? initialValues.venue : '';
     if(offline === 'false') {
       return (
         <Field 
@@ -166,17 +127,6 @@ class EventForm extends React.Component {
           />
           <img className={styles.eventIcon} src={`/assets${input.value}`} alt="banner"/>
         </label>
-      </div>
-    );
-  }
-
-  renderImagesContainer = (images, title) => {
-    return (
-      <div className={styles.imagesWrapper}>
-        <p className={styles.label}>{title}</p>
-        <div className={styles.images}>
-          {images}
-        </div>
       </div>
     );
   }
@@ -251,33 +201,9 @@ class EventForm extends React.Component {
             />
           </div>
           {this.renderVenue()}
-          <div className={styles.dateTime}>
-            <Field 
-              name="start_date" 
-              type="date" 
-              label="Start Date" 
-              component={this.renderDatePicker}
-              onChange={this.handleChange}
-              validate={[this.required]}
-              />
-            <div className={styles.timeField}>
-              <Field 
-                name="start_time" 
-                type="time" 
-                label="Start Time" 
-                component={this.renderTime}
-                validate={[this.required]}
-              />
-              <Field 
-                name="end_time" 
-                type="time" 
-                label="End Time" 
-                component={this.renderTime}
-              />
-            </div>
-          </div>
-          {this.renderImagesContainer(bannerImages, 'Event Banner')}
-          {this.renderImagesContainer(eventIcons, 'Event Icons')}
+          <DateField required={this.required}/>
+          <ImagesContainer images={bannerImages} title='Event Banner'/>
+          <ImagesContainer images={eventIcons} title='Event Icons'/>
           <button className={styles.submit} type="submit">Submit</button>
         </form>
       </div>
@@ -285,4 +211,4 @@ class EventForm extends React.Component {
   }
 }
 
-export default reduxForm({ form: 'eventForm'})(EventForm);
+export default reduxForm({ form: 'eventForm' })(EventForm);

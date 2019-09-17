@@ -1,0 +1,27 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/components.scss';
+
+.col {
+  display: flex;
+  flex-flow: column;
+  margin-right: 1rem;
+
+  label {
+    font-weight: bold;
+  }
+
+  label,
+  input {
+    @extend %font-base;
+  }
+}
+
+.timeField {
+  display: flex;
+}
+
+.error {
+  @extend %font-base;
+  margin-top: .25rem;
+  color: $primary-red;
+}

@@ -1,0 +1,40 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/components.scss';
+
+.col {
+  display: flex;
+  flex-flow: column;
+  margin-right: 1rem;
+
+  label {
+    font-weight: bold;
+  }
+
+  label,
+  input {
+    @extend %font-base;
+  }
+}
+
+.label {
+  font-weight: bold;
+  font-family: $primary-font;
+  font-size: $primary-font-size;
+  margin-bottom: .5rem;
+}
+
+.dateTime {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1rem 0;
+}
+
+.dateField {
+  margin-bottom: 1rem;
+}
+
+.error {
+  @extend %font-base;
+  margin-top: .25rem;
+  color: $primary-red;
+}
