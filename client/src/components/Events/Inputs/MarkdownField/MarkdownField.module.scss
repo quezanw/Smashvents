@@ -1,0 +1,24 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/components.scss';
+
+.row {
+  @extend %input-row;
+
+  label {
+    font-weight: bold;
+    margin-bottom: .5rem;
+  }
+
+  input {
+    @extend %font-base;
+  }
+}
+
+.textarea {
+  resize: none;
+  height: 100px;
+
+  input {
+    @extend %font-base;
+  }
+}

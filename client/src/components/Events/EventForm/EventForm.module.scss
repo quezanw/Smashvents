@@ -49,39 +49,6 @@
   }
 }
 
-.radioWrapper {
-  margin: 1rem 0;
-}
-
-.label {
-  font-weight: bold;
-  font-family: $primary-font;
-  font-size: $primary-font-size;
-  margin-bottom: .5rem;
-}
-
-.radio {
-  margin-top: .5rem;
-
-  input {
-    margin-left: -1px;
-  }
-
-  label {
-    @extend %font-base;
-  }
-}
-
-.textarea {
-  resize: none;
-  height: 100px;
-
-  input {
-    @extend %font-base;
-  }
-}
-
-
 .submit {
   @include btn($primary-blue);
 }
@@ -90,44 +57,4 @@
   @extend %font-base;
   margin-top: .25rem;
   color: $primary-red;
-}
-
-.bannerImgWrapper {
-  height: auto;
-  width: auto;
-  margin-top: .5rem;
-
-  label {
-    height: auto;
-    width: auto;
-  }
-}
-
-.bannerImg {
-  width: 200px;
-  height: 125px;
-  margin-right: 1rem;
-
-  @media only screen and (min-width : 320px) and (max-width: 480px) {
-    width: 120px;
-    height: 70px;
-    margin-right: 0;
-  }
-}
-
-.eventIcon {
-  width: 50px;
-  height: 50px;
-  border-radius: 3px;
-}
-
-.radioImageBtn {
-  position: relative;
-  top: -105px;
-  left: 25px;
-  margin-left: -25px;
-
-  @media only screen and (min-width : 320px) and (max-width: 480px) {
-    top: -50px;
-  }
 }

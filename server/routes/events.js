@@ -87,6 +87,7 @@ router.post('/new', (req, res, next) => {
        online, start_date, start_time, end_time,
        banner_path, icon_path
       } = req.body;
+  online = online === 'true';
   if(title === undefined) {
     return res.json({error: 'TITLE CANNOT BE BLANK'});
   } else if(venue === undefined && !online) {
@@ -102,13 +103,14 @@ router.post('/new', (req, res, next) => {
                     (user_id, title, description, 
                     ruleset, venue, online, start_date,
                     start_time, end_time, banner_path, icon_path)
-                    VALUES 
-                    (${user_id}, '${title}', '${description}', 
-                    '${ruleset}', '${venue}', ${online === 'true'}, '${start_date}',
-                    '${start_time}', '${end_time}', '${banner_path}', '${icon_path}')
-                    RETURNING *
-                    `;
-  pool.query(createQuery, (error, results) => {
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+                    RETURNING *`;
+  const query = {
+    text: createQuery,
+    values: [user_id, title, description, ruleset, venue, online, start_date, 
+             start_time, end_time, banner_path, icon_path, event_id]
+  }
+  pool.query(query, (error, results) => {
     if(error) {
       throw error;
     }
@@ -133,22 +135,26 @@ router.put('/edit', (req, res, next) => {
   } else if(end_time === undefined) {
     return res.json({error: 'END TIME REQUIRED'}) 
   }
-  let updateQuery = `
+  let update = `
     UPDATE events 
     SET
-      title='${title}',
-      description='${description}',
-      ruleset='${ruleset}',
-      venue='${venue}',
-      online = ${online},
-      start_date='${start_date}',
-      start_time='${start_time}',
-      end_time='${end_time}',
-      banner_path='${banner_path}',
-      icon_path='${icon_path}'
-    WHERE event_id = ${event_id}
-  `;
-  pool.query(updateQuery, (error, results) => {
+      title = $1,
+      description = $2,
+      ruleset = $3,
+      venue = $4,
+      online = $5,
+      start_date = $6,
+      start_time = $7,
+      end_time = $8,
+      banner_path = $9,
+      icon_path = $10
+    WHERE event_id = $11`;
+  const query = {
+    text: update,
+    values: [title, description, ruleset, venue, online, start_date, 
+            start_time, end_time, banner_path, icon_path, event_id]
+  }
+  pool.query(query, (error, results) => {
     if(error) {
       throw error;
     }

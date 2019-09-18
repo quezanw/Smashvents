@@ -1,0 +1,36 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/components.scss';
+
+.bannerImgWrapper {
+  height: auto;
+  width: auto;
+  margin-top: .5rem;
+
+  label {
+    height: auto;
+    width: auto;
+  }
+}
+
+.bannerImg {
+  width: 200px;
+  height: 125px;
+  margin-right: 1rem;
+
+  @media only screen and (min-width : 320px) and (max-width: 480px) {
+    width: 120px;
+    height: 70px;
+    margin-right: 0;
+  }
+}
+
+.radioImageBtn {
+  position: relative;
+  top: -105px;
+  left: 25px;
+  margin-left: -25px;
+
+  @media only screen and (min-width : 320px) and (max-width: 480px) {
+    top: -50px;
+  }
+}

@@ -1,0 +1,26 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/components.scss';
+
+
+.radioWrapper {
+  margin: 1rem 0;
+}
+
+.label {
+  font-weight: bold;
+  font-family: $primary-font;
+  font-size: $primary-font-size;
+  margin-bottom: .5rem;
+}
+
+.radio {
+  margin-top: .5rem;
+
+  input {
+    margin-left: -1px;
+  }
+
+  label {
+    @extend %font-base;
+  }
+}
