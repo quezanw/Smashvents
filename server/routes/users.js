@@ -52,26 +52,14 @@ router.post('/register', async (req, res, next) => {
       if(err) {
         throw err
       }
-      let createQuery = `
-      INSERT INTO users 
-      (
-       username, 
-       first_name, 
-       last_name, 
-       email, 
-       password,
-       theme_color
-      )
-      VALUES 
-      (
-       '${username}',
-       '${first_name}',
-       '${last_name}',
-       '${email}',
-       '${hash}',
-       '${defaultColor}'
-      )`; 
-      pool.query(createQuery, (err, result) => {
+      let createQuery = `INSERT INTO users 
+                          (username, first_name, last_name, email, password, theme_color)
+                          VALUES ($1, $2, $3, $4, $5, $6)`; 
+      const query = {
+        text: createQuery,
+        values: [username, first_name, last_name, email, hash, defaultColor]
+      }
+      pool.query(query, (err, result) => {
         if(err) {
           throw err;
         }
