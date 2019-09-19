@@ -29,6 +29,7 @@ CREATE TABLE users (
   email        VARCHAR(254) NOT NULL,
   password     VARCHAR(254) NOT NULL,
   theme_color  VARCHAR(254) NOT NULL,
+  profile_img  VARCHAR(254),
   created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
   updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()
 );
