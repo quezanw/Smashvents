@@ -194,19 +194,6 @@ router.put('/edit/profile_img', multerUploads, async (req, res) => {
    }
 })
 
-// const fetchPublicId = async user_id => {
-//   let query = {
-//     text: `SELECT public_id FROM users WHERE user_id = $1`,
-//     values: [user_id]
-//   }
-//   return await pool.query(query, (err, results) => {
-//     if(err) {
-//       throw err;
-//     }
-//     return results.rows[0].public_id;
-//   })
-// }
-
 router.delete('/delete/profile_img/:user_id', async (req, res) => {
   let { user_id } = req.params;
   let query = {
@@ -217,30 +204,25 @@ router.delete('/delete/profile_img/:user_id', async (req, res) => {
   if(!fetchPublicId.exist) {
     return res.json({message: 'public_id does not exist.' })
   }
-  console.log(fetchPublicId.row.public_id)
-  return cloudinary.uploader.destroy(fetchPublicId.row.public_id, result => {
-    updateProfileImg('', '', user_id);
-    res.json({ message: 'Your image has been deleted successfully from cloudinary'})
-  })
-    // .then(result => {
-    //   updateProfileImage('', '', user_id);
-    //   return res.status(200).json({
-    //     message: 'Your image has been deleted successfully from cloudinary',
-    //     data: {
-    //       result
-    //     }
-    //   })
-    // })
-    // .catch(err => res.status(400).json({
-    //   message: 'someting went wrong while processing your request',
-    //   data: {
-    //     err
-    //   }
-    // }))
+  return cloudinary.uploader.destroy(fetchPublicId.row.public_id)
+    .then(result => {
+      updateProfileImg('', '', user_id);
+      return res.status(200).json({
+        message: 'Your image has been deleted successfully from cloudinary',
+        data: {
+          result
+        }
+      })
+    })
+    .catch(err => res.status(400).json({
+      message: 'someting went wrong while processing your request',
+      data: {
+        err
+      }
+    }))
 })
 
-
-router.get('/delete', function(req, res, next) {
+router.delete('/delete/user/:user_id',(req, res, next) => {
   res.send('respond with a resource');
 });
 
