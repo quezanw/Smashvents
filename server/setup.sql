@@ -30,6 +30,7 @@ CREATE TABLE users (
   password     VARCHAR(254) NOT NULL,
   theme_color  VARCHAR(254) NOT NULL,
   profile_img  VARCHAR(254),
+  public_id    VARCHAR(1000),
   created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
   updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()
 );
