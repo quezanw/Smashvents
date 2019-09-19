@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ProfileSettings.module.scss';
 import ProfileForm from './ProfileForm/ProfileForm';
 import ThemeForm from './ThemeForm/ThemeForm';
+import ProfileImageForm from './ProfileImageForm/ProfileImageForm';
 import Auth from '../Auth/Auth';
 import { connect } from 'react-redux';
 import { editThemeColor, editProfileSettings } from '../../actions/index';
@@ -34,6 +35,7 @@ class ProfileSettings extends React.Component {
             <ProfileForm onSubmit={this.submitProfileEdit} initialValues={initialValues}/>
           </div>
           <ThemeForm onSubmit={this.submitThemeColor} theme_color={theme_color}/>
+          <ProfileImageForm/>
         </div>
       );
     }
