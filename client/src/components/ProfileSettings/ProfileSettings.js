@@ -13,10 +13,19 @@ class ProfileSettings extends React.Component {
 
   submitProfileEdit = formValues => this.props.editProfileSettings(formValues);
   
+  renderIcon = auth => {
+    let { theme_color, profile_img, username } = auth;
+    if(profile_img.length > 0) {
+      return <div style={{ backgroundImage: `url(${profile_img})`}} className={styles.userIcon}></div>
+    }
+    return <div style={{ backgroundColor: theme_color }} className={styles.userIcon}>{username.charAt(0)}</div>
+  }
+
   render() {
-    let initialValues = { username: this.props.auth.username };
-    if(this.props.auth.isSignedIn) {
-      let {username, first_name, last_name, theme_color} = this.props.auth;
+    let { isSignedIn, username, first_name, last_name, theme_color } = this.props.auth; 
+    let initialValues = { username };
+    if(isSignedIn) {
+      // let {username, first_name, last_name, theme_color} = this.props.auth;
       return ( 
         <div className={styles.wrapper}>
           <div className={styles.header}>
@@ -24,9 +33,10 @@ class ProfileSettings extends React.Component {
           </div>
           <div className={styles.row}>
             <div className={styles.userCard}>
-              <div className={styles.userIcon} style={{backgroundColor: theme_color}}>
+              {/* <div className={styles.userIcon} style={{backgroundColor: theme_color}}>
                 {username.charAt(0).toUpperCase()}
-              </div>
+              </div> */}
+              {this.renderIcon(this.props.auth)}
               <div className={styles.nameWrapper}>
                 <h2 className={styles.username}>{username}</h2>
                 <p className={styles.fullname}>{first_name} {last_name}</p>

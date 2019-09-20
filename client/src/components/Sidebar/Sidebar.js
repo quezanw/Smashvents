@@ -59,12 +59,20 @@ class Sidebar extends React.Component {
     ) 
   }
 
-  renderIcon = () => {
-    let auth = this.props.auth;
-    if(auth.isSignedIn) {
+  renderIcon = auth => {
+    let { theme_color, profile_img, username } = auth;
+    if(profile_img.length > 0) {
+      return <div style={{ backgroundImage: `url(${profile_img})`}} className={styles.userIcon}></div>
+    }
+    return <div style={{ backgroundColor: theme_color }} className={styles.userIcon}>{username.charAt(0)}</div>
+  }
+
+  renderUserIcon = () => {
+    let { isSignedIn } = this.props.auth;
+    if(isSignedIn) {
       return (
         <div onClick={this.openProfileSettings} className={styles.user}>
-          <div style={{backgroundColor: auth.theme_color}} className={styles.userIcon}>{auth.username.charAt(0)}</div>
+          {this.renderIcon(this.props.auth)}
           <p>
             <span>Profile Settings</span>
           </p>
@@ -110,7 +118,7 @@ class Sidebar extends React.Component {
           <p>Home</p>
         </div>
         
-        {this.renderIcon()}
+        {this.renderUserIcon()}
         <div className={styles.eventScrollerHosting}>
           {eventsHosting}
         </div>

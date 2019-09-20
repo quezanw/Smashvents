@@ -28,8 +28,8 @@ CREATE TABLE users (
   last_name    VARCHAR(254) NOT NULL,
   email        VARCHAR(254) NOT NULL,
   password     VARCHAR(254) NOT NULL,
-  theme_color  VARCHAR(254) NOT NULL,
-  profile_img  VARCHAR(254),
+  theme_color  VARCHAR(254) NOT NULL DEFAULT '#7185AD',
+  profile_img  VARCHAR(254) DEFAULT '',
   public_id    VARCHAR(1000),
   created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
   updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()

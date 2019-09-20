@@ -39,7 +39,7 @@ let checkIfExists = async (columnName, query) => {
 
 router.post('/register', async (req, res, next) => {
   let { username, first_name, last_name, email, password } = req.body;
-  let defaultColor = '#7185AD';
+  // let defaultColor = '#7185AD';
   if(username === undefined) {
     return res.json({error: 'USERNAME CANNOT BE BLANK'});
   } else if(first_name === undefined) {
@@ -67,11 +67,11 @@ router.post('/register', async (req, res, next) => {
         throw err
       }
       let createQuery = `INSERT INTO users 
-                          (username, first_name, last_name, email, password, theme_color)
-                          VALUES ($1, $2, $3, $4, $5, $6)`; 
+                          (username, first_name, last_name, email, password)
+                          VALUES ($1, $2, $3, $4, $5)`; 
       const query = {
         text: createQuery,
-        values: [username, first_name, last_name, email, hash, defaultColor]
+        values: [username, first_name, last_name, email, hash]
       }
       pool.query(query, (err, result) => {
         if(err) {
@@ -84,7 +84,7 @@ router.post('/register', async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-  let {email, password} = req.body;
+  let { email, password } = req.body;
   if(email === undefined) {
     return res.json({error: 'EMAIL CANNOT BE BLANK'});
   } else if (!EMAIL_REGEX.test(email.trim())) {
@@ -94,10 +94,11 @@ router.post('/login', async (req, res, next) => {
   } else if(password.length < 8) {
     return res.json({error: 'PASSWORD MUST BE 8 CHARACTERS OR GREATER'}); 
   }
-  let emailQuery = `SELECT password, user_id, username, theme_color, first_name, last_name 
+  let emailQuery = `SELECT password, user_id, username, theme_color, first_name, last_name, profile_img 
                     FROM users WHERE email='${email}' LIMIT 1`;
   let emailResponse = await checkIfExists('email', emailQuery);
   if(emailResponse.exist) {
+    console.log(emailResponse)
     bcrypt.compare(password, emailResponse.row.password, (err,result) => {
       if(err) {
         throw err
@@ -105,7 +106,15 @@ router.post('/login', async (req, res, next) => {
       if(!result) {
         return res.json({error: 'INCORRECT PASSWORD'});
       } else {
-        return res.json({user_id, username, theme_color, first_name, last_name} = emailResponse.row)
+        return res.json(
+          {
+            user_id, 
+            username, 
+            theme_color, 
+            first_name, 
+            last_name, 
+            profile_img
+          } = emailResponse.row);
       }
     })
   } else {

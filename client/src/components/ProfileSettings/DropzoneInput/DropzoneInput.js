@@ -1,6 +1,5 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import auth from '../../../apis/auth';
 import { connect } from 'react-redux';
 import styles from './DropzoneInput.module.scss';
 
