@@ -12,6 +12,7 @@
     "react-alice-carousel": "^1.15.2",
     "react-datepicker": "^2.8.0",
     "react-dom": "^16.8.4",
+    "react-dropzone": "^10.1.9",
     "react-places-autocomplete": "^7.2.1",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
@@ -20,7 +21,8 @@
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "superagent": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
