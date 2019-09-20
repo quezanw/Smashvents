@@ -1,0 +1,15 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/components.scss';
+@import '../../../styles/layout.scss';
+
+
+.dropzone > div {
+  width: auto;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  border: 1px dashed black;
+  @extend %font-base;
+}

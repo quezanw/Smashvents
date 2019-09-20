@@ -87,7 +87,12 @@ router.post('/new', (req, res, next) => {
        online, start_date, start_time, end_time,
        banner_path, icon_path
       } = req.body;
-  online = online === 'true';
+  if(online === 'true') {
+    online = true;
+  } else {
+    online = false;
+  }
+  // online = online === 'true' ? true : false;
   if(title === undefined) {
     return res.json({error: 'TITLE CANNOT BE BLANK'});
   } else if(venue === undefined && !online) {
@@ -103,12 +108,12 @@ router.post('/new', (req, res, next) => {
                     (user_id, title, description, 
                     ruleset, venue, online, start_date,
                     start_time, end_time, banner_path, icon_path)
-                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
                     RETURNING *`;
   const query = {
     text: createQuery,
     values: [user_id, title, description, ruleset, venue, online, start_date, 
-             start_time, end_time, banner_path, icon_path, event_id]
+             start_time, end_time, banner_path, icon_path]
   }
   pool.query(query, (error, results) => {
     if(error) {

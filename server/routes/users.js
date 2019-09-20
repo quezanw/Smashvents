@@ -1,8 +1,22 @@
 const express = require('express');
 const router = express.Router();
-let config = require('../../config');
+const config = require('../../config');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const Datauri = require('datauri');
+const path = require('path');
+const dUri = new Datauri();
+
+cloudinary.config({
+  cloud_name: config.CLOUD_NAME, 
+  api_key: config.CLOUDINARY_KEY, 
+  api_secret: config.CLOUDINARY_SECRET
+});
+const storage = multer.memoryStorage();
+const multerUploads = multer({ storage }).single('profile_img');
+const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
 
 const EMAIL_REGEX = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const Pool = require('pg').Pool
@@ -136,7 +150,79 @@ router.put('/edit/profile', async (req, res, next) => {
   }
 });
 
-router.get('/delete', function(req, res, next) {
+const updateProfileImg = async (profile_img, public_id, user_id) => {
+  let query = {
+    text: `UPDATE users SET profile_img = $1, public_id = $2 WHERE user_id = $3`,
+    values: [profile_img, public_id, user_id]
+  }
+  pool.query(query, (err, result) => {
+    if(err) {
+      throw err;
+    }
+    return { success: true }
+  })
+}
+
+router.put('/edit/profile_img', multerUploads, async (req, res) => {
+  let { user_id } = req.body;
+  if(req.file) {
+    const options = {
+      folder: `user-icons/user-${user_id}`, 
+      use_filename: true
+    }
+    const file = dataUri(req).content;
+    return cloudinary.uploader.upload(file, options)
+      .then((result) => {
+        const image = result.url;
+        const public_id = result.public_id;
+
+        updateProfileImg(image, public_id, user_id);
+
+        return res.status(200).json({
+          messge: 'Your image has been uploded successfully to cloudinary',
+          data: {
+            result
+          }
+        })
+      })
+      .catch((err) => res.status(400).json({
+        messge: 'someting went wrong while processing your request',
+        data: {
+          err
+        }
+    }))
+   }
+})
+
+router.delete('/delete/profile_img/:user_id', async (req, res) => {
+  let { user_id } = req.params;
+  let query = {
+    text: `SELECT public_id FROM users WHERE user_id = $1`,
+    values: [user_id]
+  }
+  const fetchPublicId= await checkIfExists('public_id', query);
+  if(!fetchPublicId.exist) {
+    return res.json({message: 'public_id does not exist.' })
+  }
+  return cloudinary.uploader.destroy(fetchPublicId.row.public_id)
+    .then(result => {
+      updateProfileImg('', '', user_id);
+      return res.status(200).json({
+        message: 'Your image has been deleted successfully from cloudinary',
+        data: {
+          result
+        }
+      })
+    })
+    .catch(err => res.status(400).json({
+      message: 'someting went wrong while processing your request',
+      data: {
+        err
+      }
+    }))
+})
+
+router.delete('/delete/user/:user_id',(req, res, next) => {
   res.send('respond with a resource');
 });
 
