@@ -155,6 +155,21 @@ export const editThemeColor = formValues => async (dispatch, getState) => {
   }
 }
 
+export const editProfileImage = file => async (dispatch, getState) => {
+  const { user_id } = getState().auth;
+  let formData = new FormData();
+  formData.append("profile_img", file);
+  formData.append('user_id', user_id);
+  dispatch({ type: PROFILE_SETTINGS_PENDING });
+  const response = await auth.put('/edit/profile_img', formData);
+  if(!response.data.error) {
+    dispatch({ type: PROFILE_SETTINGS_SUCCESS, payload: response.data });
+    history.push('/profile/settings');
+  } else {
+    dispatch({ type: PROFILE_SETTINGS_ERROR, payload: response.data.error });
+  }
+}
+
 export const createEvent = formValues => async (dispatch, getState) => {
   const { user_id } = getState().auth;
   const response = await events.post('/new', {...formValues, user_id});

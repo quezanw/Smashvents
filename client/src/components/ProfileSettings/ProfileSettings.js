@@ -25,7 +25,6 @@ class ProfileSettings extends React.Component {
     let { isSignedIn, username, first_name, last_name, theme_color } = this.props.auth; 
     let initialValues = { username };
     if(isSignedIn) {
-      // let {username, first_name, last_name, theme_color} = this.props.auth;
       return ( 
         <div className={styles.wrapper}>
           <div className={styles.header}>
@@ -33,9 +32,6 @@ class ProfileSettings extends React.Component {
           </div>
           <div className={styles.row}>
             <div className={styles.userCard}>
-              {/* <div className={styles.userIcon} style={{backgroundColor: theme_color}}>
-                {username.charAt(0).toUpperCase()}
-              </div> */}
               {this.renderIcon(this.props.auth)}
               <div className={styles.nameWrapper}>
                 <h2 className={styles.username}>{username}</h2>
@@ -62,9 +58,7 @@ class ProfileSettings extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    auth: state.auth
-  }
+  return { auth: state.auth }
 }
 
 export default connect(mapStateToProps,{ editThemeColor, editProfileSettings })(ProfileSettings);

@@ -98,7 +98,6 @@ router.post('/login', async (req, res, next) => {
                     FROM users WHERE email='${email}' LIMIT 1`;
   let emailResponse = await checkIfExists('email', emailQuery);
   if(emailResponse.exist) {
-    console.log(emailResponse)
     bcrypt.compare(password, emailResponse.row.password, (err,result) => {
       if(err) {
         throw err
@@ -189,15 +188,13 @@ router.put('/edit/profile_img', multerUploads, async (req, res) => {
 
         return res.status(200).json({
           messge: 'Your image has been uploded successfully to cloudinary',
-          data: {
-            result
-          }
+          profile_img: image
         })
       })
       .catch((err) => res.status(400).json({
         messge: 'someting went wrong while processing your request',
         data: {
-          err
+          error: err
         }
     }))
    }
