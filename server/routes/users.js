@@ -206,22 +206,23 @@ router.delete('/delete/profile_img/:user_id', async (req, res) => {
     text: `SELECT public_id FROM users WHERE user_id = $1`,
     values: [user_id]
   }
-  const fetchPublicId= await checkIfExists('public_id', query);
+  const fetchPublicId = await checkIfExists('public_id', query);
   if(!fetchPublicId.exist) {
-    return res.json({message: 'public_id does not exist.' })
+    return res.json({ error: 'public_id does not exist.' })
   }
   return cloudinary.uploader.destroy(fetchPublicId.row.public_id)
     .then(result => {
       updateProfileImg('', '', user_id);
       return res.status(200).json({
         message: 'Your image has been deleted successfully from cloudinary',
+        profile_img: '',
         data: {
           result
         }
       })
     })
     .catch(err => res.status(400).json({
-      message: 'someting went wrong while processing your request',
+      error: 'someting went wrong while processing your request',
       data: {
         err
       }

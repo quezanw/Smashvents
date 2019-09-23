@@ -12,7 +12,7 @@ class DropzoneInput extends React.Component {
   renderDrag = ({ getRootProps, getInputProps, isDragActive,isDragReject, rejectedFiles }) => {
     const isFileTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;
     return (
-      <div {...getRootProps()}>
+      <div className={styles.dropzone} {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive
           ? "Drop it when it's hot!"
@@ -28,16 +28,14 @@ class DropzoneInput extends React.Component {
 
   render() {
     return (
-      <div className={styles.dropzone}>
-        <Dropzone
-          onDrop={this.onDrop}
-          multiple={false}
-          maxSize={maxSize * 10}
-          accept="image/png, image/jpg, image/jpeg"
-        >
-          {this.renderDrag}
-        </Dropzone>
-      </div>
+      <Dropzone
+        onDrop={this.onDrop}
+        multiple={false}
+        maxSize={maxSize * 10}
+        accept="image/png, image/jpg, image/jpeg"
+      >
+        {this.renderDrag}
+      </Dropzone>
     );
   }
 }
