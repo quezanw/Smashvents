@@ -20,7 +20,9 @@ Smashvents is a web application used to host local Smash Bros Ultimate events in
 
 ![](./examples/user_settings.png)
 
-![](./examples/mobile.png | width=100px)
+![](./examples/user_settings2.png)
+
+![](./examples/mobile.png)
 
 ![](./examples/location.png)
 
