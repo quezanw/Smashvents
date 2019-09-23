@@ -13,7 +13,8 @@ const pool = new Pool({
 
 router.get('/all/:id', (req, res, next) => {
   let { id } = req.params;
-  let query = `SELECT users.user_id, users.username, users.first_name, users.last_name, users.theme_color 
+  let query = `SELECT users.user_id, users.username, users.first_name,
+                      users.last_name, users.theme_color, users.profile_img 
                FROM attendees
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id
@@ -28,7 +29,8 @@ router.get('/all/:id', (req, res, next) => {
 
 router.get('/limit/:id/:limit', (req, res, next) => {
   let { id, limit } = req.params;
-  let query = `SELECT users.user_id, users.username, users.first_name, users.last_name, users.theme_color 
+  let query = `SELECT users.user_id, users.username, users.first_name, 
+                      users.last_name, users.theme_color, users.profile_img 
                FROM attendees
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id
@@ -45,7 +47,8 @@ router.get('/limit/:id/:limit', (req, res, next) => {
 router.get('/offset/:id/:offset', (req, res, next) => {
   let { id, offset } = req.params;
   offset = (offset - 1) * 15;
-  let query = `SELECT users.user_id, users.username, users.first_name, users.last_name, users.theme_color 
+  let query = `SELECT users.user_id, users.username, users.first_name, 
+                      users.last_name, users.theme_color, users.profile_img 
                FROM attendees
                JOIN users ON attendees.user_id=users.user_id
                JOIN events ON attendees.event_id=events.event_id

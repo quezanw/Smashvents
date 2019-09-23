@@ -17,6 +17,7 @@
 
 .playerIcon {
   @extend %default-icon;
+  background-size: contain;
   i {
     font-size: 1.25rem;
   }

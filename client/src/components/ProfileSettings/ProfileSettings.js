@@ -17,7 +17,12 @@ class ProfileSettings extends React.Component {
   renderIcon = auth => {
     let { theme_color, profile_img, username } = auth;
     if(profile_img.length > 0) {
-      return <div style={{ backgroundImage: `url(${profile_img})`}} className={styles.userIcon}></div>
+      return ( 
+        <div 
+          style={{ backgroundImage: `url(${profile_img})`, backgroundColor: theme_color}} 
+          className={styles.userIcon}>
+        </div>
+      )
     }
     return <div style={{ backgroundColor: theme_color }} className={styles.userIcon}>{username.charAt(0)}</div>
   }

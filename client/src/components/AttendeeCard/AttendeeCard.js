@@ -4,11 +4,22 @@ import styles from './AttendeeCard.module.scss';
 const AttendeeCard = props =>  {
   let user = props.user;
   
+  const renderIcon = () => {
+    let { theme_color, profile_img, username } = user;
+    if(profile_img.length > 0) {
+      return ( 
+        <div 
+          style={{ backgroundImage: `url(${profile_img})`, backgroundColor: theme_color}} 
+          className={styles.playerIcon}>
+        </div>
+      )
+    }
+    return <div style={{ backgroundColor: theme_color }} className={styles.playerIcon}>{username.charAt(0)}</div>
+  }
+
   return ( 
     <div className={styles.wrapper}>
-      <div style={{backgroundColor: user.theme_color}} className={styles.playerIcon}>
-        <p>{user.username.charAt(0)}</p>
-      </div>
+      {renderIcon()}
       <div className={styles.playerDetails}>
         <p className={styles.username}>
         {user.username}
