@@ -4,6 +4,7 @@ import ProfileForm from './ProfileForm/ProfileForm';
 import ThemeForm from './ThemeForm/ThemeForm';
 import ProfileImageForm from './ProfileImageForm/ProfileImageForm';
 import Auth from '../Auth/Auth';
+import PageLoader from '../PageLoader/PageLoader';
 import { connect } from 'react-redux';
 import { editThemeColor, editProfileSettings } from '../../actions/index';
 
@@ -21,39 +22,46 @@ class ProfileSettings extends React.Component {
     return <div style={{ backgroundColor: theme_color }} className={styles.userIcon}>{username.charAt(0)}</div>
   }
 
-  render() {
-    let { isSignedIn, username, first_name, last_name, theme_color } = this.props.auth; 
-    let initialValues = { username };
-    if(isSignedIn) {
-      return ( 
-        <div className={styles.wrapper}>
-          <div className={styles.header}>
-            Profile Settings
-          </div>
-          <div className={styles.row}>
-            <div className={styles.userCard}>
-              {this.renderIcon(this.props.auth)}
-              <div className={styles.nameWrapper}>
-                <h2 className={styles.username}>{username}</h2>
-                <p className={styles.fullname}>{first_name} {last_name}</p>
-              </div>
+  renderSettings = () => {
+    let { username, first_name, last_name, theme_color } = this.props.auth; 
+    return ( 
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
+          Profile Settings
+        </div>
+        <div className={styles.row}>
+          <div className={styles.userCard}>
+            {this.renderIcon(this.props.auth)}
+            <div className={styles.nameWrapper}>
+              <h2 className={styles.username}>{username}</h2>
+              <p className={styles.fullname}>{first_name} {last_name}</p>
             </div>
-            <ProfileForm onSubmit={this.submitProfileEdit} initialValues={initialValues}/>
           </div>
-          <ThemeForm onSubmit={this.submitThemeColor} theme_color={theme_color}/>
-          <ProfileImageForm/>
+          <ProfileForm onSubmit={this.submitProfileEdit} initialValues={{username}}/>
         </div>
-      );
-    }
-    return (
-      <div className={styles.authWrapper}>
-        <h1>Login Required.</h1>
-        <p>You must be logged in to view this page.</p>
-        <div className={styles.auth}>
-          <Auth />
-        </div>
+        <ThemeForm onSubmit={this.submitThemeColor} theme_color={theme_color}/>
+        <ProfileImageForm/>
       </div>
     );
+    
+  }
+
+  render() {
+    let { isSignedIn, profileSettingsPending } = this.props.auth;
+    if(!isSignedIn) {
+      return (
+        <div className={styles.authWrapper}>
+          <h1>Login Required.</h1>
+          <p>You must be logged in to view this page.</p>
+          <div className={styles.auth}>
+            <Auth />
+          </div>
+        </div>
+      );      
+    } else if(profileSettingsPending) {
+      return <PageLoader/>
+    }
+    return this.renderSettings();
   }
 }
 

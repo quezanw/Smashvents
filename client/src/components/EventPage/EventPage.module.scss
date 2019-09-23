@@ -2,16 +2,6 @@
 @import '../../styles/components.scss';
 @import '../../styles/layout.scss';
 
-.loaderWrapper {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  background-color: $primary-white;
-}
-
 .wrapper {
   padding-bottom: 2rem;
 }

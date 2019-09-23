@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Auth from '../Auth/Auth';
 import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
-import BeatLoader from 'react-spinners/BeatLoader';
+import PageLoader from '../PageLoader/PageLoader';
 import VenueMap from './VenueMap/VenueMap';
 import EventHeader from './EventHeader/EventHeader';
 import EventBodyText from './EventBodyText/EventBodyText';
@@ -91,16 +91,7 @@ class EventPage extends React.Component {
         </div>
       );
     }
-    return (
-      <div className={styles.loaderWrapper}>
-        <BeatLoader
-          sizeUnit={"px"}
-          size={75}
-          color={'#36D7B7'}
-          loading={true}
-        />
-      </div>
-    );
+    return <PageLoader/>;
   }
 }
 

@@ -125,7 +125,7 @@ export default (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				profileSettingsSuccess: false,
-				profileSettingsPending: false,
+				profileSettingsPending: true,
 				profileSettingsError: null,
 			}
 		case PROFILE_SETTINGS_ERROR: 
