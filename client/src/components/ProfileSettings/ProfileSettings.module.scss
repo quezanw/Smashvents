@@ -26,13 +26,12 @@
 
 .userCard {
   @extend %container-card;
-  width: 30%;
-  min-width: 240px;
+  flex-grow: 1;
   display: flex;
   align-items: center;
   padding: 2rem;
 
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  @media only screen and (min-device-width : 320px) and (max-device-width : 700px) {
     width: 100%;
     margin-bottom: 1rem;
   }

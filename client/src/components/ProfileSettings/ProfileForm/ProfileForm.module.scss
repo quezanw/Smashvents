@@ -4,15 +4,12 @@
 
 .formWrapper {
   @extend %container-card;
-  width: 50%;
-  min-width: 240px;
   padding: 2rem;
-
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  flex-grow: 2;
+  margin-left: 1rem;
+  @media only screen and (min-device-width : 320px) and (max-device-width : 700px) {
     width: 100%;
-  }
-  @media only screen and (min-device-width : 700px) and (max-device-width : 1080px) {
-    width: auto;
+    margin-left: 0;
   }
 }
 
