@@ -20,13 +20,15 @@ class OnlineOffline extends React.Component {
   renderRadioInput = ({ input, label, meta, type}) => {
     return (
       <div className={styles.radio}>
-        <input 
-          {...input}
-          type="radio" 
-          value={input.value}
-          checked={this.state.online === input.value}
-        />
-        <label>{label}</label>
+        <label>
+          <input 
+            {...input}
+            type="radio" 
+            value={input.value}
+            checked={this.state.online === input.value}
+          />
+          {label}
+        </label>
       </div>
     );
   };
@@ -52,7 +54,7 @@ class OnlineOffline extends React.Component {
     return (
       <div>
         <div className={styles.radioWrapper}>
-          <p className={styles.label}>Online / Offline</p>
+          <p className={styles.subHeader}>Online / Offline</p>
           <Field 
             name="online" 
             value={'true'}

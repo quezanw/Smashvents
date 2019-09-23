@@ -6,7 +6,7 @@
   margin: 1rem 0;
 }
 
-.label {
+.subHeader {
   font-weight: bold;
   font-family: $primary-font;
   font-size: $primary-font-size;
@@ -22,5 +22,9 @@
 
   label {
     @extend %font-base;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
