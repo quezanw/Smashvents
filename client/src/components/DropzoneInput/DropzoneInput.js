@@ -2,7 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import styles from './DropzoneInput.module.scss';
 import { connect } from 'react-redux';
-import { editProfileImage } from '../../../actions/index';
+import { editProfileImage } from '../../actions/index';
 
 const maxSize = 1048576; //1mb
 class DropzoneInput extends React.Component {

@@ -30,7 +30,7 @@ class Banner extends React.Component {
   }
   
   render() {
-    let banners = [1,2,3,4,5,6];
+    let banners = [1,2,3];
     const bannerImages = banners.map(val => {
       return (
         <Field

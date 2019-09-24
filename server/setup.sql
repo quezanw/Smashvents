@@ -16,7 +16,9 @@ CREATE TABLE events (
   start_time   TIME         NOT NULL,
   end_time     TIME         NOT NULL,  
   banner_path  VARCHAR(254) NOT NULL,
+  custom_banner VARCHAR(1000),
   icon_path    VARCHAR(254) NOT NULL,
+  custom_icon  VARCHAR(1000),
   created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
   updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()
 );
@@ -300,7 +302,7 @@ VALUES (
   '2019-10-23',
   '15:00:00',
   '20:00:00',
-  '/banner5.jpg',
+  '/banner1.jpg',
   '/event_icon1.png'
 );
 
@@ -338,7 +340,7 @@ VALUES (
   '2019-11-05',
   '12:00:00',
   '18:00:00',
-  '/banner5.jpg',
+  '/banner2.jpg',
   '/event_icon2.png'
 );
 
@@ -406,7 +408,7 @@ VALUES (
   '2020-05-12',
   '12:00:00',
   '18:00:00',
-  '/banner6.jpg',
+  '/banner1.jpg',
   '/event_icon2.png'
 );
 
@@ -439,7 +441,7 @@ VALUES (
   '2018-08-12',
   '10:00:00',
   '20:00:00',
-  '/banner4.jpg',
+  '/banner3.jpg',
   '/event_icon5.png'
 );
 
@@ -490,7 +492,7 @@ VALUES (
   '2017-10-23',
   '15:00:00',
   '20:00:00',
-  '/banner5.jpg',
+  '/banner3.jpg',
   '/event_icon1.png'
 );
 

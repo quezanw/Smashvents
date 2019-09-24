@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ProfileImageForm.module.scss';
-import DropzoneInput from '../DropzoneInput/DropzoneInput';
+import DropzoneInput from '../../DropzoneInput/DropzoneInput';
 import { connect } from 'react-redux';
 import { deleteProfileImage } from '../../../actions/index';
 
