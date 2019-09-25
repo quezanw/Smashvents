@@ -11,6 +11,9 @@
   @extend %input-row;
   width: 45%;
 
+  @media only screen and (min-device-width : 320px) and (max-device-width : 700px) {
+    width: 100%;
+  }
   input {
     @extend %font-base;
   }
@@ -31,8 +34,4 @@
   resize: none;
   height: 250px;
   padding: 1rem;
-
-  input {
-    @extend %font-base;
-  }
 }
