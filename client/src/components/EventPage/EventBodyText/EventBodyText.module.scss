@@ -1,10 +1,10 @@
 @import '../../../styles/components.scss';
 
 .largeTextContainer {
-    @extend %container-card;
+    // @extend %container-card;
     width: 90%;
     margin: 2rem 0;
-    padding: 2rem;
+    // padding: 2rem;
   
     p {
       font-size: 12pt;
