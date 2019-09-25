@@ -7,10 +7,9 @@
   margin-right: 1rem;
 
   label {
-    font-weight: bold;
+    @extend %font-sub-header; 
+    margin-bottom: .5rem;
   }
-
-  label,
   input {
     @extend %font-base;
   }

@@ -86,6 +86,12 @@
   font-size: $primary-font-size;
 }
 
+%font-sub-header {
+  font-family: $primary-font;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
 %default-icon {
   width: 35px;
   height: 35px;

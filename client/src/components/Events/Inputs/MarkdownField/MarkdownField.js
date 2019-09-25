@@ -22,7 +22,8 @@ class MarkdownField extends React.Component {
     let { name, label } = this.props;
     return (
       <div>
-        <p className={styles.subHeader}>{label}</p>
+        <h2 className={styles.subHeader}>{label}</h2>
+        <p className={styles.text}>Create your {label} using Markdown!</p>
         <div className={styles.wrapper}>
           <Field 
             name={name}

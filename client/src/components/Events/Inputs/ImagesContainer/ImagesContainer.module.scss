@@ -2,9 +2,7 @@
 @import '../../../../styles/components.scss';
 
 .label {
-  font-weight: bold;
-  font-family: $primary-font;
-  font-size: $primary-font-size;
+  @extend %font-sub-header;
   margin-bottom: .5rem;
 }
 
