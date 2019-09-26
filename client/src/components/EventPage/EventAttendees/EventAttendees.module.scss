@@ -8,8 +8,6 @@
 .attendees {
   @extend %container-card;
   height: auto;
-  // display: flex;
-  // flex-flow: row wrap;
   padding: 2rem 0 2rem 1rem;
 }
 

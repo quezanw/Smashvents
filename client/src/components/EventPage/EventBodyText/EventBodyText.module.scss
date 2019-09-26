@@ -1,16 +1,20 @@
 @import '../../../styles/components.scss';
 
 .largeTextContainer {
-    width: 70%;
-    margin: 2rem 0;
-    @media only screen and (min-device-width : 320px) and (max-device-width : 800px) {
-      width: 100%;
-      overflow: scroll;
-    }
-    p {
-      font-size: 12pt;
-      font-family: $primary-font;
-      line-height: 2rem;
-      text-align: left;
-    }
+  @extend %large-outer-container;
+  @media only screen and (min-device-width : 320px) and (max-device-width : 800px) {
+    width: 100%;
+    overflow-x: scroll;
   }
+  p {
+    font-size: 12pt;
+    font-family: $primary-font;
+    line-height: 2rem;
+    text-align: left;
+  }
+}
+
+.card {
+  @extend %container-card;
+  padding: 2rem;
+}
