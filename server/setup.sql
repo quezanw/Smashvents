@@ -5,22 +5,24 @@ CREATE DATABASE smashvents;
 \c smashvents 
 
 CREATE TABLE events (
-  event_id     SERIAL,
-  user_id      INTEGER      NOT NULL,
-  title        VARCHAR(254) NOT NULL,
-  description  VARCHAR(8000),
-  ruleset      VARCHAR(8000),
-  venue        VARCHAR(254),
-  online       BOOLEAN      NOT NULL,
-  start_date   DATE         NOT NULL,
-  start_time   TIME         NOT NULL,
-  end_time     TIME         NOT NULL,  
-  banner_path  VARCHAR(254) NOT NULL,
-  custom_banner VARCHAR(1000),
-  icon_path    VARCHAR(254) NOT NULL,
-  custom_icon  VARCHAR(1000),
-  created_date TIMESTAMP	  NOT NULL	DEFAULT NOW(),
-  updated_date TIMESTAMP    NOT NULL	DEFAULT NOW()
+  event_id          SERIAL,
+  user_id           INTEGER       NOT NULL,
+  title             VARCHAR(254)  NOT NULL,
+  description       VARCHAR(8000),
+  ruleset           VARCHAR(8000),
+  venue             VARCHAR(254),
+  online            BOOLEAN       NOT NULL,
+  start_date        DATE          NOT NULL,
+  start_time        TIME          NOT NULL,
+  end_time          TIME          NOT NULL,  
+  banner_path       VARCHAR(254)  NOT NULL,
+  custom_banner     VARCHAR(500)  DEFAULT '',
+  banner_public_id  VARCHAR(500), 
+  icon_path         VARCHAR(254)  NOT NULL,
+  custom_icon       VARCHAR(500)  DEFAULT '',
+  icon_public_id    VARCHAR(500),
+  created_date      TIMESTAMP	    NOT NULL	DEFAULT NOW(),
+  updated_date      TIMESTAMP     NOT NULL	DEFAULT NOW()
 );
 
 CREATE TABLE users (

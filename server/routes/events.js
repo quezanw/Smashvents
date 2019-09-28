@@ -1,6 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const config = require('../../config');
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const Datauri = require('datauri');
+const path = require('path');
+const dUri = new Datauri();
+
+cloudinary.config({
+  cloud_name: config.CLOUD_NAME, 
+  api_key: config.CLOUDINARY_KEY, 
+  api_secret: config.CLOUDINARY_SECRET
+});
+
+const storage = multer.memoryStorage();
+const multerUploads = multer({ storage }).single('image');
+const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -14,6 +29,15 @@ const pool = new Pool({
 pool.on('connect', () => {
   console.log('connected to the db');
 });
+
+const checkIfExists = async (columnName, query) => {
+  let response = await pool.query(query)
+  if(response.rowCount !== 0) {
+    return {exist: true, message: `${columnName} exists`, row: response.rows[0]};
+  } else {
+    return {exist: false, message: `${columnName} available`}
+  }
+}
 
 // GET single event
 router.get('/', (req, res, next) => {
@@ -165,6 +189,137 @@ router.put('/edit', (req, res, next) => {
     }
     res.status(200).json(results);
   })
+});
+
+const updateImage = async (image, public_id, event_id, type) => {
+  let query = {
+    text: `UPDATE events 
+           SET custom_${type} = $1, ${type}_public_id = $2 WHERE event_id = $3`,
+    values: [image, public_id, event_id]
+  }
+  pool.query(query, (err, result) => {
+    if(err) {
+      throw err;
+    }
+    return { success: true, result }
+  })
+}
+
+router.put('/edit/banner', multerUploads, async (req, res) => {
+  let { event_id } = req.body;
+  if(req.file) {
+    const options = {
+      folder: `event-banners/event-${event_id}`, 
+      use_filename: true
+    }
+    const file = dataUri(req).content;
+    return cloudinary.uploader.upload(file, options)
+      .then((result) => {
+        const image = result.url;
+        const public_id = result.public_id;
+
+        updateImage(image, public_id, event_id, 'banner');
+
+        return res.status(200).json({
+          messge: 'Your image has been uploded successfully to cloudinary',
+          custom_banner: image
+        })
+      })
+      .catch((err) => res.status(400).json({
+        messge: 'someting went wrong while processing your request',
+        data: {
+          error: err
+        }
+    }))
+   }
+});
+
+router.put('/edit/icon', multerUploads, async (req, res) => {
+  let { event_id } = req.body;
+  if(req.file) {
+    const options = {
+      folder: `event-icons/event-${event_id}`, 
+      use_filename: true
+    }
+    const file = dataUri(req).content;
+    return cloudinary.uploader.upload(file, options)
+      .then((result) => {
+        const image = result.url;
+        const public_id = result.public_id;
+
+        updateImage(image, public_id, event_id, 'icon');
+
+        return res.status(200).json({
+          messge: 'Your image has been uploded successfully to cloudinary',
+          custom_icon: image
+        })
+      })
+      .catch((err) => res.status(400).json({
+        messge: 'someting went wrong while processing your request',
+        data: {
+          error: err
+        }
+    }))
+   }
+});
+
+
+router.delete('/delete/banner/:event_id', async (req, res) => {
+  let { event_id } = req.params;
+  let query = {
+    text: `SELECT banner_public_id FROM events WHERE event_id = $1`,
+    values: [event_id]
+  }
+  const fetchPublicId = await checkIfExists('banner_public_id', query);
+  if(!fetchPublicId.exist) {
+    return res.json({ error: 'public_id does not exist.' })
+  }
+  return cloudinary.uploader.destroy(fetchPublicId.row.banner_public_id)
+    .then(result => {
+      updateImage('', '', event_id, 'banner');
+      return res.status(200).json({
+        message: 'Your image has been deleted successfully from cloudinary',
+        custom_banner: '',
+        data: {
+          result
+        }
+      })
+    })
+    .catch(err => res.status(400).json({
+      error: 'someting went wrong while processing your request',
+      data: {
+        err
+      }
+    }))
+});
+
+router.delete('/delete/icon/:event_id', async (req, res) => {
+  let { event_id } = req.params;
+  let query = {
+    text: `SELECT icon_public_id FROM events WHERE event_id = $1`,
+    values: [event_id]
+  }
+  const fetchPublicId = await checkIfExists('icon_public_id', query);
+  if(!fetchPublicId.exist) {
+    return res.json({ error: 'public_id does not exist.' })
+  }
+  return cloudinary.uploader.destroy(fetchPublicId.row.icon_public_id)
+    .then(result => {
+      updateImage('', '', event_id, 'icon');
+      return res.status(200).json({
+        message: 'Your image has been deleted successfully from cloudinary',
+        custom_icon: '',
+        data: {
+          result
+        }
+      })
+    })
+    .catch(err => res.status(400).json({
+      error: 'someting went wrong while processing your request',
+      data: {
+        err
+      }
+    }))
 });
 
 // Delete event

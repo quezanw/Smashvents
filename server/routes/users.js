@@ -14,6 +14,7 @@ cloudinary.config({
   api_key: config.CLOUDINARY_KEY, 
   api_secret: config.CLOUDINARY_SECRET
 });
+
 const storage = multer.memoryStorage();
 const multerUploads = multer({ storage }).single('profile_img');
 const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
@@ -227,7 +228,7 @@ router.delete('/delete/profile_img/:user_id', async (req, res) => {
         err
       }
     }))
-})
+});
 
 router.delete('/delete/user/:user_id',(req, res, next) => {
   res.send('respond with a resource');
