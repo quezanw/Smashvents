@@ -2,13 +2,13 @@ import React from 'react';
 import styles from './ProfileImageForm.module.scss';
 import DropzoneInput from '../../DropzoneInput/DropzoneInput';
 import { connect } from 'react-redux';
-import { deleteProfileImage } from '../../../actions/index';
+import { deleteProfileImage , editProfileImage } from '../../../actions/index';
 
 class ProfileImageForm extends React.Component {
 
   renderProfileImg = () => {
     if(this.props.profile_img.length < 1) {
-      return <DropzoneInput/>
+      return <DropzoneInput edit={this.props.editProfileImage}/>
     }
     return (
       <div className={styles.row}>
@@ -42,4 +42,7 @@ const mapStateToProps = state => {
   return { profile_img: state.auth.profile_img }
 }
 
-export default connect(mapStateToProps, { deleteProfileImage })(ProfileImageForm);
+export default connect(mapStateToProps, 
+  { deleteProfileImage, 
+    editProfileImage 
+  })(ProfileImageForm);

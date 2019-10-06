@@ -2,12 +2,11 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import styles from './DropzoneInput.module.scss';
 import { connect } from 'react-redux';
-import { editProfileImage } from '../../actions/index';
 
 const maxSize = 1048576; //1mb
 class DropzoneInput extends React.Component {
 
-  onDrop = file => this.props.editProfileImage(file[0])
+  onDrop = file => this.props.edit(file[0])
 
   renderDrag = ({ getRootProps, getInputProps, isDragActive,isDragReject, rejectedFiles }) => {
     const isFileTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;
@@ -44,4 +43,4 @@ const mapStateToProps = state => {
   return { auth: state.auth }
 }
 
-export default connect(mapStateToProps, { editProfileImage })(DropzoneInput);
+export default connect(mapStateToProps, {})(DropzoneInput);
