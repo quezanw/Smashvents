@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "github-markdown-css": "^3.0.1",
     "google-map-react": "^1.1.4",
     "moment": "^2.24.0",
